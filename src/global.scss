@@ -24,3 +24,38 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #fff;
+}
+
+.logo-font {
+    font-family: 'Lobster', cursive;
+    font-size: 30px;
+    color: #00BFA6;
+}
+
+.light-font {
+    color: #6d6e6e;
+    font-weight: 300;
+}
+
+ion-button {
+    font-weight: 500;
+    box-shadow: 1px 8px 8px 0px rgba(0, 0, 0, 0.05);
+    --box-shadow: none;
+    height: 48px;
+    margin-top: 35px;
+    text-transform: initial;
+}
+
+a {
+    text-decoration: none;
+    padding: 3px;
+}
