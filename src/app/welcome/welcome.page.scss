@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     padding: 20px;
+    box-shadow: 5px 10px #888888;
     
     img {
         width: 200px;
@@ -13,4 +14,34 @@
         display: block;
         top: -100px;
     }
+
+    ion-button {
+        width: 100%;
+        letter-spacing: 1px;
+        height: 38px;
+        --border-radius: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        --background: #40a3c7;
+        position: fixed;
+        bottom: 5%;
+        max-width: 300px;
+        opacity: 0.8;
+    }
+}
+
+ion-content {
+    --background: linear-gradient(#42acc9, #2c1b75, #2c1b75);
+    opacity: 0.9;
+
+    div {
+        text-align: center;
+    }
+}
+
+.welcome-title {
+    color: #dddce6;
+    font-weight: bold;
+    letter-spacing: 1px;
+    
 }

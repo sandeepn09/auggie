@@ -1,41 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:wght@200&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
 
-.content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    
-    ion-item {
-        border-radius: 50px;
-        height: 55px;
-        border: 0.5px solid #00BFA6;
-        --highlight-height: 0px;
-        width: 100%;
-        min-width: 300px;
-    }
-    
-}
-
 .small-font {
     font-size: 14px;
    
 }
-
-ion-input {
-    font-size: 16px;
-    --padding-top: 17px;
-    --padding-bottom: 17px;
-    --padding-start: 8px;
-    color: gray;
-    font-family: 'Poppins', sans-serif;
-   
-}
-
-
 
 ion-header {
     ion-toolbar {
