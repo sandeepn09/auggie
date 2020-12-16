@@ -8,6 +8,7 @@ import { CreditHistoryPageRoutingModule } from './credit-history-routing.module'
 
 import { CreditHistoryPage } from './credit-history.page';
 import { MessageComponentModule } from '../../message/message.module';
+import {PayRecordModule} from '../../pay-record/pay-record.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { MessageComponentModule } from '../../message/message.module';
     FormsModule,
     IonicModule,
     CreditHistoryPageRoutingModule,
-    MessageComponentModule
+    MessageComponentModule,
+    PayRecordModule
   ],
   declarations: [CreditHistoryPage]
 })

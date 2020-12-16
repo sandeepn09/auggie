@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Credit History</ion-title>
+    <ion-title>Payment History</ion-title>
     <ion-buttons slot="start">
       <ion-menu-button menu="main-menu"></ion-menu-button>
     </ion-buttons>
@@ -17,6 +17,7 @@
   
   
   <ion-list>
-    <app-message *ngFor="let message of getMessages()" [message]="message"></app-message>
+    <app-pay-record *ngFor="let message of getMessages()" [message]="message"></app-pay-record>
+    <!--<app-message *ngFor="let message of getMessages()" [message]="message"></app-message> -->
   </ion-list>
 </ion-content>
