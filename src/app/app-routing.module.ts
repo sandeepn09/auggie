@@ -27,6 +27,42 @@ const routes: Routes = [
     path: 'signin',
     loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
   },
+  {
+    path: 'authhelp',
+    loadChildren: () => import('./authhelp/authhelp.module').then( m => m.AuthhelpPageModule)
+  },
+  {
+    path: 'verification',
+    loadChildren: () => import('./verification/verification.module').then( m => m.VerificationPageModule)
+  },
+  {
+    path: 'reset',
+    loadChildren: () => import('./reset/reset.module').then( m => m.ResetPageModule)
+  },
+  {
+    path: 'authresult',
+    loadChildren: () => import('./authresult/authresult.module').then( m => m.AuthresultPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./user/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'menu',
+    loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
+  },
+  {
+    path: 'description',
+    loadChildren: () => import('./description/description.module').then( m => m.DescriptionPageModule)
+  },
+  {
+    path: 'credit-history',
+    loadChildren: () => import('./user/credit-history/credit-history.module').then( m => m.CreditHistoryPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,0 +1,124 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">User Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="main-menu"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="main-content">
+    <ion-grid *ngIf="step==1" class="form-grid">
+      <ion-row>
+        <ion-col> 
+        <p>Personal Details</p>
+      </ion-col> 
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked"><p class="label">First name</p></ion-label>
+          <ion-input [(ngModel)]="user.firstName" type="text"></ion-input>
+        </ion-col>
+       
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked"><p class="label">Last name</p></ion-label>
+          <ion-input [(ngModel)]="user.lastName" type="text"></ion-input>
+        </ion-col>
+       
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked"><p class="label">Occupation</p></ion-label>
+          <ion-input [(ngModel)]="user.occupation" type="text"></ion-input>
+        </ion-col>
+       
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked"><p class="label">Gender</p></ion-label>
+          <ion-select value="m" [(ngModel)]="user.gender" interface="action-sheet">
+            <ion-select-option value="m">Male</ion-select-option>
+            <ion-select-option value="f">Female</ion-select-option>
+            <ion-select-option value="n">Do not wish to specify</ion-select-option>
+          </ion-select>
+        </ion-col>
+       
+      </ion-row>
+
+      <ion-row>
+        <ion-col> 
+        <div class="form-buttons">
+          <ion-button fill="outline" shape="round" (click)="previous()">Back</ion-button>
+          <ion-button shape="round" (click)="next()">Next</ion-button>
+        </div>
+      </ion-col> 
+      </ion-row>
+    </ion-grid>
+
+    <!-- Contact Info-->
+
+    <ion-grid *ngIf="step==2" class="form-grid">
+      <ion-row>
+        <ion-col> 
+        <p>contact info</p>
+      </ion-col> 
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked"><p class="label">Address</p></ion-label>
+          <ion-input [(ngModel)]="user.address" type="text"></ion-input>
+        </ion-col>
+       
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked"><p class="label">City</p></ion-label>
+          <ion-input [(ngModel)]="user.city" type="text"></ion-input>
+        </ion-col>
+       
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked"><p class="label">State</p></ion-label>
+          <ion-input type="text" [(ngModel)]="user.state" maxlength="2"></ion-input>
+        </ion-col>
+        <ion-col> 
+          <ion-label position="stacked"><p class="label">Postal code</p></ion-label>
+          <ion-input type="text" [(ngModel)]="user.postalCode" maxlength="5"></ion-input>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-label position="stacked"><p class="label">Phone</p></ion-label>
+          <ion-input type="number" [(ngModel)]="user.phone" maxlength="10"></ion-input>
+        </ion-col>
+       
+      </ion-row>
+
+      <ion-row>
+        <ion-col> 
+        <div class="form-buttons">
+          <ion-button fill="outline" shape="round" (click)="previous()">Back</ion-button>
+          <ion-button shape="round" (click)="next()">Save</ion-button>
+        </div>
+      </ion-col> 
+      </ion-row>
+    </ion-grid>
+
+    
+
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <p class="ion-text-center small-font"></p>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,35 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Help</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="auth-content">
+
+    <ion-list class="basic-form" lines="none">
+     
+      <p class="auth-title">Forgot Password</p>
+      <p class="auth-message">Enter the email for your account and we will send the password reset instructions</p>
+      <ion-item class="ion-margin-bottom">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input type="email" placeholder="Email"></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" shape="round" routerLink="/verification">Reset Password</ion-button>
+
+      <div class="secure" style="display: block; text-align: center;">
+        <ion-icon name="lock-closed"></ion-icon>
+      </div>
+
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <p class="ion-text-center small-font">
+      <a href="#" routerLink="/signin">sign in</a>
+    </p>
+  </ion-toolbar>
+</ion-footer>

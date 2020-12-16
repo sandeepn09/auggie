@@ -1,3 +1,29 @@
 <ion-app>
+  <ion-menu menuId="main-menu" content-id="main">
+    
+    <ion-content>
+      <div class="menu-header-bg">
+        <ion-label>AUGGIE</ion-label>
+      </div>
+      <ion-list class="menu-items" lines="none">
+        <ion-item routerLink="/dashboard">
+          <ion-icon name="pie-chart-outline" slot="start"></ion-icon>Dashboard
+        </ion-item>
+        <ion-item routerLink="/challenge">
+          <ion-icon name="browsers-outline" slot="start"></ion-icon>Payment Methods
+        </ion-item>
+        <ion-item routerLink="/stories">
+          <ion-icon name="reader-outline" slot="start"></ion-icon>Payment History
+        </ion-item>
+        <ion-item routerLink="/profile">
+          <ion-icon name="people-outline" slot="start"></ion-icon>Profile
+        </ion-item>
+        <ion-item>
+          <ion-icon name="settings-outline" slot="start"></ion-icon>Settings
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
