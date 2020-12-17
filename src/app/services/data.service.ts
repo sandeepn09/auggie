@@ -16,7 +16,7 @@ export class DataService {
     {
       fromName: 'Matt Chorsey',
       subject: 'New event: Trip to Vegas',
-      date: '9:32 AM',
+      date: Date.now().toString(),
       id: 0,
       read: false
     },

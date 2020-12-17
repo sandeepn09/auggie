@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService, Message } from '../../services/data.service';
+import {PaymentService, Record} from '../../services/payment.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { DataService, Message } from '../../services/data.service';
 })
 export class CreditHistoryPage implements OnInit {
 
-  constructor(private data: DataService) {}
+  constructor(private data: PaymentService) {}
 
   refresh(ev) {
     setTimeout(() => {
@@ -17,8 +18,8 @@ export class CreditHistoryPage implements OnInit {
     }, 3000);
   }
 
-  getMessages(): Message[] {
-    return this.data.getMessages();
+  getRecords(): Record[] {
+    return this.data.getRecords();
   }
 
   ngOnInit() {
