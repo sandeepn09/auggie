@@ -63,6 +63,14 @@ const routes: Routes = [
     path: 'credit-history',
     loadChildren: () => import('./user/credit-history/credit-history.module').then( m => m.CreditHistoryPageModule)
   },
+  {
+    path: 'referal',
+    loadChildren: () => import('./referal/referal.module').then( m => m.ReferalPageModule)
+  },
+  {
+    path: 'referal-form',
+    loadChildren: () => import('./referal-form/referal-form.module').then( m => m.ReferalFormPageModule)
+  },
 ];
 
 @NgModule({

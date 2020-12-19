@@ -23,7 +23,7 @@ export class DataService {
     {
       fromName: 'Lauren Ruthford',
       subject: 'Long time no chat',
-      date: '6:12 AM',
+      date: Date.now().toString(),
       id: 1,
       read: false
     },

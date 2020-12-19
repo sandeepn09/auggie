@@ -11,10 +11,14 @@
 
 <ion-content [fullscreen]="true">
   
-  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  
+  <div class="query-content">
+    <ion-label>Sort by</ion-label>
+    <ion-select value="date">
+      <ion-select-option value="date">Date</ion-select-option>
+      <ion-select-option value="payee">Payee</ion-select-option>
+      <ion-select-option value="pm">Payment method</ion-select-option>
+    </ion-select>
+  </div>
   
   <ion-list>
     <app-pay-record *ngFor="let message of getRecords()" [record]="message"></app-pay-record>

@@ -3,7 +3,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     padding: 20px;
     box-shadow: 5px 10px #888888;
@@ -22,26 +21,42 @@
         --border-radius: 5px;
         font-weight: bold;
         font-size: 14px;
-        --background: #40a3c7;
+        --background: #6C63FF;
         position: fixed;
         bottom: 5%;
         max-width: 300px;
         opacity: 0.8;
     }
+
+    .arch{
+        height: 50px;
+        background: cornflowerblue;
+    }
 }
 
 ion-content {
-    --background: linear-gradient(#42acc9, #2c1b75, #2c1b75);
-    opacity: 0.9;
-
+    
+    .arch {
+        height: 50px;
+        --background: #6C63FF;
+    }
     div {
+        margin-top: 50px;
         text-align: center;
     }
 }
 
 .welcome-title {
-    color: #dddce6;
+    color: #6C63FF;
     font-weight: bold;
     letter-spacing: 1px;
-    
+}
+
+.dark-color {
+    color: gray;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
