@@ -71,6 +71,10 @@ const routes: Routes = [
     path: 'referal-form',
     loadChildren: () => import('./referal-form/referal-form.module').then( m => m.ReferalFormPageModule)
   },
+  {
+    path: 'view-profile',
+    loadChildren: () => import('./user/view-profile/view-profile.module').then( m => m.ViewProfilePageModule)
+  },
 ];
 
 @NgModule({
