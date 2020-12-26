@@ -1,17 +1,29 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
-import { DashboardPage } from './dashboard.page';
-import {UserInfoPage} from './user-info/user-info.page';
+import { DashboardPage } from "./dashboard.page";
+import { UserInfoPage } from "./user-info/user-info.page";
+import { ViewPaymethodPage } from "./view-paymethod/view-paymethod.page";
 
 const routes: Routes = [
   {
-    path: '',
-    component: DashboardPage
-  },
-  {
-    path: 'user-info',
-    component: UserInfoPage
+    path: 'dashboard',
+    component: DashboardPage,
+    children: [
+      {
+        path: 'user-info',
+        component: UserInfoPage,
+      },
+      {
+        path: 'view-paymethod',
+        component: ViewPaymethodPage,
+      },
+      {
+        path: '',
+        redirectTo: '/dashboard/view-paymethod',
+        pathMatch: 'full'
+      }
+    ]
   }
 ];
 

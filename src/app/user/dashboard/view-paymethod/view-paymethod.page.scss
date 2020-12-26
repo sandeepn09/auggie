@@ -1,0 +1,22 @@
+.pay-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+ion-card {
+    width: 100%;
+}
+
+ion-content {
+    width: 100%;
+}
+
+.card-ok {
+    border-left: 2px solid lawngreen;
+}
+
+.card-warn {
+    border-left: 2px solid coral;
+}
