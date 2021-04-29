@@ -48,10 +48,6 @@ const routes: Routes = [
     loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./user/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-  },
-  {
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
   },
@@ -83,6 +79,27 @@ const routes: Routes = [
     path: 'main',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   },
+  {
+    path: 'funding-account',
+    loadChildren: () => import('./funding-account/funding-account.module').then( m => m.FundingAccountPageModule)
+  },
+  {
+    path: 'funding-accounts',
+    loadChildren: () => import('./funding-accounts/funding-accounts.module').then( m => m.FundingAccountsPageModule)
+  },
+  {
+    path: 'make-payment',
+    loadChildren: () => import('./make-payment/make-payment.module').then( m => m.MakePaymentPageModule)
+  },
+  {
+    path: 'payment-confirm',
+    loadChildren: () => import('./payment-confirm/payment-confirm.module').then( m => m.PaymentConfirmPageModule)
+  },
+  {
+    path: 'profile-view',
+    loadChildren: () => import('./profile-view/profile-view.module').then( m => m.ProfileViewPageModule)
+  },
+  
   
 ];
 

@@ -6,36 +6,43 @@
     padding-top: 40px;
     margin-bottom: 20px;
     
-    ion-label {
-        font-size: 30px;
-        color: #fff;
+    h3 {
+        font-weight: bold;
+        letter-spacing: 3px;
+        color: #3a3a4d;
+        text-transform: lowercase;
     }
+
+
    
 }
 
 ion-menu {
-    --background: #42acc9;
-
-    ion-content {
-        --background: #42acc9;
-    }
-
+   
     ion-list {
-        --background: #42acc9;
+       
 
         ion-item {
-            --background: #42acc9;
-            
-            color: #fff;
+            --background: #fafafa;
+            font-size: 13px;
+            color: #3c3cb0;
+            --color-hover: #45455e;
+            --background-hover: blue;
         }
     }
 }
 
+ion-content {
+    --background: #fafafa;
+    color: #45455e;
+}
 .menu-items {
 
     ion-item {
         ion-icon {
-            color: #fff;
+            color: #8f8fba;
+            --color-hover: #45455e;
+            --background-hover: blue;
         }
     }
 }

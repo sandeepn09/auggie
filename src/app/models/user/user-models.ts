@@ -10,6 +10,8 @@ export class User {
   occupation: string;
   phone: string;
   gender: string;
+  dob: string;
+  income: string
   createDateTime: Date;
   updateDateTime: Date;
 }

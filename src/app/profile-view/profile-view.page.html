@@ -1,0 +1,79 @@
+<ion-content>
+  <div class="head-container">
+    <ion-icon size="large" name="chevron-back-outline"></ion-icon>
+
+    <div class="profile-img">
+      <img alt="" src="../../../assets/sandeep.png" />
+      <div class="ion-text-center">
+      <p class="ft-700">{{user.firstName}}</p>
+      <p class="small-font light-clr">he/him/his</p>
+      </div>
+    </div>
+    <ion-icon size="medium" routerLink="/profile" style="margin-right: 5px;" name="pencil-outline"></ion-icon>
+  </div>
+  <div class="info-content ion-padding">
+    <h6 class="ion-text-uppercase">Personal Info</h6>
+
+    <div class="info-grid">
+      <div>
+        <p class="info-lbl">Email</p>
+        <p class="info-val">{{user.email}}</p>
+      </div>
+      <div>
+        <p class="info-lbl">Phone</p>
+        <p class="info-val">{{user.phone}}</p>
+      </div>
+      <div>
+        <p class="info-lbl">Address</p>
+        <p class="info-val">{{user.address}}, {{user.city}}, {{user.state}}, {{user.postalCode}}</p>
+      </div>
+      <div>
+        <p class="info-lbl">Date of Birth</p>
+        <p class="info-val">{{user.dob}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-content ion-padding form-sec-top-margin">
+    <h6 class="ion-text-uppercase">Employment</h6>
+
+    <div class="info-grid">
+      <div>
+        <p class="info-lbl">Occupation</p>
+        <p class="info-val">{{user.occupation}}</p>
+      </div>
+      <div>
+        <p class="info-lbl">Annual Income</p>
+        <p class="info-val">{{user.income}}</p>
+      </div>
+    
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer style="margin-top: 4em;" class="ion-no-border ion-text-center">
+  
+    <ion-button
+    expand="block"
+    fill="clear"
+    class="dark-clr"
+    routerLink="/description"
+    >Log out</ion-button
+  >
+
+  <ion-button
+  expand="block"
+  fill="clear"
+  class="danger-clr"
+  routerLink="/description"
+  >Delete this account</ion-button
+>
+<ion-button
+expand="block"
+fill="clear"
+class="dark-clr"
+routerLink="/description"
+>Terms of service</ion-button
+>
+</ion-footer>

@@ -4,37 +4,72 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="auth-content">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="regForm" class="top-margin">
+    
+    <div class="form-title ion-margin-bottom">
+      <h3>Sign up</h3>
+      <p class="app-subtitle">Sign up now and start building your Credit History</p>
+    </div>
 
-    <ion-list class="basic-form" lines="none">
-     
-      <p class="auth-title">Create your account</p>
-      <ion-item class="ion-margin-bottom">
-        <ion-icon name="person-outline" slot="start"></ion-icon>
-        <ion-input type="email" placeholder="Username"></ion-input>
-      </ion-item>
-
-      <ion-item class="ion-margin-bottom">
-        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-        <ion-input type="password" placeholder="Password"></ion-input>
-        
-      </ion-item>
-
-      <ion-button expand="block" shape="round">Sign up</ion-button>
-
-      <div class="secure" style="display: block; text-align: center;">
-        <ion-icon name="lock-closed"></ion-icon>
+    <ion-item>
+      <div
+        class="form-group"
+        [ngClass]="{'invalid': regForm.get('email').touched && regForm.get('email').invalid}"
+      >
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+        <ion-input
+          class="form-control"
+          formControlName="email"
+          type="text"
+          placeholder="Email"
+        >
+        </ion-input>
       </div>
+    </ion-item>
 
-    </ion-list>
-  </div>
+    <span
+      class="invalid"
+      *ngIf="regForm.get('email').touched && regForm.get('email').invalid"
+      >Enter a valid email</span
+    >
+
+    <ion-item class="ion-margin-top">
+      <div
+        class="form-group"
+        [ngClass]="{'invalid': regForm.get('password').touched && regForm.get('password').invalid}"
+      >
+        <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+        <ion-input
+          class="form-control"
+          formControlName="password"
+          type="password"
+          placeholder="Password"
+        >
+        </ion-input>
+      </div>
+    </ion-item>
+
+    <span
+      class="invalid"
+      *ngIf="regForm.get('password').touched && regForm.get('password').invalid"
+      >Enter a valid password</span
+    >
+  </form>
+
+  <ion-button
+    expand="block"
+    class="ion-margin-top"
+    shape="round"
+    routerLink="/profile"
+    >Sign up</ion-button
+  >
 </ion-content>
 
 <ion-footer class="ion-no-border">
   <ion-toolbar>
     <p class="ion-text-center small-font">
-      <a href="#" routerLink="/signin">sign in</a>
+      <span>Have an account?</span><a href="#" routerLink="/signin">sign in</a>
     </p>
   </ion-toolbar>
 </ion-footer>

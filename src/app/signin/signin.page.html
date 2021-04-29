@@ -5,40 +5,70 @@
 </ion-header>
 
 <ion-content>
-  <div class="auth-content">
-    <ion-list class="basic-form" lines="none">
+  <form [formGroup]="regForm" class="top-margin">
+    <ion-grid class="form-grid">
+      <ion-row>
+        <ion-col>
+          <p>Sign in</p>
+        </ion-col>
+      </ion-row>
 
-      <p class="auth-title">Sign in to your account</p>
+      <ion-row>
+        <ion-col>
+          <div class="form-group" [ngClass]="{'invalid': regForm.get('email').touched && regForm.get('email').invalid}">
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            <ion-input
+              class="form-control"
+              formControlName="email"
+              type="text"
+              placeholder="email"
+              
+            >
+          </ion-input>
+          
+          </div>
+          <span
+          class="invalid"
+          *ngIf="regForm.get('email').touched && regForm.get('email').invalid"
+          >Enter a valid email</span
+        >
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="form-group" [ngClass]="{'invalid': regForm.get('password').touched && regForm.get('password').invalid}">
+            <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+            <ion-input
+              class="form-control"
+              formControlName="password"
+              type="password"
+              placeholder="Password"
+              
+            >
+          </ion-input>
+          
+          </div>
+          <span
+          class="invalid"
+          *ngIf="regForm.get('password').touched && regForm.get('password').invalid"
+          >Enter a valid password</span
+        >
+        </ion-col>
+      </ion-row>
 
-      <ion-item class="ion-margin-bottom">
-        <ion-icon name="person-outline" slor="start"></ion-icon>
-        <ion-input type="email" placeholder="Username"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon name="lock-closed-outline" slor="start"></ion-icon>
-        <ion-input type="password" placeholder="Password"></ion-input>
-        
-      </ion-item>
-
-      <ion-button expand="block" routerLink="/profile" shape="round">Sign in</ion-button>
-
-      
-        <a href="#" class="small-font" routerLink="/authhelp">Forgot password?</a>
-
-        <div class="secure" style="display: block; text-align: center;">
-          <ion-icon name="lock-closed"></ion-icon>
-        </div>
-      
-      
-    </ion-list>
-  </div>
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" routerLink="/profile">Sign in</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
 
 <ion-footer class="ion-no-border">
   <ion-toolbar>
     <p class="ion-text-center small-font">
-      <a href="#" routerLink="/register">sign up</a>
+      <a href="#" routerLink="/signin">sign up</a>
     </p>
   </ion-toolbar>
 </ion-footer>

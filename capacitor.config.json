@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "credpay",
+  "appId": "getaugie.com",
+  "appName": "augie",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

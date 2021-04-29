@@ -1,40 +1,43 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>How AUGIE works</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-menu-header></app-menu-header>
 
-<ion-content>
-  <div class="content">
-    
-    <img src="../../assets/steps.svg" alt="growth" />
+<ion-content class="ion-text-center ion-padding">
+  <h2>Hi, William! Let's get started!</h2>
 
-    <div class="steps">
-      <ul>
-        <li>
-          <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
-          Complete registration
-        </li>
-        <li>
-          <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
-          Attach a payment method
-        </li>
-        <li>
-          <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
-          Use the AUGGIE virtual debit card to pay your bills
-        </li>
-        <li>
-          <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
-          Pay your bills using your new virtual card and start earning the credit you deserve
-        </li>
-      </ul>
-     
+  <div class="content1">
+    <div class="img-container">
+      <ion-icon name="person"></ion-icon>
     </div>
+    <div class="info-container">
+      <h6>1. Complete your profile</h6>
+      <p>provide a few details and personalize your experience</p>
 
-    <ion-button expand="block" routerLink="/register">Let's Go</ion-button>
-    
+      <ion-button
+        size="default"
+        fill="clear"
+        class="ion-no-padding ion-text-right"
+        >Profile <ion-icon name="chevron-forward-outline"></ion-icon
+      ></ion-button>
+    </div>
   </div>
-  
-  
-</ion-content>
 
+  <div class="content1 ion-margin-top">
+    <div class="img-container">
+      <ion-icon name="person"></ion-icon>
+    </div>
+    <div class="info-container">
+      <h6>2. Connect your bank account</h6>
+      <p>Start building credit today by linking your bank account</p>
+
+      <ion-button
+        size="default"
+        fill="clear"
+        class="ion-no-padding ion-text-right"
+        >Add <ion-icon name="chevron-forward-outline"></ion-icon
+      ></ion-button>
+    </div>
+  </div>
+
+  <p class="msg-content">
+    Use your free and secure Augie virtual payment card for all your monthly bills and start earning the credit you deserve.
+  </p>
+</ion-content>

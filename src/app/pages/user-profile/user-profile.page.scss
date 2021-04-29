@@ -2,11 +2,7 @@
     text-align: center;
     padding: 10px;
 
-    img {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-    }
+    
 
     ion-card-subtitle {
         text-transform: lowercase;
@@ -24,4 +20,28 @@
             
         }
     }
+}
+
+ion-content {
+    --background: #ffffff;
+
+    img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+
+    ion-card {
+        margin-top: -10%;
+        --box-shadow: none;
+    }
+}
+
+.top-bg {
+    height: 30%;
+    // background-image: linear-gradient(to right, #2b5a94 , #2d70e5);
+    background-color: #3670e5;
+    margin-top: auto;
+    // border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 30%;
 }

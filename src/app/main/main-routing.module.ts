@@ -9,10 +9,6 @@ const routes: Routes = [
     component: MainPage,
     children: [
       {
-        path: 'user-dashboard',
-        loadChildren: () => import('../pages/dashboard/dashboard.module').then( m => m.DashboardPageModule)
-      },
-      {
         path: 'user-profile',
         loadChildren: () => import('../pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
       },

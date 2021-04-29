@@ -21,6 +21,8 @@ export class ProfilePage implements OnInit {
     phone: '',
     occupation: '',
     gender: '',
+    dob: '',
+    income: '',
     createDateTime: null,
     updateDateTime: null,
   };

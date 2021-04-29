@@ -1,10 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>user-profile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="top-bg">
+
+  </div>
   <ion-card class="profile-content">
     <img src="../../../../assets/business2.jpg" />
     <ion-card-header>
@@ -13,7 +10,7 @@
       <ion-card-subtitle>{{user.email}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <p>Sep 26, 1979</p>
+      <p>Oct 26, 1988</p>
       <p>{{user.address}}, {{user.city}}, {{user.state}}</p>
       <p><ion-icon name="call-outline" slot="start"></ion-icon> {{user.phone}}</p>
       <ion-button routerLink="/profile" shape="round">Edit</ion-button>

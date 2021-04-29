@@ -1,62 +1,79 @@
-.content {
+ion-content {
+  --background: url("../../assets/main-bg-big.png") no-repeat center center /
+    120% 120%;
+
+  .content {
     width: 100%;
-    height: 100%;
+    padding-top: 4vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    box-shadow: 5px 10px #888888;
-    
-    img {
-        width: 200px;
-        height: 200px;
-        display: block;
-        top: -100px;
-    }
 
-    ion-button {
+    .title-block {
+      color: #1c1638;
+      max-height: 450px;
+      width: 225px;
+
+      p {
+        text-align: justify;
+        line-height: 0em;
+      }
+
+      p:after {
+        content: "";
+        display: inline-block;
         width: 100%;
-        letter-spacing: 1px;
-        height: 38px;
-        --border-radius: 5px;
-        font-weight: bold;
-        font-size: 14px;
-        --background: #6C63FF;
-        position: fixed;
-        bottom: 5%;
-        max-width: 300px;
-        opacity: 0.8;
+      }
     }
 
-    .arch{
-        height: 50px;
-        background: cornflowerblue;
+    .logo-font {
+      font-size: 2em;
+      color: #00bfa6;
+      font-weight: 900;
+      text-transform: capitalize;
+      line-height: 0em;
+
+      .logo-light {
+        color: lightgrey;
+        font-weight: 600;
+      }
     }
-}
+  }
 
-ion-content {
-    
-    .arch {
-        height: 50px;
-        --background: #6C63FF;
+  .title-big {
+    font-size: 2.3em;
+    font-weight: 800;
+    // letter-spacing: 1px;
+  }
+
+  .title-medium {
+    font-size: 2.1em;
+    font-weight: 800;
+    // letter-spacing: 1px;
+  }
+
+  .title-small {
+    font-size: 2em;
+    font-weight: 800;
+    // letter-spacing: 1px;
+  }
+
+  .img-div {
+    min-height: 10vh;
+    width: 100%;
+    margin-bottom: 5vh;
+
+    .full-ht {
+      height: 25vh;
+      width: 45vw;
+      float: left;
+      margin-top: 8vh;
     }
-    div {
-        margin-top: 50px;
-        text-align: center;
+
+    .balloon {
+      height: 9vh;
+      position: fixed;
+      left: 47vw;
     }
-}
-
-.welcome-title {
-    color: #6C63FF;
-    font-weight: bold;
-    letter-spacing: 1px;
-}
-
-.dark-color {
-    color: gray;
-}
-
-body {
-    margin: 0;
-    padding: 0;
+  }
 }
