@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { User } from "../models/user/user-models";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AlertController } from "@ionic/angular";
+import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
   selector: "app-edit-profile",
@@ -9,6 +11,8 @@ import { AlertController } from "@ionic/angular";
   styleUrls: ["./edit-profile.page.scss"],
 })
 export class EditProfilePage implements OnInit {
+  picUrl: SafeResourceUrl = "../../../assets/sandeep.png";
+
   user: User = {
     userId: 0,
     firstName: "",
@@ -50,7 +54,7 @@ export class EditProfilePage implements OnInit {
     pronoun: new FormControl(""),
   });
 
-  constructor(public alertController: AlertController) {}
+  constructor(public alertController: AlertController, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {}
 
@@ -77,5 +81,18 @@ export class EditProfilePage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
     console.log("onDidDismiss resolved with role", role);
+  }
+
+  async takePicture() {
+    const image = await Plugins.Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.DataUrl,
+      source: CameraSource.Camera,
+    });
+
+    // this.picUrl = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
+    this.picUrl = image.dataUrl;
+    console.log("PICURL", this.picUrl);
   }
 }

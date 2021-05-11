@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from  '@angular/common/http';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -18,7 +19,8 @@ import { HttpClientModule } from  '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    
   ],
   bootstrap: [AppComponent]
 })

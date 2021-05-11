@@ -3,13 +3,13 @@
     <ion-icon size="large" name="chevron-back-outline"></ion-icon>
 
     <div class="profile-img">
-      <img alt="" src="../../../assets/sandeep.png" />
+      <img alt="" src="{{picUrl}}" />
       <div>
         <ion-button
           expand="block"
           fill="clear"
           class="dark-clr"
-          routerLink="/description"
+          (click)="takePicture()"
           >Upload</ion-button
         >
       </div>
