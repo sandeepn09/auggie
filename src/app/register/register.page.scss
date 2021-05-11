@@ -1,107 +1,72 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:wght@200&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
-
-* {
-    font-family: "Poppins", sans-serif;
-}
-
-ion-footer {
-  padding-bottom: 30px;
-}
-
-.invalid {
-  font-size: 12px;
-  color: coral;
-}
-
-.small-font {
-  font-size: 14px;
-}
-
-ion-footer {
-  padding-bottom: 30px;
-}
-
-.light-button {
-  --color: #6c63ff;
-  --background: #f2f5f3;
-}
-
-.is-invalid {
-  border-bottom: 1px solid coral;
-}
-
-.invalid {
-  font-size: 12px;
-  color: coral;
-}
-
-.form-group {
-    // border-bottom: 0.5px solid #d6d5d2;
-    display: flex;
-    width: 100%;
-
-   ion-icon {
-       padding: 10px;
-       color: #352d59;
-   }
-
-   ion-input {
-       --placeholder-color: #352d59;
-       --color: #181621;
-       font-size: 13px; 
-   }
-  
-}
-
-span {
-    padding-left: 20px;
-}
-
-.top-margin {
-    margin-top: 50px;
-}
-
 ion-content {
+  --background: url("../../assets/login-bg.png") no-repeat center center / 120%
+    110%;
 
-  justify-content: center;
-  align-items: center;
-  ion-item {
-    width: 100%;
-    --border-color: #bab6cc;
+  .header-content {
+    margin-bottom: 8vh;
+
+    h3 {
+      font-size: 1.8em;
+      font-weight: 800;
+      color: #2a2b2c;
+    }
+
+    p {
+      font-size: 0.9em;
+    }
+  }
+
+  .logo-font {
+    font-size: 1.8em;
+    color: #00bfa6;
+    font-weight: 900;
+    text-transform: capitalize;
+    line-height: 0em;
+    margin-bottom: 8vh;
+
+    .logo-light {
+      color: lightgrey;
+      font-weight: 600;
+    }
+  }
+
+  ion-input {
+    font-size: 0.8em;
+    border-bottom: 1px solid #00bfa6;
+    margin-bottom: 2.5em;
+    font-weight: 500;
+    --placeholder-color: #696a6b;
   }
 
   ion-button {
-    height: 45px;
+    color: #fff;
+    font-weight: 800;
+    height: 3.2em;
+  }
+
+  .footer-content {
     width: 100%;
-    margin-top: 50px;
-    --box-shadow: none;
-    --background: linear-gradient(to right , #6c63ff, #8686fc);
-  }
+    bottom: 1em;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -0%);
+    margin: 0 auto;
 
-  form {
-    width: 100%;
-  }
+    p {
+      font-size: 0.8em;
+      font-weight: 700;
+      line-height: 0em;
+      margin-top: 3rem;
+    }
 
-  h3, p {
-    text-align: center;
-    
-  }
-
-  h3 {
-    color: #2c2c38;
+    .clear-btn {
+      color: #00bfa6;
+      --padding-top: 0px;
+      line-height: 1em;
+    }
   }
 }
 
-.txt-center {
-  text-align: center;
-}
-
-.app-subtitle {
-  font-size: 13px;
-  color: #808096;
-}
-
-.form-title {
-  margin-bottom: 65px;
+* {
+  font-family: "Mulish", sans-serif;
 }

@@ -12,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'welcome',
+    // redirectTo: 'welcome',
+    redirectTo: 'add-payment',
     pathMatch: 'full'
   },
   {
@@ -44,10 +45,6 @@ const routes: Routes = [
     loadChildren: () => import('./authresult/authresult.module').then( m => m.AuthresultPageModule)
   },
   {
-    path: 'profile',
-    loadChildren: () => import('./user/profile/profile.module').then( m => m.ProfilePageModule)
-  },
-  {
     path: 'menu',
     loadChildren: () => import('./menu/menu.module').then( m => m.MenuPageModule)
   },
@@ -56,20 +53,12 @@ const routes: Routes = [
     loadChildren: () => import('./description/description.module').then( m => m.DescriptionPageModule)
   },
   {
-    path: 'credit-history',
-    loadChildren: () => import('./user/credit-history/credit-history.module').then( m => m.CreditHistoryPageModule)
-  },
-  {
     path: 'referal',
     loadChildren: () => import('./referal/referal.module').then( m => m.ReferalPageModule)
   },
   {
     path: 'referal-form',
     loadChildren: () => import('./referal-form/referal-form.module').then( m => m.ReferalFormPageModule)
-  },
-  {
-    path: 'view-profile',
-    loadChildren: () => import('./user/view-profile/view-profile.module').then( m => m.ViewProfilePageModule)
   },
   {
     path: 'pay-method',
@@ -88,16 +77,24 @@ const routes: Routes = [
     loadChildren: () => import('./funding-accounts/funding-accounts.module').then( m => m.FundingAccountsPageModule)
   },
   {
-    path: 'make-payment',
-    loadChildren: () => import('./make-payment/make-payment.module').then( m => m.MakePaymentPageModule)
-  },
-  {
     path: 'payment-confirm',
     loadChildren: () => import('./payment-confirm/payment-confirm.module').then( m => m.PaymentConfirmPageModule)
   },
   {
     path: 'profile-view',
     loadChildren: () => import('./profile-view/profile-view.module').then( m => m.ProfileViewPageModule)
+  },
+  {
+    path: 'add-payment',
+    loadChildren: () => import('./add-payment/add-payment.module').then( m => m.AddPaymentPageModule)
+  },
+  {
+    path: 'schedule-payment',
+    loadChildren: () => import('./schedule-payment/schedule-payment.module').then( m => m.SchedulePaymentPageModule)
+  },
+  {
+    path: 'edit-profile',
+    loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   },
   
   

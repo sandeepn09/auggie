@@ -1,220 +1,93 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-title class="ion-text-center">Add Funding Account</ion-title>
+  <ion-toolbar class="ion-text-center">
+    <ion-title>Add Bank Account</ion-title>
     <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"></ion-menu-button>
+      <ion-button>
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()" color="primary">Save</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form [formGroup]="profileForm">
-    <div class="main-content">
-      <ion-grid *ngIf="step==1" class="form-grid">
-        <ion-row>
-          <ion-col>
-            <p>Bank Details</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <div class="form-group">
-              <ion-label position="stacked"
-                ><p class="label">Bank name</p></ion-label
-              >
-              <ion-input
-                class="form-control"
-                formControlName="firstName"
-                type="text"
-                [ngClass]="{'is-invalid': profileForm.get('firstName').touched && profileForm.get('firstName').invalid}"
-              ></ion-input>
-              <span
-                class="invalid"
-                *ngIf="profileForm.get('firstName').touched && profileForm.get('firstName').invalid"
-                >Bank name is required</span
-              >
-            </div>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <ion-label position="stacked"
-              ><p class="label">Account Number</p></ion-label
-            >
-            <ion-input
-              class="form-control"
-              formControlName="lastName"
-              type="text"
-              [ngClass]="{'is-invalid': profileForm.get('lastName').touched && profileForm.get('lastName').invalid}"
-            ></ion-input>
-            <span
-              class="invalid"
-              *ngIf="profileForm.get('lastName').touched && profileForm.get('lastName').invalid"
-              >Lastname is required</span
-            >
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <ion-label position="stacked"
-              ><p class="label">Routing Number</p></ion-label
-            >
-            <ion-input
-              class="form-control"
-              formControlName="occupation"
-              type="text"
-              [ngClass]="{'is-invalid': profileForm.get('occupation').touched && profileForm.get('occupation').invalid}"
-            ></ion-input>
-            <span
-              class="invalid"
-              *ngIf="profileForm.get('occupation').touched && profileForm.get('occupation').invalid"
-              >Occupation is required</span
-            >
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-label position="stacked"
-              ><p class="label">Account Type</p></ion-label
-            >
-            <ion-select value="m" interface="action-sheet">
-              <ion-select-option value="m">Checking</ion-select-option>
-              <ion-select-option value="f">Saving</ion-select-option>
-              <ion-select-option value="n"
-                >Do not wish to specify</ion-select-option
-              >
-            </ion-select>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <div class="form-buttons">
-              <ion-button fill="outline" shape="round" (click)="previous()"
-                >Cancel</ion-button
-              >
-              <ion-button shape="round" (click)="next()">Add</ion-button>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-
-      <!-- Contact Info-->
-
-      <ion-grid *ngIf="step==2" class="form-grid">
-        <ion-row>
-          <ion-col>
-            <p>contact info</p>
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <ion-label position="stacked"
-              ><p class="label">Address</p></ion-label
-            >
-            <ion-input
-              class="form-control"
-              formControlName="address"
-              type="text"
-              [ngClass]="{'is-invalid': profileForm.get('address').touched && profileForm.get('address').invalid}"
-            ></ion-input>
-            <span
-              class="invalid"
-              *ngIf="profileForm.get('address').touched && profileForm.get('address').invalid"
-              >Address is required</span
-            >
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-label position="stacked"><p class="label">City</p></ion-label>
-            <ion-input
-              class="form-control"
-              formControlName="city"
-              type="text"
-              [ngClass]="{'is-invalid': profileForm.get('city').touched && profileForm.get('city').invalid}"
-            ></ion-input>
-            <span
-              class="invalid"
-              *ngIf="profileForm.get('city').touched && profileForm.get('city').invalid"
-              >City is required</span
-            >
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <ion-label position="stacked"><p class="label">State</p></ion-label>
-            <ion-input
-              class="form-control"
-              formControlName="state"
-              type="text"
-              [ngClass]="{'is-invalid': profileForm.get('state').touched && profileForm.get('state').invalid}"
-              maxlength="2"
-            ></ion-input>
-            <span
-              class="invalid"
-              *ngIf="profileForm.get('state').touched && profileForm.get('state').invalid"
-              >State is required</span
-            >
-          </ion-col>
-          <ion-col>
-            <ion-label position="stacked"
-              ><p class="label">Postal code</p></ion-label
-            >
-            <ion-input
-              class="form-control"
-              formControlName="postalCode"
-              type="text"
-              [ngClass]="{'is-invalid': profileForm.get('postalCode').touched && profileForm.get('postalCode').invalid}"
-              maxlength="5"
-            ></ion-input>
-            <span
-              class="invalid"
-              *ngIf="profileForm.get('postalCode').touched && profileForm.get('postalCode').invalid"
-              >PostalCode is required</span
-            >
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <ion-label position="stacked"><p class="label">Phone</p></ion-label>
-            <ion-input
-              class="form-control"
-              formControlName="phone"
-              type="text"
-              [ngClass]="{'is-invalid': profileForm.get('phone').touched && profileForm.get('phone').invalid}"
-              maxlength="10"
-            ></ion-input>
-            <span
-              class="invalid"
-              *ngIf="profileForm.get('phone').touched && profileForm.get('phone').invalid"
-              >Phone is required</span
-            >
-          </ion-col>
-        </ion-row>
-
-        <ion-row>
-          <ion-col>
-            <div class="form-buttons">
-              <ion-button fill="outline" shape="round" (click)="previous()"
-                >Back</ion-button
-              >
-              <ion-button shape="round" (click)="next()">Save</ion-button>
-            </div>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+<ion-content [fullscreen]="true" scrollY="false" class="ion-padding ion-text-center">
+  <form [formGroup]="bdForm" class="top-margin">
+    <div
+      class="form-group ion-text-left"
+      [ngClass]="{'invalid': bdForm.get('name').touched && bdForm.get('name').invalid}"
+    >
+      <ion-input
+        class="form-control"
+        formControlName="name"
+        type="text"
+        placeholder="Bank Name"
+      >
+      </ion-input>
+      <span
+      class="invalid"
+      *ngIf="bdForm.get('name').touched && bdForm.get('name').invalid"
+      >Bank Name cannot be blank</span
+    >
     </div>
-  </form>
-</ion-content>
+   
 
-<ion-footer class="ion-no-border">
-  <ion-toolbar>
-    <p class="ion-text-center small-font"></p>
-  </ion-toolbar>
-</ion-footer>
+    <div
+      class="form-group ion-text-left"
+      [ngClass]="{'invalid': bdForm.get('accountNumber').touched && bdForm.get('accountNumber').invalid}"
+    >
+      <ion-input
+        class="form-control"
+        formControlName="accountNumber"
+        type="text"
+        placeholder="Account Number"
+      >
+      </ion-input>
+      <span
+      class="invalid"
+      *ngIf="bdForm.get('accountNumber').touched && bdForm.get('accountNumber').invalid"
+      >Account Number cannot be blank</span
+    >
+    </div>
+
+    <div
+      class="form-group ion-text-left"
+      [ngClass]="{'invalid': bdForm.get('routingNumber').touched && bdForm.get('routingNumber').invalid}"
+    >
+      <ion-input
+        class="form-control"
+        formControlName="routingNumber"
+        type="text"
+        placeholder="Routing Number"
+      >
+      </ion-input>
+      <span
+      class="invalid"
+      *ngIf="bdForm.get('routingNumber').touched && bdForm.get('routingNumber').invalid"
+      >Routing Number cannot be blank</span
+    >
+    </div>
+
+    <div
+      class="form-group ion-text-left"
+      [ngClass]="{'invalid': bdForm.get('accountType').touched && bdForm.get('accountType').invalid}"
+    >
+    <ion-select placeholder="Account Type" interface="action-sheet" class="form-control"
+    formControlName="accountType">
+      <ion-select-option value="m">Checking</ion-select-option>
+      <ion-select-option value="f">Saving</ion-select-option>
+      <ion-select-option value="n"
+        >Do not wish to specify</ion-select-option
+      >
+    </ion-select>
+    </div>
+
+    <span
+      class="invalid"
+      *ngIf="bdForm.get('accountType').touched && bdForm.get('accountType').invalid"
+      >Select an Account Type</span
+    >
+  </form>
+
+</ion-content>

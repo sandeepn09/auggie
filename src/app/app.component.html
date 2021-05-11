@@ -1,16 +1,16 @@
 <ion-app>
   <ion-menu menuId="main-menu" content-id="main">
     
-    <ion-content>
-      <div class="menu-header-bg">
-        <h3>augie</h3>
-      </div>
+    <ion-content class="ion-padding">
+      
+      <h3 class="ion-text-center ion-padding">augie</h3>
+      
       <ion-list class="menu-items" lines="none">
-        <ion-item routerLink="/main/tabs">
-          <ion-icon name="pie-chart-outline" slot="start"></ion-icon>Dashboard
+        <ion-item routerLink="/profile-view">
+          <ion-icon name="pie-chart-outline" slot="start"></ion-icon>Profile
         </ion-item>
-        <ion-item routerLink="/pay-method">
-          <ion-icon name="browsers-outline" slot="start"></ion-icon>Payment Methods
+        <ion-item routerLink="/add-payment">
+          <ion-icon name="browsers-outline" slot="start"></ion-icon>Add Payment
         </ion-item>
         <ion-item routerLink="/credit-history">
           <ion-icon name="reader-outline" slot="start"></ion-icon>Payment History
@@ -21,8 +21,8 @@
         <ion-item routerLink="/referal">
           <ion-icon name="people-outline" slot="start"></ion-icon>Refer a Friend
         </ion-item>
-        <ion-item>
-          <ion-icon name="settings-outline" slot="start"></ion-icon>Settings
+        <ion-item routerLink="/schedule-payment">
+          <ion-icon name="settings-outline" slot="start"></ion-icon>Schedule Payment
         </ion-item>
       </ion-list>
     </ion-content>

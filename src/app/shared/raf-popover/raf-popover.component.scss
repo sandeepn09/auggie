@@ -1,0 +1,48 @@
+.pop-container {
+    
+    color: #1C1638;
+    
+    ion-icon {
+        color: #9AACBC;
+    }
+    h2 {
+        font-weight: 800;
+        width: 100%;
+        font-size: 2em;
+    }
+    
+    p {
+        color: #696A6B;
+    }
+
+    .img-container {
+        width: 100%;
+        
+        // margin-top: 2vh;
+        height: 40vh;
+        background: url("../../../assets/raf.png") no-repeat center center /
+        150% 100%;
+
+       
+  
+    }
+
+    .footer-div {
+        position: fixed;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, -10%);
+        margin: 0 auto;
+        width: 100%;
+        
+        ion-button {
+            height: 3em;
+            font-size: 1em;
+            color: #FFF;
+            font-weight: 700;
+            --box-shadow: none;
+            --border-radius: 10px;
+        }
+    }
+   
+}

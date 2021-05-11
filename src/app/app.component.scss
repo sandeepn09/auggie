@@ -1,48 +1,31 @@
-
-.menu-header-bg {
-    height: 100px;
-    text-align: center;
-    top: 0;
-    padding-top: 40px;
-    margin-bottom: 20px;
-    
-    h3 {
-        font-weight: bold;
-        letter-spacing: 3px;
-        color: #3a3a4d;
-        text-transform: lowercase;
-    }
-
-
-   
-}
-
 ion-menu {
-   
-    ion-list {
-       
-
-        ion-item {
-            --background: #fafafa;
-            font-size: 13px;
-            color: #3c3cb0;
-            --color-hover: #45455e;
-            --background-hover: blue;
-        }
-    }
-}
-
-ion-content {
+  ion-content {
     --background: #fafafa;
     color: #45455e;
-}
-.menu-items {
 
-    ion-item {
-        ion-icon {
-            color: #8f8fba;
-            --color-hover: #45455e;
-            --background-hover: blue;
-        }
+    h3 {
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #00bfa6;
     }
+
+    ion-list {
+      ion-item {
+        --background: #fafafa;
+        font-size: 0.9em;
+        --color: #2a2b2c;
+        --color-hover: red;
+        --highlight-color-focused: blue;
+
+        ion-icon:hover {
+            --color: red;
+        }
+        
+      }
+
+      ion-item:hover {
+        --color-hover: red;
+      }
+    }
+  }
 }

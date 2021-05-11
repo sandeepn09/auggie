@@ -1,0 +1,112 @@
+<app-menu-header></app-menu-header>
+<ion-content class="ion-padding ion-text-center">
+  <div class="card-container ion-text-center">
+    <ion-slides>
+      <ion-slide>
+        <app-pmt-card></app-pmt-card>
+      </ion-slide>
+      <ion-slide>
+        <app-pmt-card></app-pmt-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  <div class="ref-container">
+    <div class="img-div">
+      
+    </div>
+    <div class="ion-text-left info">
+      <h6>
+        Refer Friends
+      </h6>
+      <p>
+        For each Friend you refer, we'll add $ to your account when they sign up
+      </p>
+      <ion-button
+        size="default"
+        fill="clear"
+        class="ion-no-padding ion-text-right"
+        (click)="presentModal()"
+        >SEND REFERRAL TEXT <ion-icon name="chevron-forward-outline"></ion-icon
+      ></ion-button>
+    </div>
+
+  </div>
+
+  <ion-button class="primary-btn1" expand="block">
+    <ion-icon style="margin-right: 5px" name="add-circle"></ion-icon>
+    ADD PAYMENT</ion-button
+  >
+
+  <div class="txs ion-text-left">
+    <h6>TRANSACTIONS</h6>
+    <div class="search-container">
+      <ion-input type="text" placeholder="Search"></ion-input>
+      <ion-icon name="search-outline"></ion-icon>
+    </div>
+  </div>
+
+  <ion-list lines="none">
+    <ion-list-header class="ion-margin-bottom">
+      Today
+    </ion-list-header>
+
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <img src="{{logoUrl}}">
+      </ion-thumbnail>
+      <ion-label>
+        <h6 class="font-dark">NETFLIX</h6>
+        
+        <p class="tme">2h ago</p>
+      </ion-label>
+      <ion-label class="ion-text-right">
+        <p class="amt">- $ 13.99</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item class="ion-no-border">
+      <ion-avatar slot="start">
+        <img src="./avatar-finn.png">
+      </ion-avatar>
+      <ion-label>
+        <h6 class="font-dark">HULU</h6>
+        
+        <p class="tme">2h ago</p>
+      </ion-label>
+      <ion-label class="ion-text-right">
+        <p class="amt">- $ 13.99</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="./avatar-finn.png">
+      </ion-avatar>
+      <ion-label>
+        <h6 class="font-dark">NETFLIX</h6>
+        
+        <p class="tme">2h ago</p>
+      </ion-label>
+      <ion-label class="ion-text-right">
+        <p class="amt">- $ 13.99</p>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-avatar slot="start">
+        <img src="./avatar-finn.png">
+      </ion-avatar>
+      <ion-label>
+        <h6 class="font-dark">NETFLIX</h6>
+        
+        <p class="tme">2h ago</p>
+      </ion-label>
+      <ion-label class="ion-text-right">
+        <p class="amt">- $ 13.99</p>
+      </ion-label>
+    </ion-item>
+
+   
+  </ion-list>
+</ion-content>

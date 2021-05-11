@@ -1,0 +1,80 @@
+.card {
+  // position: relative;
+  min-height: 220px;
+  min-width: 350px;
+  border-radius: 25px;
+  // background: rgba(255, 255, 255, 0.2);
+  // backdrop-filter: blur(30px);  /* This will produce the blur */
+  // border: 2px solid rgba(255, 255, 255, 0.1);
+  // box-shadow: 0 0 80px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background: url(../../../assets/card-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-left: 1.6em;
+  
+}
+
+.logo,
+.balance,
+.number,
+.name,
+.from,
+.to,
+.ring {
+  position: relative; /* All items inside card should have absolute position */
+}
+
+.logo {
+  top: 1em;
+
+  h4 {
+    color: #eff0f4;
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 1.6em;
+  }
+}
+
+.balance {
+  // top: 2em;
+  margin-top: 3em;
+
+  h4 {
+    color: #1c1638;
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 1.8em;
+  }
+}
+
+.number,
+.name,
+.from,
+.to {
+  // color: rgba(255, 255, 255, 0.8);
+  color: #1c1638;
+  font-weight: 400;
+  letter-spacing: 2px;
+  // text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+.number {
+  margin-top: 1em;
+  font-family: "Nunito", sans-serif;
+}
+
+.name {
+  font-size: 0.7rem;
+  margin-top: 1em;
+  padding-right: 3em;
+
+  span {
+    float: right;
+  }
+}
+
+.to {
+  font-size: 0.7rem;
+  left: 5em;
+}

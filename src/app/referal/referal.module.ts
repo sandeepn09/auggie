@@ -8,6 +8,7 @@ import { ReferalPageRoutingModule } from './referal-routing.module';
 
 import { ReferalPage } from './referal.page';
 import { SharedModule } from '../shared/shared.module';
+import { RafPopoverComponent } from '../shared/raf-popover/raf-popover.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
     ReferalPageRoutingModule,
     SharedModule
   ],
-  declarations: [ReferalPage],
+  declarations: [ReferalPage, RafPopoverComponent],
+  entryComponents: [RafPopoverComponent]
   
 })
 export class ReferalPageModule {}

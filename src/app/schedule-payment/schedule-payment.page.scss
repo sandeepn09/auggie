@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Poppins:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
+
+ion-header {
+  padding-top: 6vh;
+  padding-bottom: 3vh;
+  ion-toolbar {
+    ion-title {
+      text-transform: uppercase;
+      font-size: 1em;
+      font-weight: 800;
+    }
+
+    ion-button {
+      font-size: 0.9em;
+      text-transform: capitalize;
+      font-weight: 700;
+    }
+  }
+}
+
+ion-content {
+
+  .form-group {
+    margin-bottom: 2.3em;
+  }
+
+  .invalid {
+    font-size: 0.8em;
+    color: #FE6B5D;
+  }
+
+  ion-input {
+    font-size: 0.8em;
+    border-bottom: 0.5px solid #00bfa6;
+    
+    font-weight: 500;
+    --placeholder-color: #2a2b2c;
+    --placeholder-font-weight: 600;
+    --placeholder-opacity: 0.7;
+  }
+
+  ion-select::part(icon) {
+    color: #00bfa6;
+    opacity: 1;
+  }
+
+  ion-select {
+    --placeholder-opacity: 0.7;
+    font-size: 0.8em;
+    border-bottom: 1px solid #00bfa6;
+    font-weight: 500;
+    --placeholder-color: #2a2b2c;
+    --placeholder-font-weight: 600;
+    --padding-start: 0px;
+  }
+
+  ion-datetime {
+    --padding-start: 0px;
+  }
+
+  .dt-pckr {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border-bottom: 1px solid #00bfa6;
+
+    ion-icon {
+      color: #00bfa6;
+      padding-right: 10px;
+      font-size: 1.3em;
+      --ionicon-stroke-width: 50px;
+    }
+
+    ion-datetime {
+      font-size: 0.8em;
+      --placeholder-color: #2a2b2c;
+      --placeholder-font-weight: 600;
+      --placeholder-opacity: 0.7;
+    }
+  }
+
+  ion-button {
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 700;
+      height: 3em;
+  }
+}
+
+* {
+  font-family: "Mulish", sans-serif;
+}

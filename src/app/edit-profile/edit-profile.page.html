@@ -1,0 +1,174 @@
+<ion-content>
+  <div class="head-container">
+    <ion-icon size="large" name="chevron-back-outline"></ion-icon>
+
+    <div class="profile-img">
+      <img alt="" src="../../../assets/sandeep.png" />
+      <div>
+        <ion-button
+          expand="block"
+          fill="clear"
+          class="dark-clr"
+          routerLink="/description"
+          >Upload</ion-button
+        >
+      </div>
+    </div>
+    <div>
+      <ion-button
+        expand="block"
+        fill="clear"
+        class="small-btn-font"
+        size="small"
+        (click)="save()"
+        >Save</ion-button
+      >
+    </div>
+  </div>
+
+  <form [formGroup]="profileForm">
+    <div class="main-content form-sec-top-margin">
+      <ion-col>
+        <h6 class="ion-text-uppercase">Personal Info</h6>
+      </ion-col>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="firstName"
+          placeholder="First Name"
+          type="text"
+          [ngClass]="{'is-invalid': profileForm.get('firstName').touched && profileForm.get('firstName').invalid}"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('firstName').touched && profileForm.get('firstName').invalid"
+          >Firstname is required</span
+        >
+      </div>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="lastName"
+          placeholder="Last Name"
+          type="text"
+          [ngClass]="{'is-invalid': profileForm.get('lastName').touched && profileForm.get('lastName').invalid}"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('lastName').touched && profileForm.get('lastName').invalid"
+          >Lastname is required</span
+        >
+      </div>
+
+      <div class="form-group">
+        <ion-select
+          placeholder="Pronoun"
+          interface="action-sheet"
+          class="form-control"
+          formControlName="pronoun"
+        >
+          <ion-select-option value="Y">He/Him/His</ion-select-option>
+          <ion-select-option value="N">She/Her</ion-select-option>
+        </ion-select>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('lastName').touched && profileForm.get('lastName').invalid"
+          >Please select a Pronoun</span
+        >
+      </div>
+
+      <div class="form-group">
+        <ion-datetime
+          displayFormat="MM/DD/YY"
+          placeholder="Date of Birth"
+        ></ion-datetime>
+
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('lastName').touched && profileForm.get('lastName').invalid"
+          >DOB is required</span
+        >
+      </div>
+    </div>
+
+    <!-- Contact Info-->
+    <div class="main-content form-sec-top-margin">
+      <ion-col>
+        <h6 class="ion-text-uppercase">Contact Info</h6>
+      </ion-col>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="email"
+          placeholder="Email"
+          type="email"
+          [ngClass]="{'is-invalid': profileForm.get('email').touched && profileForm.get('email').invalid}"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('email').touched && profileForm.get('email').invalid"
+          >Email is required</span
+        >
+      </div>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="phone"
+          placeholder="Phone"
+          type="tel"
+          [ngClass]="{'is-invalid': profileForm.get('phone').touched && profileForm.get('phone').invalid}"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('phone').touched && profileForm.get('phone').invalid"
+          >Phone is required and must be 10 digits</span
+        >
+      </div>
+    </div>
+
+    <!-- Employment Info-->
+    <div class="main-content form-sec-top-margin">
+      <ion-col>
+        <h6 class="ion-text-uppercase">Employment</h6>
+      </ion-col>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="occupation"
+          placeholder="Occupation"
+          type="text"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('occupation').touched && profileForm.get('occupation').invalid"
+          >Occupation is required</span
+        >
+      </div>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="income"
+          placeholder="Annual Income"
+          type="number"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('income').touched && profileForm.get('income').invalid"
+          >Income is required</span
+        >
+      </div>
+    </div>
+  </form>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <p class="ion-text-center small-font"></p>
+  </ion-toolbar>
+</ion-footer>

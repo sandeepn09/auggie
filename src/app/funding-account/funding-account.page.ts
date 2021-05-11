@@ -1,57 +1,65 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from "../models/user/user-models";
-import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import { BankInfo } from "../models/user/payment-models";
+import { AlertController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-funding-account',
-  templateUrl: './funding-account.page.html',
-  styleUrls: ['./funding-account.page.scss'],
+  selector: "app-funding-account",
+  templateUrl: "./funding-account.page.html",
+  styleUrls: ["./funding-account.page.scss"],
 })
 export class FundingAccountPage implements OnInit {
   step = 1;
-  user: User = {
-    userId: 0,
-    firstName: '',
-    lastName: '',
-    address: '',
-    city: '',
-    state: '',
-    postalCode: '',
-    email: '',
-    phone: '',
-    occupation: '',
-    gender: '',
-    dob: '',
-    income: '',
-    createDateTime: null,
-    updateDateTime: null,
+
+  bankInfo: BankInfo = {
+    name: "",
+    accountNumber: null,
+    routingNumber: null,
+    accountType: "",
+    createDate: new Date(),
   };
 
-  profileForm = new FormGroup({
-    firstName: new FormControl('', Validators.required),
-    lastName: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
-    city: new FormControl('', Validators.required),
-    state: new FormControl('', Validators.required),
-    postalCode: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    phone: new FormControl('', Validators.required),
-    occupation: new FormControl('', Validators.required),
-    gender: new FormControl(''),
+  bdForm = new FormGroup({
+    name: new FormControl("", Validators.required),
+    accountNumber: new FormControl("", Validators.required),
+    routingNumber: new FormControl("", Validators.required),
+    accountType: new FormControl("", Validators.required),
   });
 
-  constructor() {}
+  constructor(public alertController: AlertController) {}
 
-  next() {
-    this.step = this.step + 1;
-    // this.user = this.profileForm.value;
-    console.log(this.user);
-    
+  save() {
+    if (this.bdForm.invalid) {
+      console.log(this.bdForm.value);
+      this.presentAlert();
+    } else {
+      console.log(this.bdForm);
+      console.log("BD Form is VALID!!!!");
+
+    }
   }
 
-  previous() {
-    this.step = this.step - 1;
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Error',
+      // subHeader: 'Some fields have invalid values',
+      message: 'Please enter valid values to proceeed.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
   }
+
 
   ngOnInit() {}
 }

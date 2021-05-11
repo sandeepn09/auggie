@@ -50,3 +50,18 @@ ion-button.clear-btn {
   text-transform: uppercase;
   min-width: 300px;
 }
+
+.font-dark {
+  color: #1C1638;
+}
+
+.font-light {
+  color: #9AACBC;
+}
+
+.modal-ctr {
+  --width: 90%;
+  --height: 90%;
+  text-align: center;
+  --border-radius: 10px;
+}

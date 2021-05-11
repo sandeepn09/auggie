@@ -1,0 +1,137 @@
+
+*{
+    font-family: 'Mulish', sans-serif;
+  }
+  
+  .menu-header {
+    padding-top: 3em;
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+  }
+  
+  .avatar-ph {
+    padding: 0.4em;
+    // border: 1px solid blue;
+    background-color: #698adc;
+    border-radius: 7px;
+    font-size: 1.5em;
+    color: #ffffff;
+  }
+  
+  .right-padding {
+    padding-right: 8px;
+  }
+  
+  .small-font {
+    font-size: 0.9em;
+    font-weight: 600;
+  }
+  
+  .highlt {
+    color: #00bfa6;
+  }
+  
+  .small-btn-font {
+    font-size: 0.9em;
+    font-weight: 800;
+    text-transform: capitalize;
+    color: #00bfa6;
+    --padding-top: 0;
+  }
+  
+  .profile-header {
+    padding-right: 0.5em;
+    padding-left: 0.5em;
+    padding-top: 2em;
+    margin-bottom: 2em;
+  
+    img {
+      height: 110px;
+      width: 105px;
+      border-radius: 0.7em;
+      
+      left: 35%;
+    }
+  }
+  
+  .head-container {
+    padding-top: 10vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+  
+    ion-icon {
+      padding-top: 1vh;
+    }
+    
+  }
+  
+  .profile-img{
+    padding-top: 1vh;
+    padding-left: 3vw;
+    img {
+      height: 18vh;
+      width: 32vw;
+      border-radius: 0.8em;
+      
+    }
+  }
+  
+  ion-button.dark-clr {
+    --color: #1c1638;
+    font-weight: 700;
+    font-size: 1em;
+  }
+  
+  .main-content {
+    // background-color: #F6F7F9;
+    padding: 8px;
+  
+    h6 {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .form-group {
+      margin-bottom: 2em;
+      
+
+      ion-input {
+        --placeholder-color: #696A6B;
+      }
+      
+      ion-input,ion-select,ion-datetime {
+        border-bottom: 1px solid #96faed;
+        --padding-start:0;
+        --placeholder-color: #9AACBC;
+        --placeholder-opacity: 0.7;
+        font-size: 0.85em;
+        font-weight: 600;
+        // --placeholder-color: darkgray;
+        --color: #1C1638;
+      }
+
+      ion-datetime {
+        --placeholder-color: #9AACBC;
+        
+      }
+    }
+  }
+  
+  color-drk {
+    color: #1c1638;
+  }
+  
+  
+  .invalid {
+    color: #FE6B5D;
+    font-size: 0.85em;
+  }
+  
+  .form-sec-top-margin {
+    margin-top: 0.5em;
+  }
+
+  
