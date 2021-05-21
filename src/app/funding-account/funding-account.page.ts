@@ -7,7 +7,8 @@ import {
   Validators,
 } from "@angular/forms";
 import { BankInfo } from "../models/user/payment-models";
-import { AlertController } from "@ionic/angular";
+import { AlertController, ModalController } from "@ionic/angular";
+import { BankModalComponent } from "../shared/bank-modal/bank-modal.component";
 
 @Component({
   selector: "app-funding-account",
@@ -23,6 +24,7 @@ export class FundingAccountPage implements OnInit {
     routingNumber: null,
     accountType: "",
     createDate: new Date(),
+    verified: false
   };
 
   bdForm = new FormGroup({
@@ -32,7 +34,10 @@ export class FundingAccountPage implements OnInit {
     accountType: new FormControl("", Validators.required),
   });
 
-  constructor(public alertController: AlertController) {}
+  constructor(
+    public alertController: AlertController,
+    public modalController: ModalController
+  ) {}
 
   save() {
     if (this.bdForm.invalid) {
@@ -41,25 +46,39 @@ export class FundingAccountPage implements OnInit {
     } else {
       console.log(this.bdForm);
       console.log("BD Form is VALID!!!!");
-
+      this.bankInfo = this.bdForm.value;
+      this.presentModal();
     }
   }
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: 'Error',
+      cssClass: "my-custom-class",
+      header: "Error",
       // subHeader: 'Some fields have invalid values',
-      message: 'Please enter valid values to proceeed.',
-      buttons: ['OK']
+      message: "Please enter valid values to proceeed.",
+      buttons: ["OK"],
     });
 
     await alert.present();
 
     const { role } = await alert.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    console.log("onDidDismiss resolved with role", role);
   }
 
-
   ngOnInit() {}
+
+  async presentModal() {
+    console.log("BANK INFO", this.bankInfo);
+    const modal = await this.modalController.create({
+      component: BankModalComponent,
+      cssClass: "confirm-modal",
+      componentProps: this.bankInfo,
+    });
+    
+    await modal.present();
+
+    const { data: info, role } = await modal.onWillDismiss();
+    console.log(role);
+  }
 }

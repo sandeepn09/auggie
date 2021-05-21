@@ -1,3 +1,5 @@
+import { BankInfo } from "./payment-models";
+
 export class User {
   userId: number;
   email: string;
@@ -11,7 +13,7 @@ export class User {
   phone: string;
   gender: string;
   dob: string;
-  income: string
+  income: string;
   createDateTime: Date;
   updateDateTime: Date;
 }
@@ -20,4 +22,29 @@ export class PaymentHistory {
   amount: number;
   date: Date;
   payee: string;
+}
+
+export class AuthRequest {
+  username: string;
+  password: string;
+}
+
+export class SignupRequest {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
+export class UserProfile {
+  userDetails: User;
+  banks: BankInfo[];
+}
+
+export class AuthResponse {
+  userId: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  profileComplete: boolean;
 }

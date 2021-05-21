@@ -1,0 +1,44 @@
+<ion-header class="ion-padding ion-no-border">
+  <div class="cncl-btn ion-margin-bottom">
+    <ion-icon (click)="dismiss()" name="arrow-back-outline"></ion-icon>
+    <ion-button fill="clear">Next
+      <ion-icon name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+  </div>
+  
+  
+  <div class="srch">
+    <ion-input placeholder="Search"></ion-input>
+    <ion-icon name="search-outline"></ion-icon>
+  </div>
+
+  <p class="ion-margin-top">
+    Search or select a service provider below. You can also select a category.
+    If you're not sure just select other
+  </p>
+</ion-header>
+<ion-content class="ion-padding">
+  <h5>Providers and Categories</h5>
+  <ion-list lines="none">
+    <ion-radio-group value=1>
+    <ion-item *ngFor="let sp of serviceProviders" lines="none">
+      <ion-icon
+        *ngIf="!sp.provider"
+        slot="start"
+        name="{{ sp.icon }}"
+      ></ion-icon>
+      <ion-thumbnail *ngIf="sp.provider" slot="start">
+        <img src="{{sp.logoUrl}}" />
+      </ion-thumbnail>
+
+      <ion-label>
+        <h2>{{ sp.name }}</h2>
+        <p>{{ sp.description }}</p>
+      </ion-label>
+      <ion-radio slot="end" value="{{sp.id}}"></ion-radio>
+    </ion-item>
+  </ion-radio-group>
+  </ion-list>
+
+  
+</ion-content>

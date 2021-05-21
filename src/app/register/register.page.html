@@ -9,79 +9,80 @@
   </div>
 
   <form [formGroup]="regForm" class="top-margin">
-    <div
-      class="form-group ion-text-left"
-      [ngClass]="{'invalid': regForm.get('email').touched && regForm.get('email').invalid}"
-    >
+    <div class="form-group ion-text-left">
       <ion-input
         class="form-control"
-        formControlName="email"
+        formControlName="firstname"
         type="text"
         placeholder="First Name"
       >
       </ion-input>
+      <span
+        class="invalid"
+        *ngIf="regForm.get('firstname').touched && regForm.get('firstname').invalid"
+        >First name is required</span
+      >
     </div>
 
-    <div
-      class="form-group ion-text-left"
-      [ngClass]="{'invalid': regForm.get('email').touched && regForm.get('email').invalid}"
-    >
+    <div class="form-group ion-text-left">
       <ion-input
         class="form-control"
-        formControlName="email"
+        formControlName="lastname"
         type="text"
         placeholder="Last Name"
       >
       </ion-input>
+      <span
+        class="invalid"
+        *ngIf="regForm.get('lastname').touched && regForm.get('lastname').invalid"
+        >Last name is required</span
+      >
     </div>
 
-    <div
-      class="form-group ion-text-left"
-      [ngClass]="{'invalid': regForm.get('email').touched && regForm.get('email').invalid}"
-    >
+    <div class="form-group ion-text-left">
       <ion-input
         class="form-control"
-        formControlName="email"
+        formControlName="username"
         type="text"
         placeholder="Email"
       >
       </ion-input>
+      <span
+        class="invalid"
+        *ngIf="regForm.get('username').touched && regForm.get('username').invalid"
+        >Username is required</span
+      >
     </div>
 
-    <div
-      class="form-group ion-text-left"
-      [ngClass]="{'invalid': regForm.get('email').touched && regForm.get('email').invalid}"
-    >
+    <div class="form-group ion-text-left">
       <ion-input
         class="form-control"
-        formControlName="email"
-        type="text"
+        formControlName="password"
+        type="password"
         placeholder="Password"
       >
       </ion-input>
+      <span
+        class="invalid"
+        *ngIf="regForm.get('password').touched && regForm.get('password').invalid"
+        >Password mus be atleast 8 characters, with an Uppercase letter, a Lowercase letter, a
+        number and a special character</span
+      >
     </div>
-
-    <span
-      class="invalid"
-      *ngIf="regForm.get('password').touched && regForm.get('password').invalid"
-      >Enter a valid password</span
-    >
   </form>
 
-  <ion-button expand="block" style="margin-top: 3em;" routerLink="/description"
-  >SIGN UP</ion-button
->
+  <ion-button expand="block" class="main-btn" style="margin-top: 4em" (click)="save()"
+    >SIGN UP</ion-button
+  >
 
-<div class="footer-content">
-  <p>Have an account?</p>
-  <ion-button
+  <div class="footer-content">
+    <p>Have an account?</p>
+    <ion-button
       expand="block"
       fill="clear"
       class="clear-btn"
-      
-      (click)="presentPopover()"
+      routerLink="/signin"
       >LOG IN</ion-button
     >
-</div>
-
+  </div>
 </ion-content>

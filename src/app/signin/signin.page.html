@@ -1,74 +1,58 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-title class="ion-text-center">Sign in</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <h2 class="logo-font ion-margin-bottom ion-margin-top">
+    <span class="logo-light">Get</span><span> Augie</span>
+  </h2>
 
-<ion-content>
-  <form [formGroup]="regForm" class="top-margin">
-    <ion-grid class="form-grid">
-      <ion-row>
-        <ion-col>
-          <p>Sign in</p>
-        </ion-col>
-      </ion-row>
+  <div class="header-content ion-margin-bottom">
+    <h3>Welcome back!</h3>
+    <p>Achieve your financial goals with Augie</p>
+  </div>
 
-      <ion-row>
-        <ion-col>
-          <div class="form-group" [ngClass]="{'invalid': regForm.get('email').touched && regForm.get('email').invalid}">
-            <ion-icon slot="start" name="person-outline"></ion-icon>
-            <ion-input
-              class="form-control"
-              formControlName="email"
-              type="text"
-              placeholder="email"
-              
-            >
-          </ion-input>
-          
-          </div>
-          <span
-          class="invalid"
-          *ngIf="regForm.get('email').touched && regForm.get('email').invalid"
-          >Enter a valid email</span
-        >
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <div class="form-group" [ngClass]="{'invalid': regForm.get('password').touched && regForm.get('password').invalid}">
-            <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
-            <ion-input
-              class="form-control"
-              formControlName="password"
-              type="password"
-              placeholder="Password"
-              
-            >
-          </ion-input>
-          
-          </div>
-          <span
-          class="invalid"
-          *ngIf="regForm.get('password').touched && regForm.get('password').invalid"
-          >Enter a valid password</span
-        >
-        </ion-col>
-      </ion-row>
+  <form [formGroup]="authForm" class="top-margin">
+  
+    <div class="form-group ion-text-left">
+      <ion-input
+        class="form-control"
+        formControlName="email"
+        type="text"
+        placeholder="Email"
+      >
+      </ion-input>
+      <span
+        class="invalid"
+        *ngIf="authForm.get('email').touched && authForm.get('email').invalid"
+        >Email is required</span
+      >
+    </div>
 
-      <ion-row>
-        <ion-col>
-          <ion-button expand="block" routerLink="/profile">Sign in</ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <div class="form-group ion-text-left">
+      <ion-input
+        class="form-control"
+        formControlName="password"
+        type="password"
+        placeholder="Password"
+      >
+      </ion-input>
+      <span
+        class="invalid"
+        *ngIf="authForm.get('password').touched && authForm.get('password').invalid"
+        >Password is required</span
+      >
+    </div>
   </form>
-</ion-content>
 
-<ion-footer class="ion-no-border">
-  <ion-toolbar>
-    <p class="ion-text-center small-font">
-      <a href="#" routerLink="/signin">sign up</a>
-    </p>
-  </ion-toolbar>
-</ion-footer>
+  <ion-button class="main-btn" expand="block" style="margin-top: 4em" (click)="save()"
+    >SIGN IN</ion-button
+  >
+
+  <div class="footer-content">
+    <p>Dont Have an account?</p>
+    <ion-button
+      expand="block"
+      fill="clear"
+      class="clear-btn"
+      routerLink="/register"
+      >SIGN UP</ion-button
+    >
+  </div>
+</ion-content>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { User } from "../models/user/user-models";
+import { User, UserProfile } from "../models/user/user-models";
 import {
   FormGroup,
   FormControl,
@@ -39,6 +39,7 @@ export class ProfileViewPage implements OnInit {
       name: "Bank of America",
       accountType: "Checking",
       createDate: new Date(),
+      verified: true
     },
     {
       accountNumber: 5555,
@@ -46,8 +47,14 @@ export class ProfileViewPage implements OnInit {
       name: "TD Bank",
       accountType: "Checking",
       createDate: new Date(),
+      verified: false
     },
   ];
+
+  userProfile: UserProfile = {
+    userDetails: this.user,
+    banks: this.banks
+  };
 
   profileForm = new FormGroup({
     firstName: new FormControl("", Validators.required),

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { FundingAccountPageRoutingModule } from './funding-account-routing.module';
 
 import { FundingAccountPage } from './funding-account.page';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { FundingAccountPage } from './funding-account.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    FundingAccountPageRoutingModule
+    FundingAccountPageRoutingModule,
+    SharedModule
   ],
   declarations: [FundingAccountPage]
 })

@@ -1,6 +1,8 @@
 <ion-content>
   <div class="head-container">
-    <ion-icon size="large" name="chevron-back-outline"></ion-icon>
+    <div>
+      <ion-back-button text="" defaultHref="/welcome"></ion-back-button>
+    </div>
 
     <div class="profile-img">
       <img alt="" src="{{picUrl}}" />
@@ -9,7 +11,7 @@
           expand="block"
           fill="clear"
           class="dark-clr"
-          (click)="takePicture()"
+          (click)="takePicture1()"
           >Upload</ion-button
         >
       </div>
@@ -20,14 +22,14 @@
         fill="clear"
         class="small-btn-font"
         size="small"
-        (click)="save()"
+        (click)="presentModal()"
         >Save</ion-button
       >
     </div>
   </div>
 
   <form [formGroup]="profileForm">
-    <div class="main-content form-sec-top-margin">
+    <div class="main-content ion-padding form-sec-top-margin">
       <ion-col>
         <h6 class="ion-text-uppercase">Personal Info</h6>
       </ion-col>
@@ -83,18 +85,20 @@
         <ion-datetime
           displayFormat="MM/DD/YY"
           placeholder="Date of Birth"
+          class="form-control"
+          formControlName="dob"
         ></ion-datetime>
 
         <span
           class="invalid"
-          *ngIf="profileForm.get('lastName').touched && profileForm.get('lastName').invalid"
+          *ngIf="profileForm.get('dob').touched && profileForm.get('dob').invalid"
           >DOB is required</span
         >
       </div>
     </div>
 
     <!-- Contact Info-->
-    <div class="main-content form-sec-top-margin">
+    <div class="main-content ion-padding form-sec-top-margin">
       <ion-col>
         <h6 class="ion-text-uppercase">Contact Info</h6>
       </ion-col>
@@ -118,6 +122,8 @@
         <ion-input
           class="form-control input-elem"
           formControlName="phone"
+          minlength="10"
+          maxlength="11"
           placeholder="Phone"
           type="tel"
           [ngClass]="{'is-invalid': profileForm.get('phone').touched && profileForm.get('phone').invalid}"
@@ -131,7 +137,7 @@
     </div>
 
     <!-- Employment Info-->
-    <div class="main-content form-sec-top-margin">
+    <div class="main-content ion-padding form-sec-top-margin">
       <ion-col>
         <h6 class="ion-text-uppercase">Employment</h6>
       </ion-col>
@@ -161,6 +167,69 @@
           class="invalid"
           *ngIf="profileForm.get('income').touched && profileForm.get('income').invalid"
           >Income is required</span
+        >
+      </div>
+    </div>
+
+    <!-- Address Info-->
+    <div class="main-content ion-padding form-sec-top-margin">
+      <ion-col>
+        <h6 class="ion-text-uppercase">Address</h6>
+      </ion-col>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="address"
+          placeholder="Address"
+          type="text"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('address').touched && profileForm.get('address').invalid"
+          >Address is required</span
+        >
+      </div>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="city"
+          placeholder="City"
+          type="text"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('city').touched && profileForm.get('city').invalid"
+          >City is required</span
+        >
+      </div>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="state"
+          placeholder="State"
+          type="text"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('state').touched && profileForm.get('state').invalid"
+          >State is required</span
+        >
+      </div>
+
+      <div class="form-group">
+        <ion-input
+          class="form-control input-elem"
+          formControlName="postalCode"
+          placeholder="Postal code"
+          type="number"
+        ></ion-input>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('postalCode').touched && profileForm.get('postalCode').invalid"
+          >Postal code is required</span
         >
       </div>
     </div>

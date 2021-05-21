@@ -22,6 +22,7 @@ export class SchedulePaymentPage implements OnInit {
     payDate: null,
     payMethod: "",
     recurring: false,
+    logo_url: ""
   };
 
   psForm = new FormGroup({

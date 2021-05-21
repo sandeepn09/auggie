@@ -1,0 +1,68 @@
+.outer {
+  .phone-fld {
+    // display: grid;
+    // grid-template-columns: 20% 80%;
+    display: flex;
+    margin-top: 30%;
+    // justify-content: center;
+    // padding: 20px;
+    // align-items: center;
+    // border: 1px solid grey;
+    // vertical-align: center;
+    // border-radius: 10px;
+    // background-color: #F6F7F9;
+    border-bottom: 2px solid #eff0f4;
+    // margin: 15px;
+
+    ion-input {
+      // border: 1px solid blue;
+      --padding-start: 2px;
+      padding-left: 5px;
+
+      border-left: 2px solid #eff0f4;
+      font-size: 1.5em;
+      --placeholder-color: #9aacbc;
+      // --background: #FFF;
+    }
+
+    .cc-div {
+      height: 100%;
+      font-size: 1.2em;
+      padding-left: 15px;
+      padding-right: 20px;
+      color: #2a2b2c;
+      letter-spacing: 1px;
+
+      p {
+        color: #2a2b2c;
+      }
+
+      // background-color: #F6F7F9;
+    }
+  }
+
+  ion-button {
+    --color: #fff;
+    text-transform: uppercase;
+    height: 3.5em;
+    --box-shadow: none;
+    color: #fff;
+    margin-top: 50px;
+    --border-radius: 8px;
+    font-weight: bolder;
+    letter-spacing: 0.6px;
+    font-size: 0.9em;
+  }
+
+  h2 {
+      font-weight: 800;
+      color: #2A2B2C;
+      opacity: 0.9;
+  }
+
+  p {
+      font-size: 0.8em;
+      color: #9AACBC;
+      font-weight: 600;
+  }
+}

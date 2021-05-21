@@ -1,0 +1,23 @@
+<div class="ion-text-center pop-container ion-padding">
+  <div class="ion-text-left ion-padding" style="margin: 0; padding: 0">
+    <ion-button (click)="dismiss()" fill="clear">Cancel</ion-button>
+  </div>
+
+  <div class="ion-padding header-div">
+    <img class="ion-margin-top" alt="" src="../../../assets/Purple.png" />
+    <h4 class="ion-margin-bottom">Schedule Payment</h4>
+    <p>{{paymentSchedule.providerName}}</p>
+  </div>
+
+  
+  <div class="pmt-dtls ion-padding ion-margin-top">
+  <p class="fld-name">Amount</p><p class="btm-border">{{paymentSchedule.amount}} USD, Reccurring</p>
+  <p class="fld-name">Date</p><p class="btm-border">{{paymentSchedule.payDate | date:'mediumDate'}}</p>
+  <p class="fld-name">Pay method</p><p class="btm-border">{{paymentSchedule.payMethod}}</p>
+
+  </div>
+
+  <div class="footer-div ion-padding">
+    <ion-button (click)="confirm()" expand="block">CONFIRM</ion-button>
+  </div>
+</div>

@@ -1,9 +1,19 @@
 import { Component, OnInit } from "@angular/core";
 import { User } from "../models/user/user-models";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { AlertController } from "@ionic/angular";
-import { Plugins, CameraResultType, CameraSource } from "@capacitor/core";
+import { AlertController, ModalController } from "@ionic/angular";
+import {
+  Capacitor,
+  Plugins,
+  CameraResultType,
+  CameraSource,
+  FilesystemDirectory,
+} from "@capacitor/core";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { UploadService } from "../services/upload.service";
+import { PaymentModalComponent } from "../shared/payment-modal/payment-modal.component";
+
+const { Camera, Filesystem } = Plugins;
 
 @Component({
   selector: "app-edit-profile",
@@ -34,10 +44,6 @@ export class EditProfilePage implements OnInit {
   profileForm = new FormGroup({
     firstName: new FormControl("", Validators.required),
     lastName: new FormControl("", Validators.required),
-    address: new FormControl("", Validators.required),
-    city: new FormControl("", Validators.required),
-    state: new FormControl("", Validators.required),
-    postalCode: new FormControl("", Validators.required),
     email: new FormControl("", [
       Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),
@@ -46,15 +52,25 @@ export class EditProfilePage implements OnInit {
       Validators.required,
       Validators.pattern("^[0-9]*$"),
       Validators.minLength(10),
-      Validators.maxLength(10),
+      Validators.maxLength(11),
     ]),
     occupation: new FormControl("", Validators.required),
     income: new FormControl("", Validators.required),
     dob: new FormControl("", Validators.required),
     pronoun: new FormControl(""),
+
+    address: new FormControl("", Validators.required),
+    city: new FormControl("", Validators.required),
+    state: new FormControl("", Validators.required),
+    postalCode: new FormControl(""),
   });
 
-  constructor(public alertController: AlertController, private sanitizer: DomSanitizer) {}
+  constructor(
+    public alertController: AlertController,
+    private sanitizer: DomSanitizer,
+    private uploadService: UploadService,
+    public modalController: ModalController
+  ) {}
 
   ngOnInit() {}
 
@@ -84,15 +100,65 @@ export class EditProfilePage implements OnInit {
   }
 
   async takePicture() {
-    const image = await Plugins.Camera.getPhoto({
+    Plugins.Camera.getPhoto({
       quality: 100,
       allowEditing: false,
       resultType: CameraResultType.DataUrl,
-      source: CameraSource.Camera,
+      source: CameraSource.Prompt,
+    }).then((result) => {
+      console.log("Result", result.path);
     });
 
-    // this.picUrl = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
-    this.picUrl = image.dataUrl;
-    console.log("PICURL", this.picUrl);
+    /**const image = await Plugins.Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Prompt,
+    });**/
+    //this.picUrl = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
+    // this.picUrl = image.path;
+
+    // console.log("PICURL", this.picUrl);
+    // console.log("Image Path", image.format);
+  }
+
+  async takePicture1() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      resultType: CameraResultType.Uri,
+    });
+
+    const photoInTempStorage = await Filesystem.readFile({ path: image.path });
+    let date = new Date(),
+      time = date.getTime(),
+      fileName = time + ".png";
+
+    await Filesystem.writeFile({
+      data: image.dataUrl,
+      path: fileName,
+      directory: FilesystemDirectory.Data,
+    });
+
+    const finalPhotoUri = await Filesystem.getUri({
+      directory: FilesystemDirectory.Data,
+      path: fileName,
+    });
+
+    console.log("photoInTempStorage", finalPhotoUri);
+  }
+
+  async presentModal() {
+    console.log("BANK INFO", this.user);
+    const modal = await this.modalController.create({
+      component: PaymentModalComponent,
+      cssClass: "confirm-modal",
+      componentProps: this.user,
+    });
+
+    await modal.present();
+
+    const { data: info, role } = await modal.onWillDismiss();
+    console.log(role);
   }
 }

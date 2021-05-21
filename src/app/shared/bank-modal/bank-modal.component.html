@@ -1,0 +1,33 @@
+<div class="ion-text-center pop-container ion-padding">
+  <div class="ion-text-left ion-padding">
+    <ion-button (click)="dismiss()" fill="clear">Cancel</ion-button>
+  </div>
+
+  <div class="ion-padding header-div">
+    <h2>Confirm</h2>
+    <p>Please review the information</p>
+  </div>
+
+  <div class="form-info ion-padding">
+    <div class="ion-text-left fld-info">
+      <p class="fld-name">Bank Name</p>
+      <p>{{name}}</p>
+    </div>
+    <div class="ion-text-left fld-info">
+      <p class="fld-name">Account Number</p>
+      <p>{{accountNumber}}</p>
+    </div>
+    <div class="ion-text-left fld-info">
+      <p class="fld-name">Routing Number</p>
+      <p>{{routingNumber}}</p>
+    </div>
+    <div class="ion-text-left fld-info">
+      <p class="fld-name">Account Type</p>
+      <p>{{accountType}}</p>
+    </div>
+  </div>
+
+  <div class="footer-div ion-padding">
+    <ion-button (click)="confirm()" expand="block">CONFIRM</ion-button>
+  </div>
+</div>

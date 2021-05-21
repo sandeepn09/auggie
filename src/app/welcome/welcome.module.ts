@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { WelcomePageRoutingModule } from './welcome-routing.module';
 
 import { WelcomePage } from './welcome.page';
+import { HomeGuard } from '../guards/home.guard';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { WelcomePage } from './welcome.page';
     IonicModule,
     WelcomePageRoutingModule
   ],
-  declarations: [WelcomePage]
+  declarations: [WelcomePage],
+  providers: [HomeGuard],
 })
 export class WelcomePageModule {}

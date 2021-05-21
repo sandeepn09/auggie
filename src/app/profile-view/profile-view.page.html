@@ -1,6 +1,8 @@
 <ion-content>
   <div class="head-container">
-    <ion-icon size="large" name="chevron-back-outline"></ion-icon>
+    <div>
+      <ion-back-button text="" icon="chevron-back-outline" defaultHref="/description"></ion-back-button>
+    </div>
 
     <div class="profile-img">
       <img alt="" src="../../../assets/sandeep.png" />
@@ -66,6 +68,8 @@
 
 
     <div *ngFor="let bank of banks" class="bac-grid">
+      <ion-icon *ngIf="bank.verified" class="status-icn-ok" name="checkmark-circle-outline"></ion-icon>
+      <ion-icon *ngIf="!bank.verified" class="status-icn-warn" name="alert-circle-outline"></ion-icon>
       <div class="bank-info">
         <div class="bank-title"><span>{{bank.name}}</span><ion-icon class="ion-text-end" name="pencil-outline"></ion-icon></div>
         <p class="light-clr">{{bank.accountType}}</p>
@@ -80,7 +84,7 @@
     expand="block"
     fill="clear"
     class="dark-clr"
-    routerLink="/description"
+    routerLink="/signin"
     >Log out</ion-button
   >
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { PopoverController, ToastController } from '@ionic/angular';
+import { AlertController, PopoverController, ToastController } from "@ionic/angular";
 
 import {
   FormGroup,
@@ -16,11 +16,22 @@ import { ValidationPopoverComponent } from "../shared/validation-popover/validat
 })
 export class RegisterPage implements OnInit {
   regForm = new FormGroup({
-    email: new FormControl("", Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')),
-    password: new FormControl("", Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")),
+    firstname: new FormControl("", Validators.required),
+    lastname: new FormControl("", Validators.required),
+    username: new FormControl("", [
+      Validators.required,
+      Validators.pattern("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"),
+    ]),
+    password: new FormControl("", [
+      Validators.required
+    ]),
   });
 
-  constructor(public toastController: ToastController, public popoverController: PopoverController) {}
+  constructor(
+    public toastController: ToastController,
+    public popoverController: PopoverController,
+    public alertController: AlertController,
+  ) {}
 
   currentPopover = null;
 
@@ -28,10 +39,10 @@ export class RegisterPage implements OnInit {
 
   async presentToast() {
     const toast = await this.toastController.create({
-      message: 'Your settings have been saved.',
+      message: "Your settings have been saved.",
       duration: 2000,
-      color: '#00bfa6',
-      position: 'middle',
+      color: "#00bfa6",
+      position: "middle",
     });
     toast.present();
   }
@@ -39,14 +50,40 @@ export class RegisterPage implements OnInit {
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
       component: ValidationPopoverComponent,
-      cssClass: 'my-custom-class',
+      cssClass: "my-custom-class",
       event: ev,
-      translucent: true
+      translucent: true,
     });
     await popover.present();
 
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    console.log("onDidDismiss resolved with role", role);
   }
-  
+
+  save() {
+    if (this.regForm.invalid) {
+      console.log(this.regForm.value);
+      this.presentAlert();
+    } else {
+      console.log(this.regForm.value);
+      console.log("BD Form is VALID!!!!");
+      
+      // this.presentModal();
+    }
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      cssClass: "my-custom-class",
+      header: "Error",
+      // subHeader: 'Some fields have invalid values',
+      message: "Please enter valid values to proceeed.",
+      buttons: ["OK"],
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log("onDidDismiss resolved with role", role);
+  }
 }

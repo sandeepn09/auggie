@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
+import { HomeGuard } from './guards/home.guard';
 
 const routes: Routes = [
   {
@@ -12,8 +14,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    // redirectTo: 'welcome',
-    redirectTo: 'add-payment',
+    redirectTo: 'welcome',
+    // redirectTo: 'edit-profile',
     pathMatch: 'full'
   },
   {
@@ -22,11 +24,13 @@ const routes: Routes = [
   },
   {
     path: 'welcome',
-    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+    loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule),
+    canLoad: [HomeGuard]
   },
   {
     path: 'signin',
-    loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule)
+    loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule),
+    // canActivate: [HomeGuard]
   },
   {
     path: 'authhelp',
@@ -50,7 +54,8 @@ const routes: Routes = [
   },
   {
     path: 'description',
-    loadChildren: () => import('./description/description.module').then( m => m.DescriptionPageModule)
+    loadChildren: () => import('./description/description.module').then( m => m.DescriptionPageModule),
+    // canLoad: [AuthGuard]
   },
   {
     path: 'referal',
@@ -104,6 +109,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [HomeGuard]
 })
 export class AppRoutingModule { }

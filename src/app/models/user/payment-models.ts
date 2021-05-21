@@ -6,6 +6,7 @@ export class BankInfo {
   routingNumber: number;
   accountType: string;
   createDate: Date;
+  verified: boolean;
 }
 
 export class PaymentSchedule {
@@ -15,9 +16,20 @@ export class PaymentSchedule {
   payMethod: string;
   recurring: boolean;
   payDate: Date;
+  logo_url: string;
 }
 
 export class LogoResponse {
   statusCode: number;
   response: { logo: {}; icon: {} };
+}
+
+export class ServiceProvider {
+  provider: boolean;
+  logoUrl: string;
+  name: string;
+  description: string;
+  address: string;
+  icon: string;
+  id: number;
 }
