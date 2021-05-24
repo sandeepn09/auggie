@@ -11,9 +11,13 @@ export class HttpService {
 
   post(endpoint: string, data: any, headers: HttpHeaders) {
 
-    const options = {headers: headers, withCredentials: false};
-    const url = environment.apiBaseUrl + endpoint;
 
-    return this.http.post(url, JSON.stringify(data), options);
+    const options = {headers: headers, withCredentials: false};
+    const url = environment.apiBaseUrl + "/" + endpoint;
+    const strData = JSON.stringify(data);
+    console.log("Post Data", strData);
+    
+
+    return this.http.post(url, strData, options);
   }
 }

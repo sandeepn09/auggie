@@ -13,14 +13,14 @@
     <div class="form-group ion-text-left">
       <ion-input
         class="form-control"
-        formControlName="email"
+        formControlName="username"
         type="text"
         placeholder="Email"
       >
       </ion-input>
       <span
         class="invalid"
-        *ngIf="authForm.get('email').touched && authForm.get('email').invalid"
+        *ngIf="authForm.get('username').touched && authForm.get('username').invalid"
         >Email is required</span
       >
     </div>

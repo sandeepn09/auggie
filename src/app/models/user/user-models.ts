@@ -48,3 +48,10 @@ export class AuthResponse {
   lastName: string;
   profileComplete: boolean;
 }
+
+export class AppResponse {
+  message: string;
+  code: number;
+  httpStatus: string;
+  details: {}
+}

@@ -17,7 +17,7 @@ import { AuthService } from "../services/auth.service";
 })
 export class SigninPage implements OnInit {
   authForm = new FormGroup({
-    email: new FormControl("", Validators.required),
+    username: new FormControl("", Validators.required),
     password: new FormControl("", Validators.required),
   });
 

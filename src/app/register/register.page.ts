@@ -1,5 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { AlertController, PopoverController, ToastController } from "@ionic/angular";
+import {
+  AlertController,
+  ModalController,
+  PopoverController,
+  ToastController,
+} from "@ionic/angular";
 
 import {
   FormGroup,
@@ -8,6 +13,15 @@ import {
   Validators,
 } from "@angular/forms";
 import { ValidationPopoverComponent } from "../shared/validation-popover/validation-popover.component";
+import { HttpService } from "../services/http.service";
+import { HttpHeaders } from "@angular/common/http";
+import { AppResponse } from "../models/user/user-models";
+import { Router } from "@angular/router";
+import { SignupConfirmComponent } from "../shared/signup-confirm/signup-confirm.component";
+
+const headers = new HttpHeaders()
+  .set("content-type", "application/json")
+  .set("Access-Control-Allow-Origin", "*");
 
 @Component({
   selector: "app-register",
@@ -16,21 +30,22 @@ import { ValidationPopoverComponent } from "../shared/validation-popover/validat
 })
 export class RegisterPage implements OnInit {
   regForm = new FormGroup({
-    firstname: new FormControl("", Validators.required),
-    lastname: new FormControl("", Validators.required),
+    firstName: new FormControl("", Validators.required),
+    lastName: new FormControl("", Validators.required),
     username: new FormControl("", [
       Validators.required,
       Validators.pattern("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"),
     ]),
-    password: new FormControl("", [
-      Validators.required
-    ]),
+    password: new FormControl("", [Validators.required]),
   });
 
   constructor(
     public toastController: ToastController,
     public popoverController: PopoverController,
     public alertController: AlertController,
+    private httpService: HttpService,
+    private router: Router,
+    private modalController: ModalController
   ) {}
 
   currentPopover = null;
@@ -67,8 +82,18 @@ export class RegisterPage implements OnInit {
     } else {
       console.log(this.regForm.value);
       console.log("BD Form is VALID!!!!");
-      
-      // this.presentModal();
+      this.httpService
+        .post("user/account", this.regForm.value, headers)
+        .subscribe((res) => {
+          console.log("Sign up response", res);
+
+          let appResponse: AppResponse = res as AppResponse;
+          if (appResponse.code && appResponse.code == 2503) {
+            console.log("AppResponse: ", appResponse);
+
+            this.presentModal();
+          }
+        });
     }
   }
 
@@ -85,5 +110,20 @@ export class RegisterPage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
     console.log("onDidDismiss resolved with role", role);
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: SignupConfirmComponent,
+      cssClass: "modal-ctr",
+    });
+
+    await modal.present();
+
+    const { data: info, role } = await modal.onWillDismiss();
+    console.log("Role", role);
+    if (role === "confirm") {
+      this.router.navigateByUrl("/signin");
+    }
   }
 }

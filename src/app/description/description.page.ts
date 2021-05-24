@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthConstants } from '../config/auth-constants';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-description',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DescriptionPage implements OnInit {
 
-  constructor() { }
+  name: string;
 
-  ngOnInit() {
+  constructor(private storageService: StorageService) { }
+
+  async ngOnInit() {
+    let value:any = await this.storageService.get(AuthConstants.AUTH);
+    console.log("Value", value.firstName);
+    this.name = value.firstName;
   }
 
 }
