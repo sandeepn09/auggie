@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Plugins } from "@capacitor/core";
+import { AuthConstants } from "../config/auth-constants";
 
 const { Storage } = Plugins;
 
@@ -30,5 +31,9 @@ export class StorageService {
 
   async clear() {
     await Storage.clear();
+  }
+
+  getUser() {
+    return this.get(AuthConstants.AUTH);
   }
 }

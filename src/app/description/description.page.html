@@ -1,4 +1,4 @@
-<app-menu-header></app-menu-header>
+<app-menu-header [name]="name"></app-menu-header>
 
 <ion-content class="ion-text-center ion-padding">
   <h2>Hi, {{name}}! Let's get started!</h2>
@@ -25,7 +25,7 @@
     <div class="img-container">
       <img alt="" src="../../assets/augie-new.png" />
     </div>
-    
+
     <div class="info-container">
       <h6>2. Connect your bank account</h6>
       <p>Start building credit today by linking your bank account</p>
@@ -39,11 +39,11 @@
       ></ion-button>
     </div>
   </div>
-
 </ion-content>
 
 <ion-footer class="ion-no-border ion-text-center ion-padding">
   <p class="msg-content">
-    Use your free and secure Augie virtual payment card for all your monthly bills and start earning the credit you deserve.
+    Use your free and secure Augie virtual payment card for all your monthly
+    bills and start earning the credit you deserve.
   </p>
 </ion-footer>

@@ -22,7 +22,7 @@
         fill="clear"
         class="small-btn-font"
         size="small"
-        (click)="presentModal()"
+        (click)="save()"
         >Save</ion-button
       >
     </div>
@@ -69,14 +69,14 @@
           placeholder="Pronoun"
           interface="action-sheet"
           class="form-control"
-          formControlName="pronoun"
+          formControlName="gender"
         >
           <ion-select-option value="Y">He/Him/His</ion-select-option>
           <ion-select-option value="N">She/Her</ion-select-option>
         </ion-select>
         <span
           class="invalid"
-          *ngIf="profileForm.get('lastName').touched && profileForm.get('lastName').invalid"
+          *ngIf="profileForm.get('gender').touched && profileForm.get('gender').invalid"
           >Please select a Pronoun</span
         >
       </div>
@@ -159,13 +159,13 @@
       <div class="form-group">
         <ion-input
           class="form-control input-elem"
-          formControlName="income"
+          formControlName="annualIncome"
           placeholder="Annual Income"
           type="number"
         ></ion-input>
         <span
           class="invalid"
-          *ngIf="profileForm.get('income').touched && profileForm.get('income').invalid"
+          *ngIf="profileForm.get('annualIncome').touched && profileForm.get('annualIncome').invalid"
           >Income is required</span
         >
       </div>

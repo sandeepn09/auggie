@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 
 @Component({
@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-header.component.scss'],
 })
 export class MenuHeaderComponent implements OnInit {
+
+  @Input('name') name: string;
 
   constructor() { }
 

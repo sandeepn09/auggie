@@ -12,6 +12,7 @@ import {
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { UploadService } from "../services/upload.service";
 import { PaymentModalComponent } from "../shared/payment-modal/payment-modal.component";
+import { UserService } from "../services/user.service";
 
 const { Camera, Filesystem } = Plugins;
 
@@ -55,9 +56,9 @@ export class EditProfilePage implements OnInit {
       Validators.maxLength(11),
     ]),
     occupation: new FormControl("", Validators.required),
-    income: new FormControl("", Validators.required),
+    annualIncome: new FormControl("", Validators.required),
     dob: new FormControl("", Validators.required),
-    pronoun: new FormControl(""),
+    gender: new FormControl(""),
 
     address: new FormControl("", Validators.required),
     city: new FormControl("", Validators.required),
@@ -69,7 +70,8 @@ export class EditProfilePage implements OnInit {
     public alertController: AlertController,
     private sanitizer: DomSanitizer,
     private uploadService: UploadService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private userService: UserService
   ) {}
 
   ngOnInit() {}
@@ -81,6 +83,7 @@ export class EditProfilePage implements OnInit {
     } else {
       console.log(this.profileForm);
       console.log("BD Form is VALID!!!!");
+      this.userService.updateProfile(this.profileForm.value);
     }
   }
 
