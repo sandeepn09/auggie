@@ -1,4 +1,8 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
+import { AppConstants } from "../config/app-constants";
+import { HttpService } from "./http.service";
+import { StorageService } from "./storage.service";
 
 export interface Record {
   amount: number;
@@ -62,13 +66,13 @@ export class PaymentService {
       id: 0,
       read: false,
     },
-
-
-
-
   ];
 
-  constructor() {}
+  constructor(
+    private httpService: HttpService,
+    private storageService: StorageService,
+    private router: Router
+  ) {}
 
   public getRecords(): Record[] {
     return this.records;
@@ -76,5 +80,31 @@ export class PaymentService {
 
   public getRecordsById(id: number): Record {
     return this.records[id];
+  }
+
+  async addFundingAccount(bankInfo: any) {
+    let userData: any = await this.storageService.getUser();
+    console.log("bankInfo", bankInfo);
+
+    let userIdObj: any = { userId: userData.userId };
+    let desc = { description: bankInfo.bankName };
+    let fullBankInfo = {
+      ...bankInfo,
+      ...userIdObj,
+      ...desc,
+    };
+
+    console.log("fullBankInfo", fullBankInfo);
+    this.httpService
+      .post("payment-method", fullBankInfo, AppConstants.HEADERS)
+      .subscribe(
+        (res: any) => {
+          console.log(res);
+          this.router.navigateByUrl('/profile-view');
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }

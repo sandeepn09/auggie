@@ -18,6 +18,7 @@ import { HttpHeaders } from "@angular/common/http";
 import { AppResponse } from "../models/user/user-models";
 import { Router } from "@angular/router";
 import { SignupConfirmComponent } from "../shared/signup-confirm/signup-confirm.component";
+import { MessageService } from "../services/message.service";
 
 const headers = new HttpHeaders()
   .set("content-type", "application/json")
@@ -45,7 +46,8 @@ export class RegisterPage implements OnInit {
     public alertController: AlertController,
     private httpService: HttpService,
     private router: Router,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private messageService: MessageService
   ) {}
 
   currentPopover = null;
@@ -91,7 +93,12 @@ export class RegisterPage implements OnInit {
           if (appResponse.code && appResponse.code == 2503) {
             console.log("AppResponse: ", appResponse);
 
-            this.presentModal();
+            // this.presentModal();
+            this.messageService.message(
+              "Welcome!",
+              "Signin and start building your credit!",
+              "/signin"
+            );
           }
         });
     }

@@ -11,6 +11,8 @@ import { PaymentModalComponent } from "./payment-modal/payment-modal.component";
 import { ProviderModalComponent } from "./provider-modal/provider-modal.component";
 import { SendTextModalComponent } from "./send-text-modal/send-text-modal.component";
 import { SignupConfirmComponent } from "./signup-confirm/signup-confirm.component";
+import { MessageComponent } from "./message/message.component";
+import { ErrorComponent } from "./error/error.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { SignupConfirmComponent } from "./signup-confirm/signup-confirm.componen
     ProviderModalComponent,
     BankModalComponent,
     PaymentModalComponent,
-    SignupConfirmComponent
+    SignupConfirmComponent,
+    MessageComponent,
+    ErrorComponent
   ],
   imports: [CommonModule, FormsModule, IonicModule],
   exports: [

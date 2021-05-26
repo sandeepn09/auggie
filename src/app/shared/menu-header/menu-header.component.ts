@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthConstants } from 'src/app/config/auth-constants';
+import { StorageService } from 'src/app/services/storage.service';
 
 
 @Component({
@@ -8,10 +10,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MenuHeaderComponent implements OnInit {
 
-  @Input('name') name: string;
+  name: string;
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+   this.init();
+  }
+
+  async init() {
+    let value:any = await this.storageService.get(AuthConstants.AUTH);
+    console.log("name", value.firstName);
+    this.name = value.firstName;
+  }
 
 }

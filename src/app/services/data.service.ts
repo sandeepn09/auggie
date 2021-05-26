@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
 export interface Message {
   fromName: string;
@@ -9,69 +9,71 @@ export interface Message {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class DataService {
   public messages: Message[] = [
     {
-      fromName: 'Matt Chorsey',
-      subject: 'New event: Trip to Vegas',
+      fromName: "Matt Chorsey",
+      subject: "New event: Trip to Vegas",
       date: Date.now().toString(),
       id: 0,
-      read: false
+      read: false,
     },
     {
-      fromName: 'Lauren Ruthford',
-      subject: 'Long time no chat',
+      fromName: "Lauren Ruthford",
+      subject: "Long time no chat",
       date: Date.now().toString(),
       id: 1,
-      read: false
+      read: false,
     },
     {
-      fromName: 'Jordan Firth',
-      subject: 'Report Results',
-      date: '4:55 AM',
+      fromName: "Jordan Firth",
+      subject: "Report Results",
+      date: "4:55 AM",
       id: 2,
-      read: false
+      read: false,
     },
     {
-      fromName: 'Bill Thomas',
-      subject: 'The situation',
-      date: 'Yesterday',
+      fromName: "Bill Thomas",
+      subject: "The situation",
+      date: "Yesterday",
       id: 3,
-      read: false
+      read: false,
     },
     {
-      fromName: 'Joanne Pollan',
-      subject: 'Updated invitation: Swim lessons',
-      date: 'Yesterday',
+      fromName: "Joanne Pollan",
+      subject: "Updated invitation: Swim lessons",
+      date: "Yesterday",
       id: 4,
-      read: false
+      read: false,
     },
     {
-      fromName: 'Andrea Cornerston',
-      subject: 'Last minute ask',
-      date: 'Yesterday',
+      fromName: "Andrea Cornerston",
+      subject: "Last minute ask",
+      date: "Yesterday",
       id: 5,
-      read: false
+      read: false,
     },
     {
-      fromName: 'Moe Chamont',
-      subject: 'Family Calendar - Version 1',
-      date: 'Last Week',
+      fromName: "Moe Chamont",
+      subject: "Family Calendar - Version 1",
+      date: "Last Week",
       id: 6,
-      read: false
+      read: false,
     },
     {
-      fromName: 'Kelly Richardson',
-      subject: 'Placeholder Headhots',
-      date: 'Last Week',
+      fromName: "Kelly Richardson",
+      subject: "Placeholder Headhots",
+      date: "Last Week",
       id: 7,
-      read: false
-    }
+      read: false,
+    },
   ];
 
-  constructor() { }
+  constructor() {}
+
+  provider: any;
 
   public getMessages(): Message[] {
     return this.messages;
@@ -79,5 +81,13 @@ export class DataService {
 
   public getMessageById(id: number): Message {
     return this.messages[id];
+  }
+
+  setProvider(data) {
+    this.provider = data;
+  }
+
+  getProvider() {
+    return this.provider;
   }
 }

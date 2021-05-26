@@ -4,17 +4,18 @@
   </div>
 
   <div class="ion-padding header-div">
-    <img class="ion-margin-top" alt="" src="../../../assets/Purple.png" />
+    <img class="ion-margin-top" alt="" src="{{iconUrl}}" />
     <h4 class="ion-margin-bottom">Schedule Payment</h4>
-    <p>{{paymentSchedule.providerName}}</p>
+    <p>{{ providerName }}</p>
   </div>
 
-  
   <div class="pmt-dtls ion-padding ion-margin-top">
-  <p class="fld-name">Amount</p><p class="btm-border">{{paymentSchedule.amount}} USD, Reccurring</p>
-  <p class="fld-name">Date</p><p class="btm-border">{{paymentSchedule.payDate | date:'mediumDate'}}</p>
-  <p class="fld-name">Pay method</p><p class="btm-border">{{paymentSchedule.payMethod}}</p>
-
+    <p class="fld-name">Amount</p>
+    <p class="btm-border">{{ amount | currency}}<span *ngIf="recuring == 'Y'">, Reccurring</span></p>
+    <p class="fld-name">Date</p>
+    <p class="btm-border">{{ payDate | date: "mediumDate" }}</p>
+    <p class="fld-name">Pay method</p>
+    <p class="btm-border">{{ payMethod }}</p>
   </div>
 
   <div class="footer-div ion-padding">

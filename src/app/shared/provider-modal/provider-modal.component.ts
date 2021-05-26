@@ -1,61 +1,65 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ServiceProvider } from 'src/app/models/user/payment-models';
+import { Component, OnInit } from "@angular/core";
+import { ModalController } from "@ionic/angular";
+import { AppConstants } from "src/app/config/app-constants";
+import { ServiceProvider } from "src/app/models/user/payment-models";
+import { HttpService } from "src/app/services/http.service";
 
 @Component({
-  selector: 'app-provider-modal',
-  templateUrl: './provider-modal.component.html',
-  styleUrls: ['./provider-modal.component.scss'],
+  selector: "app-provider-modal",
+  templateUrl: "./provider-modal.component.html",
+  styleUrls: ["./provider-modal.component.scss"],
 })
 export class ProviderModalComponent implements OnInit {
+  serviceProviders: ServiceProvider[] = [
+    {
+      providerName: "Home Rent",
+      providerDescription: "Monthly Rent",
+      iconUrl: "home",
+      providerAddress: "",
+      id: 501,
+    },
+  ];
 
-  serviceProviders: ServiceProvider[] = [{
-    name: "Home Rent",
-    description: "Monthly Rent",
-    logoUrl: "https://assets.brandfetch.io/41d05924a6fd481.png",
-    address: "",
-    icon: "home",
-    provider: false,
-    id: 1
-  },
-  {
-    name: "Netflix",
-    description: "Netflix Inc.",
-    logoUrl: "https://assets.brandfetch.io/41d05924a6fd481.png",
-    address: "",
-    icon: "",
-    provider: true,
-    id: 2
-  },
-  {
-    name: "Amazon",
-    description: "Amazon Inc",
-    logoUrl: "https://assets.brandfetch.io/097a35e020354b4.png",
-    address: "",
-    icon: "",
-    provider: true,
-    id: 3
-  },
-  {
-    name: "Hulu",
-    description: "Hulu Inc.",
-    logoUrl: "https://assets.brandfetch.io/e7a1ac57ae64452.png",
-    address: "",
-    icon: "",
-    provider: true,
-    id: 4
-  }];
+  currentProviderId: number = 501;
+  currentProvider: any = this.serviceProviders[0];
 
-  constructor(public modalControl: ModalController) { }
+  constructor(
+    public modalControl: ModalController,
+    private httpService: HttpService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.httpService
+      .get("providers", { name: "" }, AppConstants.HEADERS)
+      .subscribe((res: any) => {
+        console.log("Provider Details", res.details.providers);
+        this.serviceProviders.push(...res.details.providers);
+        let temp = console.log("Providers", this.serviceProviders);
+      });
+  }
 
   dismiss() {
     this.modalControl.dismiss(null, "cancel");
   }
 
   confirm() {
-    this.modalControl.dismiss(null, "confirm");
+    this.modalControl.dismiss({ provider: this.currentProvider }, "confirm");
   }
 
+  radioGroupChange(event) {
+    this.currentProviderId = event.detail.value;
+    console.log("SP ID", this.currentProviderId);
+
+    this.setProvider();
+  }
+
+  setProvider() {
+    const temp = this.serviceProviders.filter((object) => {
+      return object["id"] == this.currentProviderId;
+    });
+
+    this.currentProvider = temp[0];
+
+    console.log("Current Provider", this.currentProvider);
+  }
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeGuard } from './guards/home.guard';
+import { DataResolverService } from './services/data-resolver.service';
 
 const routes: Routes = [
   {
@@ -30,7 +31,7 @@ const routes: Routes = [
   {
     path: 'signin',
     loadChildren: () => import('./signin/signin.module').then( m => m.SigninPageModule),
-    // canActivate: [HomeGuard]
+    canLoad: [HomeGuard]
   },
   {
     path: 'authhelp',
@@ -55,7 +56,7 @@ const routes: Routes = [
   {
     path: 'description',
     loadChildren: () => import('./description/description.module').then( m => m.DescriptionPageModule),
-    // canLoad: [AuthGuard]
+    canLoad: [AuthGuard]
   },
   {
     path: 'referal',
@@ -67,7 +68,8 @@ const routes: Routes = [
   },
   {
     path: 'pay-method',
-    loadChildren: () => import('./pay-method/pay-method.module').then( m => m.PayMethodPageModule)
+    loadChildren: () => import('./pay-method/pay-method.module').then( m => m.PayMethodPageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'main',
@@ -75,7 +77,8 @@ const routes: Routes = [
   },
   {
     path: 'funding-account',
-    loadChildren: () => import('./funding-account/funding-account.module').then( m => m.FundingAccountPageModule)
+    loadChildren: () => import('./funding-account/funding-account.module').then( m => m.FundingAccountPageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'funding-accounts',
@@ -87,7 +90,8 @@ const routes: Routes = [
   },
   {
     path: 'profile-view',
-    loadChildren: () => import('./profile-view/profile-view.module').then( m => m.ProfileViewPageModule)
+    loadChildren: () => import('./profile-view/profile-view.module').then( m => m.ProfileViewPageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'add-payment',
@@ -95,6 +99,9 @@ const routes: Routes = [
   },
   {
     path: 'schedule-payment',
+    resolve: {
+      serviceProvider: DataResolverService
+    },
     loadChildren: () => import('./schedule-payment/schedule-payment.module').then( m => m.SchedulePaymentPageModule)
   },
   {

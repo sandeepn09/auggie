@@ -1,0 +1,27 @@
+<ion-content>
+  <div class="ion-text-center pop-container">
+    <div class="ion-text-end ion-padding">
+      <ion-icon (click)="dismiss()" size="large" name="close-outline"></ion-icon>
+    </div>
+  
+    <div class="ion-padding">
+      <h2>{{title}}</h2>
+      <h6>
+        {{message}}
+      </h6>
+    </div>
+    
+    <div class="ion-margin-top main-icn">
+      <img alt="" src="../../../assets/error.svg">
+    </div>
+    
+  
+    
+      
+    
+  </div>
+  </ion-content>
+  <ion-footer class="ion-padding">
+    <ion-button expand="block" color="danger" class="main-btn" (click)="confirm()">OK</ion-button>
+  </ion-footer>
+  

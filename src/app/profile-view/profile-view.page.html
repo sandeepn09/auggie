@@ -1,13 +1,20 @@
 <ion-content>
   <div class="head-container">
-    <div>
-      <ion-back-button text="" icon="chevron-back-outline" defaultHref="/description"></ion-back-button>
+    <ion-menu-button *ngIf="profileComplete" menu="main-menu"><img alt="" src="../../../assets/menu.png"></ion-menu-button>
+    <div *ngIf="!profileComplete">
+     
+      <ion-back-button
+        text=""
+        icon="chevron-back-outline"
+        defaultHref="/description"
+        *ngIf="!profileComplete"
+      ></ion-back-button>
     </div>
 
     <div class="profile-img">
       <img alt="" src="../../../assets/sandeep.png" />
       <div class="ion-text-center">
-        <p class="ft-700">{{user.firstName}}</p>
+        <p style="text-transform: capitalize;" class="ft-700">{{user.firstName}} {{user.lastName}}</p>
         <p class="small-font light-clr">he/him/his</p>
       </div>
     </div>
@@ -53,7 +60,7 @@
       </div>
       <div>
         <p class="info-lbl">Annual Income</p>
-        <p class="info-val">{{user.income}}</p>
+        <p class="info-val">{{formattedIncome | currency}}</p>
       </div>
     </div>
   </div>
@@ -66,25 +73,35 @@
       >
     </div>
 
-
     <div *ngFor="let bank of banks" class="bac-grid">
-      <ion-icon *ngIf="bank.verified" class="status-icn-ok" name="checkmark-circle-outline"></ion-icon>
-      <ion-icon *ngIf="!bank.verified" class="status-icn-warn" name="alert-circle-outline"></ion-icon>
+      <ion-icon
+        *ngIf="bank.verified"
+        class="status-icn-ok"
+        name="checkmark-circle-outline"
+      ></ion-icon>
+      <ion-icon
+        *ngIf="!bank.verified"
+        class="status-icn-warn"
+        name="alert-circle-outline"
+      ></ion-icon>
       <div class="bank-info">
-        <div class="bank-title"><span>{{bank.name}}</span><ion-icon class="ion-text-end" name="pencil-outline"></ion-icon></div>
-        <p class="light-clr">{{bank.accountType}}</p>
-        <app-number-mask></app-number-mask>
+        <div class="bank-title">
+          <span>{{bank.bankName}}</span
+          >
+          <ion-icon color="danger" class="ion-text-end" name="trash-outline"></ion-icon>
+        </div>
+        <p class="light-clr">{{getAcctType(bank.accountType)}}</p>
+        <app-number-mask
+          [acctNum]="bank.accountNumber"
+          [createDt]=""
+        ></app-number-mask>
       </div>
     </div>
   </div>
 </ion-content>
 
 <ion-footer style="margin-top: 4em" class="ion-no-border ion-text-center">
-  <ion-button
-    expand="block"
-    fill="clear"
-    class="dark-clr"
-    routerLink="/signin"
+  <ion-button expand="block" fill="clear" class="dark-clr" (click)="logout()"
     >Log out</ion-button
   >
 
@@ -92,14 +109,14 @@
     expand="block"
     fill="clear"
     class="danger-clr"
-    routerLink="/description"
+    (click)="deleteAccount()"
     >Delete this account</ion-button
   >
   <ion-button
     expand="block"
     fill="clear"
     class="dark-clr"
-    routerLink="/description"
+    (click)="testModal()"
     >Terms of service</ion-button
   >
 </ion-footer>

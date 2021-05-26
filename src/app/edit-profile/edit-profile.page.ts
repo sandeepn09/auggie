@@ -37,7 +37,7 @@ export class EditProfilePage implements OnInit {
     occupation: "",
     gender: "",
     dob: "",
-    income: "",
+    annualIncome: "",
     createDateTime: null,
     updateDateTime: null,
   };
@@ -74,7 +74,23 @@ export class EditProfilePage implements OnInit {
     private userService: UserService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.init();
+  }
+
+  async init() {
+    let profileComplete: boolean = await this.userService.isProfileComplete();
+    console.log("Profile Complete", profileComplete);
+    let result = await this.userService.getUserDetails();
+    result.subscribe((res: any) => {
+      console.log("User Details", res.details.userDetails);
+      console.log("User Details", res.details.banks);
+      
+      this.user = res.details.userDetails;
+      console.log("User - Email", this.user);
+    });
+    
+  }
 
   save() {
     if (this.profileForm.invalid) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-number-mask',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./number-mask.component.scss'],
 })
 export class NumberMaskComponent implements OnInit {
+
+  @Input('acctNum') acctNum;
+  @Input('createDt') createDt;
 
   constructor() { }
 

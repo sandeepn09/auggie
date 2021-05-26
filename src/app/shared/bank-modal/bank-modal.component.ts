@@ -11,10 +11,12 @@ export class BankModalComponent implements OnInit {
 
   constructor(public modalControl: ModalController) { }
 
-  @Input() name: string;
+  @Input() bankName: string;
   @Input() accountNumber: number;
   @Input() routingNumber: number;
   @Input() accountType: string;
+  @Input() acctType: string;
+
 
   ngOnInit() {}
 

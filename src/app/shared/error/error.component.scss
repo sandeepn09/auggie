@@ -1,0 +1,28 @@
+ion-content {
+    .pop-container {
+      color: #1c1638;
+  
+      ion-icon {
+        color: #9aacbc;
+      }
+      h2 {
+        font-weight: 800;
+        width: 100%;
+        font-size: 2em;
+      }
+  
+      .main-icn {
+        img {
+            width: 250px;
+            height: auto;
+            padding: 10px;
+            border-radius: 50%;
+        }
+      }
+    }
+  }
+  
+  ion-footer {
+    height: 20%;
+  }
+  

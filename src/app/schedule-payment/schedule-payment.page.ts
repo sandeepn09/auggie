@@ -7,7 +7,11 @@ import {
   Validators,
 } from "@angular/forms";
 import { PaymentSchedule } from "../models/user/payment-models";
-import { AlertController } from "@ionic/angular";
+import { AlertController, ModalController } from "@ionic/angular";
+import { ActivatedRoute } from "@angular/router";
+import { AppConstants } from "../config/app-constants";
+import { PaymentModalComponent } from "../shared/payment-modal/payment-modal.component";
+import { MessageService } from "../services/message.service";
 
 @Component({
   selector: "app-schedule-payment",
@@ -16,16 +20,20 @@ import { AlertController } from "@ionic/angular";
 })
 export class SchedulePaymentPage implements OnInit {
   paySchedule: PaymentSchedule = {
-    providerName: "",
+    providerId: 0,
     description: "",
     amount: 0,
     payDate: null,
+    providerName: "",
     payMethod: "",
     recurring: false,
-    logo_url: ""
   };
 
+  providerName: string;
+  iconUrl:string;
+
   psForm = new FormGroup({
+    providerId: new FormControl("", Validators.required),
     providerName: new FormControl("", Validators.required),
     description: new FormControl("", Validators.required),
     amount: new FormControl("", Validators.required),
@@ -34,17 +42,33 @@ export class SchedulePaymentPage implements OnInit {
     recuring: new FormControl("", Validators.required),
   });
 
-  constructor(public alertController: AlertController) {}
+  constructor(
+    public alertController: AlertController,
+    public activateRoute: ActivatedRoute,
+    private modalController: ModalController,
+    private messageService: MessageService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const sp = this.activateRoute.snapshot.data["serviceProvider"];
+    console.log("serviceProvider!!!!!,", sp);
+
+    this.psForm.get("providerName").setValue(sp.providerDescription);
+    this.psForm.get("providerId").setValue(sp.id);
+    this.iconUrl = sp.iconUrl;
+
+    console.log("LOGO", this.iconUrl);
+  }
 
   save() {
     if (this.psForm.invalid) {
       console.log(this.psForm.value);
       this.presentAlert();
     } else {
-      console.log(this.psForm);
+      this.paySchedule = this.psForm.value;
+      console.log(this.paySchedule);
       console.log("BD Form is VALID!!!!");
+      this.presentModal();
     }
   }
 
@@ -61,5 +85,30 @@ export class SchedulePaymentPage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
     console.log("onDidDismiss resolved with role", role);
+  }
+
+  async presentModal() {
+    // console.log("BANK INFO", this.bankInfo);
+    const acctType = AppConstants.YES_NO.get(this.paySchedule.recurring);
+
+    const modal = await this.modalController.create({
+      component: PaymentModalComponent,
+      cssClass: "confirm-modal",
+      componentProps: {...this.paySchedule, ...{iconUrl:this.iconUrl} },
+    });
+
+    await modal.present();
+
+    const { data: info, role } = await modal.onWillDismiss();
+    console.log(role);
+
+    if (role === "confirm") {
+
+      // this.paymentService.addFundingAccount(this.bdForm.value);
+    }
+  }
+
+  testModal() {
+    this.messageService.message("Welcome","Success","");
   }
 }

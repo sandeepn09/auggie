@@ -10,26 +10,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" scrollY="false" class="ion-padding ion-text-center">
+<ion-content
+  [fullscreen]="true"
+  scrollY="false"
+  class="ion-padding ion-text-center"
+>
   <form [formGroup]="bdForm" class="top-margin">
-    <div
-      class="form-group ion-text-left"
-      [ngClass]="{'invalid': bdForm.get('name').touched && bdForm.get('name').invalid}"
-    >
+    <div class="form-group ion-text-left">
       <ion-input
         class="form-control"
-        formControlName="name"
+        formControlName="bankName"
         type="text"
         placeholder="Bank Name"
       >
       </ion-input>
       <span
-      class="invalid"
-      *ngIf="bdForm.get('name').touched && bdForm.get('name').invalid"
-      >Bank Name cannot be blank</span
-    >
+        class="invalid"
+        *ngIf="bdForm.get('bankName').touched && bdForm.get('bankName').invalid"
+        >Bank Name cannot be blank</span
+      >
     </div>
-   
 
     <div
       class="form-group ion-text-left"
@@ -43,10 +43,10 @@
       >
       </ion-input>
       <span
-      class="invalid"
-      *ngIf="bdForm.get('accountNumber').touched && bdForm.get('accountNumber').invalid"
-      >Account Number cannot be blank</span
-    >
+        class="invalid"
+        *ngIf="bdForm.get('accountNumber').touched && bdForm.get('accountNumber').invalid"
+        >Account Number cannot be blank</span
+      >
     </div>
 
     <div
@@ -61,24 +61,26 @@
       >
       </ion-input>
       <span
-      class="invalid"
-      *ngIf="bdForm.get('routingNumber').touched && bdForm.get('routingNumber').invalid"
-      >Routing Number cannot be blank</span
-    >
+        class="invalid"
+        *ngIf="bdForm.get('routingNumber').touched && bdForm.get('routingNumber').invalid"
+        >Routing Number cannot be blank</span
+      >
     </div>
 
     <div
       class="form-group ion-text-left"
       [ngClass]="{'invalid': bdForm.get('accountType').touched && bdForm.get('accountType').invalid}"
     >
-    <ion-select placeholder="Account Type" interface="action-sheet" class="form-control"
-    formControlName="accountType">
-      <ion-select-option value="m">Checking</ion-select-option>
-      <ion-select-option value="f">Saving</ion-select-option>
-      <ion-select-option value="n"
-        >Do not wish to specify</ion-select-option
+      <ion-select
+        placeholder="Account Type"
+        interface="action-sheet"
+        class="form-control"
+        formControlName="accountType"
       >
-    </ion-select>
+        <ion-select-option value="C">Checking</ion-select-option>
+        <ion-select-option value="S">Saving</ion-select-option>
+        
+      </ion-select>
     </div>
 
     <span
@@ -87,5 +89,4 @@
       >Select an Account Type</span
     >
   </form>
-
 </ion-content>

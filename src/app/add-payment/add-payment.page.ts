@@ -1,28 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { LogoService } from '../services/logo.service';
-import { ProviderModalComponent } from '../shared/provider-modal/provider-modal.component';
-import { RafPopoverComponent } from '../shared/raf-popover/raf-popover.component';
-import { SendTextModalComponent } from '../shared/send-text-modal/send-text-modal.component';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { ModalController } from "@ionic/angular";
+import { DataService } from "../services/data.service";
+import { LogoService } from "../services/logo.service";
+import { ProviderModalComponent } from "../shared/provider-modal/provider-modal.component";
+import { RafPopoverComponent } from "../shared/raf-popover/raf-popover.component";
+import { SendTextModalComponent } from "../shared/send-text-modal/send-text-modal.component";
 
 @Component({
-  selector: 'app-add-payment',
-  templateUrl: './add-payment.page.html',
-  styleUrls: ['./add-payment.page.scss'],
+  selector: "app-add-payment",
+  templateUrl: "./add-payment.page.html",
+  styleUrls: ["./add-payment.page.scss"],
 })
 export class AddPaymentPage implements OnInit {
-
   logoUrl = "";
-  constructor(public modalController: ModalController, private logoService: LogoService) { }
+  constructor(
+    public modalController: ModalController,
+    private logoService: LogoService,
+    private router: Router,
+    private dataService: DataService
+  ) {}
 
-  ngOnInit() {
-    console.log("On Payment init");
-    this.logoService.getInfo("www.hulu.com").subscribe(data => {
-      this.logoUrl = data.response.icon.image;
-      console.log("logoUrl", this.logoUrl);
-    });
-    
-  }
+  public cards = [
+    {
+      name: "Sandeep Nadagouda",
+      cardNumber: 1234,
+      expiration: new Date(),
+      balance: 5000,
+    },
+  ];
+
+  ngOnInit() {}
 
   async presentModal() {
     const modal = await this.modalController.create({
@@ -40,11 +48,15 @@ export class AddPaymentPage implements OnInit {
       cssClass: "full-modal",
       // componentProps: this.user,
     });
-    
+
     await modal.present();
 
     const { data: info, role } = await modal.onWillDismiss();
-    console.log(role);
-  }
+    console.log("Selected Provider", info);
 
+    if (info.provider) {
+      this.dataService.setProvider(info.provider);
+      this.router.navigate(["/schedule-payment"]);
+    }
+  }
 }

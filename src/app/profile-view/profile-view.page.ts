@@ -7,6 +7,11 @@ import {
   Validators,
 } from "@angular/forms";
 import { BankInfo } from "../models/user/payment-models";
+import { HttpService } from "../services/http.service";
+import { AppConstants } from "../config/app-constants";
+import { AuthService } from "../services/auth.service";
+import { UserService } from "../services/user.service";
+import { MessageService } from "../services/message.service";
 
 @Component({
   selector: "app-profile-view",
@@ -27,49 +32,75 @@ export class ProfileViewPage implements OnInit {
     occupation: "Student",
     gender: "",
     dob: "July 19, 1998",
-    income: "$14,753",
+    annualIncome: "$14,753",
     createDateTime: null,
     updateDateTime: null,
   };
+
+  formattedIncome: string;
+  profileComplete: boolean;
 
   banks: BankInfo[] = [
     {
       accountNumber: 1234,
       routingNumber: 111222333,
-      name: "Bank of America",
+      bankName: "Bank of America",
       accountType: "Checking",
       createDate: new Date(),
-      verified: true
+      verified: true,
     },
     {
       accountNumber: 5555,
       routingNumber: 111222333,
-      name: "TD Bank",
+      bankName: "TD Bank",
       accountType: "Checking",
       createDate: new Date(),
-      verified: false
+      verified: false,
     },
   ];
 
-  userProfile: UserProfile = {
-    userDetails: this.user,
-    banks: this.banks
-  };
+  constructor(
+    private httpService: HttpService,
+    private authService: AuthService,
+    private userService: UserService,
+    private messageService: MessageService
+  ) {}
 
-  profileForm = new FormGroup({
-    firstName: new FormControl("", Validators.required),
-    lastName: new FormControl("", Validators.required),
-    address: new FormControl("", Validators.required),
-    city: new FormControl("", Validators.required),
-    state: new FormControl("", Validators.required),
-    postalCode: new FormControl("", Validators.required),
-    email: new FormControl("", Validators.required),
-    phone: new FormControl("", Validators.required),
-    occupation: new FormControl("", Validators.required),
-    gender: new FormControl(""),
-  });
+  ngOnInit() {
+    this.httpService
+      .get(
+        "user/user-details",
+        { email: "sandeepn09@gmail.com" },
+        AppConstants.HEADERS
+      )
+      .subscribe((res: any) => {
+        console.log("User Details", res.details.userDetails);
+        console.log("User Details", res.details.banks);
+        this.banks = res.details.banks;
+        this.user = res.details.userDetails;
+        this.formattedIncome = this.user.annualIncome.toString();
+      });
 
-  constructor() {}
+      this.checkProfile();
+      
+  }
 
-  ngOnInit() {}
+  async checkProfile() {
+    this.profileComplete = await this.userService.isProfileComplete();
+    console.log("Profile Completeeee", this.profileComplete);
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
+  deleteAccount() {}
+
+  getAcctType(key: string) {
+    return AppConstants.ACCT_TYPE.get(key);
+  }
+
+  testModal() {
+    this.messageService.error("Error","Success","/schedule-payment");
+  }
 }

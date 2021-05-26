@@ -1,7 +1,7 @@
 <ion-header class="ion-padding ion-no-border">
   <div class="cncl-btn ion-margin-bottom">
     <ion-icon (click)="dismiss()" name="arrow-back-outline"></ion-icon>
-    <ion-button fill="clear">Next
+    <ion-button (click)="confirm()" fill="clear">Next
       <ion-icon name="chevron-forward-outline"></ion-icon>
     </ion-button>
   </div>
@@ -20,20 +20,20 @@
 <ion-content class="ion-padding">
   <h5>Providers and Categories</h5>
   <ion-list lines="none">
-    <ion-radio-group value=1>
+    <ion-radio-group value=501 allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChange($event)">
     <ion-item *ngFor="let sp of serviceProviders" lines="none">
       <ion-icon
-        *ngIf="!sp.provider"
+        *ngIf="sp.id > 500"
         slot="start"
-        name="{{ sp.icon }}"
+        name="{{ sp.iconUrl }}"
       ></ion-icon>
-      <ion-thumbnail *ngIf="sp.provider" slot="start">
-        <img src="{{sp.logoUrl}}" />
+      <ion-thumbnail *ngIf="sp.id < 500" slot="start">
+        <img src="{{sp.iconUrl}}" />
       </ion-thumbnail>
 
       <ion-label>
-        <h2>{{ sp.name }}</h2>
-        <p>{{ sp.description }}</p>
+        <h2>{{ sp.providerName }}</h2>
+        <p>{{ sp.providerDescription }}</p>
       </ion-label>
       <ion-radio slot="end" value="{{sp.id}}"></ion-radio>
     </ion-item>

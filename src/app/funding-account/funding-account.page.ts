@@ -9,6 +9,8 @@ import {
 import { BankInfo } from "../models/user/payment-models";
 import { AlertController, ModalController } from "@ionic/angular";
 import { BankModalComponent } from "../shared/bank-modal/bank-modal.component";
+import { PaymentService } from "../services/payment.service";
+import { AppConstants } from "../config/app-constants";
 
 @Component({
   selector: "app-funding-account",
@@ -19,16 +21,17 @@ export class FundingAccountPage implements OnInit {
   step = 1;
 
   bankInfo: BankInfo = {
-    name: "",
+    bankName: "",
     accountNumber: null,
     routingNumber: null,
     accountType: "",
     createDate: new Date(),
-    verified: false
+    verified: false,
   };
 
   bdForm = new FormGroup({
-    name: new FormControl("", Validators.required),
+    bankName: new FormControl("", Validators.required),
+    // description: new FormControl("", Validators.required),
     accountNumber: new FormControl("", Validators.required),
     routingNumber: new FormControl("", Validators.required),
     accountType: new FormControl("", Validators.required),
@@ -36,7 +39,8 @@ export class FundingAccountPage implements OnInit {
 
   constructor(
     public alertController: AlertController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private paymentService: PaymentService
   ) {}
 
   save() {
@@ -70,15 +74,21 @@ export class FundingAccountPage implements OnInit {
 
   async presentModal() {
     console.log("BANK INFO", this.bankInfo);
+    const acctType = AppConstants.ACCT_TYPE.get(this.bankInfo.accountType);
+
     const modal = await this.modalController.create({
       component: BankModalComponent,
       cssClass: "confirm-modal",
-      componentProps: this.bankInfo,
+      componentProps: { ...this.bankInfo, ...{ acctType: acctType } },
     });
-    
+
     await modal.present();
 
     const { data: info, role } = await modal.onWillDismiss();
     console.log(role);
+
+    if (role === "confirm") {
+      this.paymentService.addFundingAccount(this.bdForm.value);
+    }
   }
 }

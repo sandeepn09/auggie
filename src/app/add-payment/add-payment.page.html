@@ -2,8 +2,8 @@
 <ion-content class="ion-padding ion-text-center">
   <div class="card-container ion-text-center">
     <ion-slides>
-      <ion-slide>
-        <app-pmt-card></app-pmt-card>
+      <ion-slide *ngFor="let crd of cards">
+        <app-pmt-card [name]="crd.name" [cardNumber]="crd.cardNumber" [balance]="crd.balance" [expiration]="crd.expiration | date:'MM/yy'"></app-pmt-card>
       </ion-slide>
       <ion-slide>
         <app-pmt-card></app-pmt-card>

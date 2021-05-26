@@ -72,12 +72,12 @@ ion-button.clear-btn {
 }
 
 .full-modal {
- // background-color: #FFFFFF;
- // --background: #FAFAFA;
- // --background: #00BFA6;
- --background: linear-gradient(90deg, #00BFA6, #1fdec4);
+  // background-color: #FFFFFF;
+  // --background: #FAFAFA;
+  // --background: #00BFA6;
+  --background: linear-gradient(90deg, #00bfa6, #1fdec4);
   ion-header {
-    color: #1C1638;
+    color: #1c1638;
     padding-right: 2em;
     padding-left: 2em;
     margin-top: 0.5em;
@@ -90,11 +90,8 @@ ion-button.clear-btn {
     p {
       font-weight: 500;
       font-size: 1.05rem;
-      color: #FFF;
+      color: #fff;
     }
-
-    
-    
   }
 }
 
@@ -109,7 +106,7 @@ ion-button.main-btn {
 
 .modal-ctr {
   --width: 90%;
-  --height: 40%;
+  --height: 70%;
   text-align: center;
   --border-radius: 10px;
 }

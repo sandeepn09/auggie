@@ -41,6 +41,7 @@
           placeholder="First Name"
           type="text"
           [ngClass]="{'is-invalid': profileForm.get('firstName').touched && profileForm.get('firstName').invalid}"
+          [ngModel]="user.firstName"
         ></ion-input>
         <span
           class="invalid"
@@ -56,6 +57,7 @@
           placeholder="Last Name"
           type="text"
           [ngClass]="{'is-invalid': profileForm.get('lastName').touched && profileForm.get('lastName').invalid}"
+          [ngModel]="user.lastName"
         ></ion-input>
         <span
           class="invalid"
@@ -70,6 +72,7 @@
           interface="action-sheet"
           class="form-control"
           formControlName="gender"
+          [ngModel]="user.gender"
         >
           <ion-select-option value="Y">He/Him/His</ion-select-option>
           <ion-select-option value="N">She/Her</ion-select-option>
@@ -87,6 +90,7 @@
           placeholder="Date of Birth"
           class="form-control"
           formControlName="dob"
+          [ngModel]="user.dob"
         ></ion-datetime>
 
         <span
@@ -110,6 +114,7 @@
           placeholder="Email"
           type="email"
           [ngClass]="{'is-invalid': profileForm.get('email').touched && profileForm.get('email').invalid}"
+          [ngModel]="user.email"
         ></ion-input>
         <span
           class="invalid"
@@ -127,6 +132,7 @@
           placeholder="Phone"
           type="tel"
           [ngClass]="{'is-invalid': profileForm.get('phone').touched && profileForm.get('phone').invalid}"
+          [ngModel]="user.phone"
         ></ion-input>
         <span
           class="invalid"
@@ -148,6 +154,7 @@
           formControlName="occupation"
           placeholder="Occupation"
           type="text"
+          [ngModel]="user.occupation"
         ></ion-input>
         <span
           class="invalid"
@@ -162,6 +169,7 @@
           formControlName="annualIncome"
           placeholder="Annual Income"
           type="number"
+          [ngModel]="user.annualIncome"
         ></ion-input>
         <span
           class="invalid"
@@ -183,6 +191,7 @@
           formControlName="address"
           placeholder="Address"
           type="text"
+          [ngModel]="user.address"
         ></ion-input>
         <span
           class="invalid"
@@ -197,6 +206,7 @@
           formControlName="city"
           placeholder="City"
           type="text"
+          [ngModel]="user.city"
         ></ion-input>
         <span
           class="invalid"
@@ -211,6 +221,7 @@
           formControlName="state"
           placeholder="State"
           type="text"
+          [ngModel]="user.state"
         ></ion-input>
         <span
           class="invalid"
@@ -225,6 +236,7 @@
           formControlName="postalCode"
           placeholder="Postal code"
           type="number"
+          [ngModel]="user.postalCode"
         ></ion-input>
         <span
           class="invalid"

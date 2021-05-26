@@ -13,7 +13,7 @@ export class User {
   phone: string;
   gender: string;
   dob: string;
-  income: string;
+  annualIncome: string;
   createDateTime: Date;
   updateDateTime: Date;
 }

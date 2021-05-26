@@ -10,6 +10,7 @@ import {
   SignupRequest,
 } from "../models/user/user-models";
 import { HttpService } from "./http.service";
+import { MessageService } from "./message.service";
 import { StorageService } from "./storage.service";
 
 const headers = new HttpHeaders()
@@ -23,7 +24,8 @@ export class AuthService {
   constructor(
     private httpService: HttpService,
     private storageService: StorageService,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {}
 
   login(authRequest: AuthRequest): boolean {

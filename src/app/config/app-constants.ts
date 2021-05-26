@@ -7,6 +7,12 @@ export class AppConstants {
     .set("O", "Other")
     .set("N", "Not Specified");
 
+  public static readonly ACCT_TYPE = new Map()
+    .set("C", "Checking")
+    .set("S", "Saving");
+
+  public static readonly YES_NO = new Map().set("Y", "Yes").set("N", "No");
+
   public static readonly HEADERS = new HttpHeaders()
     .set("content-type", "application/json")
     .set("Access-Control-Allow-Origin", "*");

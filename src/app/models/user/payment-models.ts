@@ -1,7 +1,7 @@
 import { NumberFormatStyle } from "@angular/common";
 
 export class BankInfo {
-  name: string;
+  bankName: string;
   accountNumber: number;
   routingNumber: number;
   accountType: string;
@@ -10,13 +10,13 @@ export class BankInfo {
 }
 
 export class PaymentSchedule {
+  providerId: number;
   providerName: string;
   description: string;
   amount: number;
   payMethod: string;
   recurring: boolean;
   payDate: Date;
-  logo_url: string;
 }
 
 export class LogoResponse {
@@ -25,11 +25,9 @@ export class LogoResponse {
 }
 
 export class ServiceProvider {
-  provider: boolean;
-  logoUrl: string;
-  name: string;
-  description: string;
-  address: string;
-  icon: string;
+  iconUrl: string;
+  providerName: string;
+  providerDescription: string;
+  providerAddress: string;
   id: number;
 }

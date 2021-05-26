@@ -4,6 +4,8 @@ import { StorageService } from "./storage.service";
 import { HttpService } from "./http.service";
 import { HttpHeaders } from "@angular/common/http";
 import { DatePipe } from "@angular/common";
+import { AppConstants } from "../config/app-constants";
+import { Router } from "@angular/router";
 
 const headers = new HttpHeaders()
   .set("content-type", "application/json")
@@ -26,14 +28,15 @@ export class UserService {
     occupation: "",
     gender: "",
     dob: "",
-    income: "",
+    annualIncome: "",
     createDateTime: null,
     updateDateTime: null,
   };
 
   constructor(
     private storageService: StorageService,
-    private httpService: HttpService
+    private httpService: HttpService,
+    private router: Router
   ) {}
 
   public getUser(): User {
@@ -46,19 +49,57 @@ export class UserService {
     let userIdObj: any = { userId: userData.userId };
     let fullProfile = { ...profile, ...userIdObj };
 
-    var datePipe = new DatePipe('en-US');
-    let formattedDob = datePipe.transform(new Date(fullProfile.dob), 'MM-dd-yyyy');
-    fullProfile.dob = "05-01-2021"; //formattedDob;
+    var datePipe = new DatePipe("en-US");
+    let formattedDob = datePipe.transform(
+      new Date(fullProfile.dob),
+      "MM-dd-yyyy"
+    );
+    fullProfile.dob = formattedDob;
 
     console.log("Full Profile", fullProfile);
 
     this.httpService.post("user/user-profile", fullProfile, headers).subscribe(
       (res: any) => {
         console.log("Prof res", res);
+        if (res.code == 2506) {
+          this.router.navigateByUrl("profile-view");
+        }
       },
       (error) => {
         console.log("Error updating profile", error);
       }
+    );
+  }
+
+  async isProfileComplete() {
+    let userData: any = await this.storageService.getUser();
+    // this.storageService.getUser().su
+
+    console.log("userData", userData.profileComplete);
+    if (userData && userData.profileComplete === true) {
+      return true;
+    }
+
+    return false;
+  }
+
+  async getUserEmail() {
+    let userData: any = await this.storageService.getUser();
+
+    console.log("User Email", userData.email);
+    if (userData && userData.email) {
+      return userData.email;
+    }
+
+    return "";
+  }
+
+  async getUserDetails() {
+    let email = await this.getUserEmail();
+    return this.httpService.get(
+      "user/user-details",
+      { email: "sandeepn09@gmail.com" },
+      AppConstants.HEADERS
     );
   }
 }

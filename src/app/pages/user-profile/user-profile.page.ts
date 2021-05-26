@@ -22,7 +22,7 @@ export class UserProfilePage implements OnInit {
     occupation: '',
     gender: '',
     dob: '',
-    income: '',
+    annualIncome: '',
     createDateTime: null,
     updateDateTime: null,
   };

@@ -1,11 +1,9 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class="ion-text-center">
+    <ion-buttons slot="start"
+      ><ion-back-button text="" defaultHref="/add-payment"></ion-back-button
+    ></ion-buttons>
     <ion-title>Schedule Payment</ion-title>
-    <ion-buttons slot="start">
-      <ion-button>
-        <ion-icon name="chevron-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -67,9 +65,8 @@
         class="form-control"
         formControlName="payMethod"
       >
-        <ion-select-option value="m">Checking</ion-select-option>
-        <ion-select-option value="f">Saving</ion-select-option>
-        <ion-select-option value="n">Do not wish to specify</ion-select-option>
+        <ion-select-option value="xxxx 1234">xxxx 1234</ion-select-option>
+        <ion-select-option value="xxxx 1234">xxxx 5656</ion-select-option>
       </ion-select>
       <span
         class="invalid"
@@ -104,9 +101,10 @@
         >Payment Date is required</span
       >
     </div>
-
-    <ion-button expand="block" style="margin-top: 3em" (click)="save()"
-      >Schedule</ion-button
-    >
   </form>
 </ion-content>
+<ion-footer class="ion-padding ion-text-uppercase">
+  <ion-button class="main-btn" expand="block" (click)="testModal()"
+    >Schedule</ion-button
+  >
+</ion-footer>
