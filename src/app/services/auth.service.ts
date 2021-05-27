@@ -29,40 +29,47 @@ export class AuthService {
   ) {}
 
   login(authRequest: AuthRequest): boolean {
-    this.httpService
-      .post("user/auth-token", authRequest, headers)
-      .subscribe(
-        (res: any) => {
-          if (res && res.code == 2504 && res.details) {
-            if (res.details.user) {
-              this.storageService.store(AuthConstants.AUTH, res.details.user);
-            }
-            if (res.details.user && res.details.user.profileComplete === true) {
-              this.router.navigateByUrl("/profile-view");
-            } else {
-              this.router.navigateByUrl("/description");
-            }
-
-            console.log("login success!");
+    this.httpService.post("user/auth-token", authRequest, headers).subscribe(
+      (res: any) => {
+        if (res && res.code == 2504 && res.details) {
+          if (res.details.user) {
+            this.storageService.store(AuthConstants.AUTH, res.details.user);
           }
-          return true;
-        },
-        (error: any) => {
-          console.log("Error signing in", error);
-          return false;
+          if (res.details.user && res.details.user.profileComplete === true) {
+            this.router.navigateByUrl("/profile-view");
+          } else {
+            this.router.navigateByUrl("/description");
+          }
+
+          console.log("login success!");
         }
-      );
+        return true;
+      },
+      (error: any) => {
+        console.log("Error signing in", error.error.message);
+        this.messageService.error("Failed", error.error.message, null, "OK");
+        return false;
+      }
+    );
 
     return false;
   }
 
   signup(signupRequest: SignupRequest): Observable<any> {
-    return this.httpService.post("authenticate", signupRequest, AppConstants.HEADERS);
+    return this.httpService.post(
+      "authenticate",
+      signupRequest,
+      AppConstants.HEADERS
+    );
   }
 
   logout() {
     this.storageService.clear().then((res) => {
       this.router.navigate(["/signin"]);
     });
+  }
+
+  resetPassword(authRequest: AuthRequest) {
+    console.log("Requesting password reset", authRequest);
   }
 }

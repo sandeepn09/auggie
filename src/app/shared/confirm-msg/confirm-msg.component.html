@@ -16,16 +16,13 @@
     </div>
 
     <div class="ion-margin-top main-icn">
-      <img alt="" src="../../../assets/error.svg" />
+      <ion-icon sizee="large" name="checkmark-outline"></ion-icon>
     </div>
   </div>
 </ion-content>
 <ion-footer class="ion-padding">
-  <ion-button
-    expand="block"
-    color="danger"
-    class="main-btn"
-    (click)="dismiss()"
-    >{{ buttonText }}</ion-button
-  >
+  <ion-button expand="block" class="main-btn" (click)="confirm()">{{
+    buttonText
+  }}</ion-button>
+  <ion-button *ngIf="showCancel" expand="block" color="mbtnlight ion-margin-top" class="main-btn" (click)="dismiss()">CANCEL</ion-button>
 </ion-footer>

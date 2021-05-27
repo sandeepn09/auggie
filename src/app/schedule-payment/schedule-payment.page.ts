@@ -109,6 +109,6 @@ export class SchedulePaymentPage implements OnInit {
   }
 
   testModal() {
-    this.messageService.message("Welcome","Success","");
+    this.messageService.message("Welcome","Success","", "OK", false);
   }
 }

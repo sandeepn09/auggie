@@ -1,7 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MenuHeaderComponent } from "./menu-header/menu-header.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IonicModule } from "@ionic/angular";
 import { PmtCardComponent } from "./pmt-card/pmt-card.component";
 import { ValidationPopoverComponent } from "./validation-popover/validation-popover.component";
@@ -13,6 +13,9 @@ import { SendTextModalComponent } from "./send-text-modal/send-text-modal.compon
 import { SignupConfirmComponent } from "./signup-confirm/signup-confirm.component";
 import { MessageComponent } from "./message/message.component";
 import { ErrorComponent } from "./error/error.component";
+import { WarnConfirmComponent } from "./warn-confirm/warn-confirm.component";
+import { ConfirmMsgComponent } from "./confirm-msg/confirm-msg.component";
+import { SigninHelpComponent } from "./signin-help/signin-help.component";
 
 @NgModule({
   declarations: [
@@ -26,14 +29,18 @@ import { ErrorComponent } from "./error/error.component";
     PaymentModalComponent,
     SignupConfirmComponent,
     MessageComponent,
-    ErrorComponent
+    ErrorComponent,
+    WarnConfirmComponent,
+    ConfirmMsgComponent,
+    SigninHelpComponent
   ],
-  imports: [CommonModule, FormsModule, IonicModule],
+  imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule],
   exports: [
     MenuHeaderComponent,
     PmtCardComponent,
     ValidationPopoverComponent,
     NumberMaskComponent,
+    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

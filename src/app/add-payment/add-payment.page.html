@@ -3,22 +3,20 @@
   <div class="card-container ion-text-center">
     <ion-slides>
       <ion-slide *ngFor="let crd of cards">
-        <app-pmt-card [name]="crd.name" [cardNumber]="crd.cardNumber" [balance]="crd.balance" [expiration]="crd.expiration | date:'MM/yy'"></app-pmt-card>
-      </ion-slide>
-      <ion-slide>
-        <app-pmt-card></app-pmt-card>
+        <app-pmt-card
+          [name]="crd.name"
+          [cardNumber]="crd.cardNumber"
+          [balance]="crd.balance"
+          [expiration]="crd.expiration | date:'MM/yy'"
+        ></app-pmt-card>
       </ion-slide>
     </ion-slides>
   </div>
 
   <div class="ref-container">
-    <div class="img-div">
-      
-    </div>
+    <div class="img-div"></div>
     <div class="ion-text-left info">
-      <h6>
-        Refer Friends
-      </h6>
+      <h6>Refer Friends</h6>
       <p>
         For each Friend you refer, we'll add $ to your account when they sign up
       </p>
@@ -30,10 +28,13 @@
         >SEND REFERRAL TEXT <ion-icon name="chevron-forward-outline"></ion-icon
       ></ion-button>
     </div>
-
   </div>
 
-  <ion-button class="primary-btn1" (click)="presentPaymentModal()" expand="block">
+  <ion-button
+    class="primary-btn1"
+    (click)="presentPaymentModal()"
+    expand="block"
+  >
     <ion-icon style="margin-right: 5px" name="add-circle"></ion-icon>
     ADD PAYMENT</ion-button
   >
@@ -47,17 +48,15 @@
   </div>
 
   <ion-list lines="none">
-    <ion-list-header class="ion-margin-bottom">
-      Today
-    </ion-list-header>
+    <ion-list-header class="ion-margin-bottom"> Today </ion-list-header>
 
     <ion-item>
       <ion-thumbnail slot="start">
-        <img src="{{logoUrl}}">
+        <img src="{{logoUrl}}" />
       </ion-thumbnail>
       <ion-label>
         <h6 class="font-dark">NETFLIX</h6>
-        
+
         <p class="tme">2h ago</p>
       </ion-label>
       <ion-label class="ion-text-right">
@@ -67,11 +66,11 @@
 
     <ion-item class="ion-no-border">
       <ion-avatar slot="start">
-        <img src="./avatar-finn.png">
+        <img src="./avatar-finn.png" />
       </ion-avatar>
       <ion-label>
         <h6 class="font-dark">HULU</h6>
-        
+
         <p class="tme">2h ago</p>
       </ion-label>
       <ion-label class="ion-text-right">
@@ -81,11 +80,11 @@
 
     <ion-item>
       <ion-avatar slot="start">
-        <img src="./avatar-finn.png">
+        <img src="./avatar-finn.png" />
       </ion-avatar>
       <ion-label>
         <h6 class="font-dark">NETFLIX</h6>
-        
+
         <p class="tme">2h ago</p>
       </ion-label>
       <ion-label class="ion-text-right">
@@ -95,18 +94,16 @@
 
     <ion-item>
       <ion-avatar slot="start">
-        <img src="./avatar-finn.png">
+        <img src="./avatar-finn.png" />
       </ion-avatar>
       <ion-label>
         <h6 class="font-dark">NETFLIX</h6>
-        
+
         <p class="tme">2h ago</p>
       </ion-label>
       <ion-label class="ion-text-right">
         <p class="amt">- $ 13.99</p>
       </ion-label>
     </ion-item>
-
-   
   </ion-list>
 </ion-content>

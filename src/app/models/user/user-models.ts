@@ -55,3 +55,4 @@ export class AppResponse {
   httpStatus: string;
   details: {}
 }
+

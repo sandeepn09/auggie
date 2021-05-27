@@ -12,11 +12,13 @@ ion-content {
       }
   
       .main-icn {
-        img {
-            width: 250px;
-            height: auto;
-            padding: 10px;
-            border-radius: 50%;
+        ion-icon {
+          background-color: #00bfa6;
+          padding: 35px;
+          color: #FFF;
+          border-radius: 50%;
+          font-size: 30px;
+          --ionicon-stroke-width: 30px;
         }
       }
     }

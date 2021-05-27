@@ -1,0 +1,26 @@
+ion-content {
+    .main-div {
+        img {
+            width: 50vw;
+        }
+
+        form {
+            margin-top: 30px;
+
+            ion-input {
+                font-size: 0.9erm;
+                border-bottom: 1px solid #00bfa6;
+                
+                font-weight: 500;
+                --placeholder-color: #696a6b;
+                --padding-start: 5px;
+              }
+
+              .form-group {
+                // border-bottom: 1px solid #00bfa6;
+                margin-bottom: 2.8em;
+              }
+        }
+        
+    }
+}

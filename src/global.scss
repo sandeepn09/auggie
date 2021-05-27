@@ -27,6 +27,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap");
 
+.ion-color-btnlight {
+  --ion-color-base: var(--ion-color-btnlight);
+  --ion-color-base-rgb: var(--ion-color-btnlight-rgb);
+  --ion-color-contrast: var(--ion-color-btnlight-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-btnlight-contrast-rgb);
+  --ion-color-shade: var(--ion-color-btnlight-shade);
+  --ion-color-tint: var(--ion-color-btnlight-tint);
+}
+
+.ion-color-mbtnlight {
+  --ion-color-base: var(--ion-color-mbtnlight);
+  --ion-color-base-rgb: var(--ion-color-mbtnlight-rgb);
+  --ion-color-contrast: var(--ion-color-mbtnlight-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-mbtnlight-contrast-rgb);
+  --ion-color-shade: var(--ion-color-mbtnlight-shade);
+  --ion-color-tint: var(--ion-color-mbtnlight-tint);
+}
+
 * {
   font-family: "Mulish", sans-serif;
 }
@@ -106,7 +124,12 @@ ion-button.main-btn {
 
 .modal-ctr {
   --width: 90%;
-  --height: 70%;
+  --height: 90%;
   text-align: center;
   --border-radius: 10px;
+}
+
+ion-button.link-btn {
+  font-weight: 0.8em;
+  font-weight: 300;
 }

@@ -40,24 +40,7 @@ export class ProfileViewPage implements OnInit {
   formattedIncome: string;
   profileComplete: boolean;
 
-  banks: BankInfo[] = [
-    {
-      accountNumber: 1234,
-      routingNumber: 111222333,
-      bankName: "Bank of America",
-      accountType: "Checking",
-      createDate: new Date(),
-      verified: true,
-    },
-    {
-      accountNumber: 5555,
-      routingNumber: 111222333,
-      bankName: "TD Bank",
-      accountType: "Checking",
-      createDate: new Date(),
-      verified: false,
-    },
-  ];
+  banks: BankInfo[];
 
   constructor(
     private httpService: HttpService,
@@ -81,8 +64,7 @@ export class ProfileViewPage implements OnInit {
         this.formattedIncome = this.user.annualIncome.toString();
       });
 
-      this.checkProfile();
-      
+    this.checkProfile();
   }
 
   async checkProfile() {
@@ -94,13 +76,42 @@ export class ProfileViewPage implements OnInit {
     this.authService.logout();
   }
 
-  deleteAccount() {}
+  async deleteAccount() {
+    console.log("Account delete requested");
+    const confirm = await this.messageService.warn(
+      "Warning",
+      "Deleting the account will deactivate your cards and cancel all payments. Are you sure you want to delete?",
+      null,
+      "DELETE",
+      true
+    );
+    console.log("Delet user account confirmed", confirm);
+  }
+
+  async deleteBank(bankId) {
+    console.log("Remove funding account requested", bankId);
+    const confirm = await this.messageService.warn(
+      "Warning",
+      "Deleting the Funding Account will cancel all payments. Are you sure you want to delete?",
+      null,
+      "REMOVE",
+      true
+    );
+    console.log("Remove funding account confirmed", confirm);
+  }
 
   getAcctType(key: string) {
     return AppConstants.ACCT_TYPE.get(key);
   }
 
-  testModal() {
-    this.messageService.error("Error","Success","/schedule-payment");
+  async testModal() {
+    const result = await this.messageService.confirm(
+      "Confirm",
+      "Success",
+      null,
+      "OK",
+      true
+    );
+    console.log("Action Result", result);
   }
 }

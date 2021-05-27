@@ -11,6 +11,8 @@ export class MessageComponent implements OnInit {
   @Input() title: string;
   @Input() message: string;
   @Input() url: string;
+  @Input() buttonText: string;
+  @Input() showCancel: boolean;
 
   constructor(public modalControl: ModalController, private router: Router) {}
 

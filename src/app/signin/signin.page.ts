@@ -6,9 +6,10 @@ import {
   Validators,
 } from "@angular/forms";
 
-import { AlertController } from "@ionic/angular";
+import { AlertController, ModalController } from "@ionic/angular";
 import { AuthRequest } from "../models/user/user-models";
 import { AuthService } from "../services/auth.service";
+import { SigninHelpComponent } from "../shared/signin-help/signin-help.component";
 
 @Component({
   selector: "app-signin",
@@ -23,7 +24,8 @@ export class SigninPage implements OnInit {
 
   constructor(
     public alertController: AlertController,
-    private authService: AuthService
+    private authService: AuthService,
+    public modalController: ModalController
   ) {}
 
   ngOnInit() {}
@@ -53,5 +55,20 @@ export class SigninPage implements OnInit {
 
     const { role } = await alert.onDidDismiss();
     console.log("onDidDismiss resolved with role", role);
+  }
+
+  async signinHelp() {
+    const modal = await this.modalController.create({
+      component: SigninHelpComponent,
+     
+    });
+
+    await modal.present();
+
+    const { data: info, role } = await modal.onWillDismiss();
+    console.log("Role", role);
+    if (role === "confirm") {
+     
+    }
   }
 }

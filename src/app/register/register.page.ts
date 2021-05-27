@@ -97,7 +97,9 @@ export class RegisterPage implements OnInit {
             this.messageService.message(
               "Welcome!",
               "Signin and start building your credit!",
-              "/signin"
+              "/signin",
+              "SIGN IN",
+              false
             );
           }
         });
