@@ -61,7 +61,7 @@ export class UserService {
     this.httpService.post("user/user-profile", fullProfile, headers).subscribe(
       (res: any) => {
         console.log("Prof res", res);
-        if (res.code == 2506) {
+        if (res.code == 2506 || res.code == 2505) {
           this.router.navigateByUrl("profile-view");
         }
       },

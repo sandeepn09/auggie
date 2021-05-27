@@ -16,6 +16,7 @@ import { ErrorComponent } from "./error/error.component";
 import { WarnConfirmComponent } from "./warn-confirm/warn-confirm.component";
 import { ConfirmMsgComponent } from "./confirm-msg/confirm-msg.component";
 import { SigninHelpComponent } from "./signin-help/signin-help.component";
+import { CardMenuComponent } from "./card-menu/card-menu.component";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SigninHelpComponent } from "./signin-help/signin-help.component";
     ErrorComponent,
     WarnConfirmComponent,
     ConfirmMsgComponent,
-    SigninHelpComponent
+    SigninHelpComponent,
+    CardMenuComponent
   ],
   imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule],
   exports: [
