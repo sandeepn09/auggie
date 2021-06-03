@@ -15,9 +15,9 @@ export class AuthGuard implements CanLoad {
     console.log("Auth Data", authData);
 
     if (authData) {
-      console.log("No Auth Data");
       return true;
     } else {
+      console.log("No Auth Data");
       this.router.navigateByUrl("/signin", { replaceUrl: true });
       return true;
     }

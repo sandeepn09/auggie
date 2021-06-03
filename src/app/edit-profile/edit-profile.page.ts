@@ -22,7 +22,7 @@ const { Camera, Filesystem } = Plugins;
   styleUrls: ["./edit-profile.page.scss"],
 })
 export class EditProfilePage implements OnInit {
-  picUrl: SafeResourceUrl = "../../../assets/sandeep.png";
+  picUrl: SafeResourceUrl = "../../../assets/avatar.svg";
 
   user: User = {
     userId: 0,

@@ -13,9 +13,9 @@
     <p class="fld-name">Amount</p>
     <p class="btm-border">{{ amount | currency}}<span *ngIf="recuring == 'Y'">, Reccurring</span></p>
     <p class="fld-name">Date</p>
-    <p class="btm-border">{{ payDate | date: "mediumDate" }}</p>
+    <p class="btm-border">{{ paymentDate | date: "mediumDate" }}</p>
     <p class="fld-name">Pay method</p>
-    <p class="btm-border">{{ payMethod }}</p>
+    <p class="btm-border">xxxx-{{ cardNumber%10000 }}</p>
   </div>
 
   <div class="footer-div ion-padding">

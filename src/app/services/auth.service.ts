@@ -72,4 +72,31 @@ export class AuthService {
   resetPassword(authRequest: AuthRequest) {
     console.log("Requesting password reset", authRequest);
   }
+
+  refreshUser(authRequest: AuthRequest, url: string) {
+    this.httpService.post("user/auth-token", authRequest, headers).subscribe(
+      (res: any) => {
+        if (res && res.code == 2504 && res.details) {
+          if (res.details.user) {
+            this.storageService.store(AuthConstants.AUTH, res.details.user);
+          }
+          if (res.details.user && res.details.user.profileComplete === true) {
+            this.router.navigateByUrl(url);
+          } else {
+            this.router.navigateByUrl("/description");
+          }
+
+          console.log("login success!");
+        }
+        return true;
+      },
+      (error: any) => {
+        console.log("Error signing in", error.error.message);
+        this.messageService.error("Failed", error.error.message, null, "OK");
+        return false;
+      }
+    );
+
+    return false;
+  }
 }

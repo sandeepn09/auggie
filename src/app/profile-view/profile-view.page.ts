@@ -50,21 +50,26 @@ export class ProfileViewPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.httpService
-      .get(
-        "user/user-details",
-        { email: "sandeepn09@gmail.com" },
-        AppConstants.HEADERS
-      )
-      .subscribe((res: any) => {
-        console.log("User Details", res.details.userDetails);
-        console.log("User Details", res.details.banks);
-        this.banks = res.details.banks;
-        this.user = res.details.userDetails;
-        this.formattedIncome = this.user.annualIncome.toString();
-      });
+   this.initData();
+  }
 
-    this.checkProfile();
+  async initData() {
+    const email = await this.userService.getUserEmail();
+    this.httpService
+    .get(
+      "user/user-details",
+      { email: email },
+      AppConstants.HEADERS
+    )
+    .subscribe((res: any) => {
+      console.log("User Details", res.details.userDetails);
+      console.log("User Details", res.details.banks);
+      this.banks = res.details.banks;
+      this.user = res.details.userDetails;
+      this.formattedIncome = this.user.annualIncome.toString();
+    });
+
+  this.checkProfile();
   }
 
   async checkProfile() {
@@ -109,8 +114,7 @@ export class ProfileViewPage implements OnInit {
       "Confirm",
       "Success",
       null,
-      "OK",
-      true
+      "OK"
     );
     console.log("Action Result", result);
   }

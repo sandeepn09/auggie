@@ -52,8 +52,7 @@ export class MessageService {
     title: string,
     message: string,
     url: string,
-    buttonText: string,
-    showCancel: boolean
+    buttonText: string
   ) {
     const modal = await this.modalController.create({
       component: ConfirmMsgComponent,
@@ -63,7 +62,6 @@ export class MessageService {
         message: message,
         url: url,
         buttonText: buttonText,
-        showCancel: showCancel,
       },
     });
 

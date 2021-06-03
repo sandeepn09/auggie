@@ -12,7 +12,7 @@
     </div>
 
     <div class="profile-img">
-      <img alt="" src="../../../assets/sandeep.png" />
+      <img alt="" src="../../../assets/avatar.svg" />
       <div class="ion-text-center">
         <p style="text-transform: capitalize;" class="ft-700">{{user.firstName}} {{user.lastName}}</p>
         <p class="small-font light-clr">he/him/his</p>
@@ -35,7 +35,7 @@
       </div>
       <div>
         <p class="info-lbl">Phone</p>
-        <p class="info-val">{{user.phone}}</p>
+        <p class="info-val">{{user.phone | phoneFormat}}</p>
       </div>
       <div>
         <p class="info-lbl">Address</p>

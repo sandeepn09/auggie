@@ -6,12 +6,14 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { PaymentSchedule } from "../models/user/payment-models";
+import { CardInfo, PaymentSchedule } from "../models/user/payment-models";
 import { AlertController, ModalController } from "@ionic/angular";
 import { ActivatedRoute } from "@angular/router";
 import { AppConstants } from "../config/app-constants";
 import { PaymentModalComponent } from "../shared/payment-modal/payment-modal.component";
 import { MessageService } from "../services/message.service";
+import { UserService } from "../services/user.service";
+import { PaymentService } from "../services/payment.service";
 
 @Component({
   selector: "app-schedule-payment",
@@ -23,33 +25,39 @@ export class SchedulePaymentPage implements OnInit {
     providerId: 0,
     description: "",
     amount: 0,
-    payDate: null,
-    providerName: "",
-    payMethod: "",
+    paymentDate: null,
+    cardId: 0,
     recurring: false,
   };
 
   providerName: string;
   iconUrl:string;
+  cardInfo: CardInfo;
 
   psForm = new FormGroup({
     providerId: new FormControl("", Validators.required),
     providerName: new FormControl("", Validators.required),
     description: new FormControl("", Validators.required),
     amount: new FormControl("", Validators.required),
-    payDate: new FormControl("", Validators.required),
-    payMethod: new FormControl("", Validators.required),
-    recuring: new FormControl("", Validators.required),
+    paymentDate: new FormControl("", Validators.required),
+    cardId: new FormControl("", Validators.required),
+    recurring: new FormControl("", Validators.required),
   });
 
   constructor(
     public alertController: AlertController,
     public activateRoute: ActivatedRoute,
     private modalController: ModalController,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private userService: UserService,
+    private paymentService: PaymentService
+  ) {
+    
+  }
 
-  ngOnInit() {
+  async ngOnInit() {
+    
+    console.log("CARD INFO ON INIT XXXXX", this.cardInfo);
     const sp = this.activateRoute.snapshot.data["serviceProvider"];
     console.log("serviceProvider!!!!!,", sp);
 
@@ -58,6 +66,8 @@ export class SchedulePaymentPage implements OnInit {
     this.iconUrl = sp.iconUrl;
 
     console.log("LOGO", this.iconUrl);
+    this.getCardInfo();
+    
   }
 
   save() {
@@ -66,8 +76,8 @@ export class SchedulePaymentPage implements OnInit {
       this.presentAlert();
     } else {
       this.paySchedule = this.psForm.value;
-      console.log(this.paySchedule);
-      console.log("BD Form is VALID!!!!");
+      console.log("Valid Pay schedule",this.paySchedule);
+      
       this.presentModal();
     }
   }
@@ -90,11 +100,15 @@ export class SchedulePaymentPage implements OnInit {
   async presentModal() {
     // console.log("BANK INFO", this.bankInfo);
     const acctType = AppConstants.YES_NO.get(this.paySchedule.recurring);
+    console.log("Payschedule before conformation", this.paySchedule)
 
+    const card = await this.userService.getCardDetails() as CardInfo;
+
+    let props = {...this.paySchedule, ...{iconUrl:this.iconUrl, cardNumber: card.cardNumber} };
     const modal = await this.modalController.create({
       component: PaymentModalComponent,
       cssClass: "confirm-modal",
-      componentProps: {...this.paySchedule, ...{iconUrl:this.iconUrl} },
+      componentProps: props,
     });
 
     await modal.present();
@@ -103,12 +117,15 @@ export class SchedulePaymentPage implements OnInit {
     console.log(role);
 
     if (role === "confirm") {
-
+      console.log("SCHED PAY", role);
+      console.log("Payschedule after conformation", this.paySchedule)
       // this.paymentService.addFundingAccount(this.bdForm.value);
+      this.paymentService.schedulePayment(this.paySchedule);
     }
   }
 
-  testModal() {
-    this.messageService.message("Welcome","Success","", "OK", false);
+  async getCardInfo() {
+   this.cardInfo = await this.userService.getCardDetails() as CardInfo;
   }
+  
 }

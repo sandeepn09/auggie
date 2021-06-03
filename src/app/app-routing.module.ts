@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeGuard } from './guards/home.guard';
+import { PaymentGuard } from './guards/payment.guard';
 import { DataResolverService } from './services/data-resolver.service';
 
 const routes: Routes = [
@@ -95,7 +96,8 @@ const routes: Routes = [
   },
   {
     path: 'add-payment',
-    loadChildren: () => import('./add-payment/add-payment.module').then( m => m.AddPaymentPageModule)
+    loadChildren: () => import('./add-payment/add-payment.module').then( m => m.AddPaymentPageModule),
+    // canLoad: [AuthGuard, PaymentGuard]
   },
   {
     path: 'schedule-payment',
@@ -107,6 +109,10 @@ const routes: Routes = [
   {
     path: 'edit-profile',
     loadChildren: () => import('./edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  },
+  {
+    path: 'payments',
+    loadChildren: () => import('./payments/payments.module').then( m => m.PaymentsPageModule)
   },
   
   

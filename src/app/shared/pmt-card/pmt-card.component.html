@@ -1,9 +1,17 @@
 <div (click)="presentPopover($event)" class="card ion-text-left">
   <div class="logo"><h4>AUGIE</h4></div>
-  <div class="balance"><h4>{{balance | currency}}</h4></div>
-  <div class="number">xxxx xxxx {{cardNumber}}</div>
-  <div class="name">{{name}} <span>{{expiration}}</span></div>
+  <!--<div class="balance"><h4>{{balance | currency}}</h4></div>-->
+  <div class="balance">
+    <h4>{{ 200 | currency }}</h4>
+  </div>
+  <div class="number">
+    <span class="ion-text-justify"
+      ><ion-icon size="large" name="ellipsis-horizontal"></ion-icon>
+      {{ cardNumber % 10000 }} </span
+    ><span class="ion-text-right">{{ expirationDate | date: "MM/yy" }}</span>
+  </div>
+
   <!--<div class="from">10/19</div>-->
-  
+
   <div class="ring"></div>
 </div>

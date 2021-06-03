@@ -11,12 +11,11 @@ export class BankInfo {
 
 export class PaymentSchedule {
   providerId: number;
-  providerName: string;
   description: string;
   amount: number;
-  payMethod: string;
+  cardId: number;
   recurring: boolean;
-  payDate: Date;
+  paymentDate: Date;
 }
 
 export class LogoResponse {
@@ -30,4 +29,16 @@ export class ServiceProvider {
   providerDescription: string;
   providerAddress: string;
   id: number;
+}
+
+export class CardInfo {
+  id: number;
+  userId: number;
+  cardNumber: number;
+  cardDescription: string;
+  fundingAccount: number;
+  expirationDate: Date;
+  issueDate: Date;
+  securityCode: number;
+  active: boolean;
 }

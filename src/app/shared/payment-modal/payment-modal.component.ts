@@ -12,9 +12,9 @@ export class PaymentModalComponent implements OnInit {
 
   @Input() providerName: string;
   @Input() recuring: string;
-  @Input() payMethod: string;
+  @Input() cardNumber: number;
   @Input() amount: number;
-  @Input() payDate: Date;
+  @Input() paymentDate: Date;
   @Input() iconUrl: string;
 
   ngOnInit() {}

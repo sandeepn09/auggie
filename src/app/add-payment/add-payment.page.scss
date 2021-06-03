@@ -86,14 +86,22 @@ ion-content {
   }
 
   .txs {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    display: flex;
+    // grid-template-columns: 50% 50%;
+    justify-content: space-between;
     margin-top: 2em;
 
     h6 {
       font-weight: 800;
       color: #1c1638;
       letter-spacing: 1px;
+    }
+
+    ion-button {
+      --box-shadow: none;
+     
+      max-width: 100px;
+      font-weight: bolder;
     }
 
     .search-container {

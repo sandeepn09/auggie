@@ -12,8 +12,7 @@ export class ConfirmMsgComponent implements OnInit {
   @Input() message: string;
   @Input() url: string;
   @Input() buttonText: string;
-  @Input() showCancel: boolean;
-
+  
   constructor(public modalControl: ModalController, private router: Router) {}
 
   ngOnInit() {}

@@ -17,6 +17,13 @@ import { WarnConfirmComponent } from "./warn-confirm/warn-confirm.component";
 import { ConfirmMsgComponent } from "./confirm-msg/confirm-msg.component";
 import { SigninHelpComponent } from "./signin-help/signin-help.component";
 import { CardMenuComponent } from "./card-menu/card-menu.component";
+import { EditCardComponent } from "./edit-card/edit-card.component";
+import { TransactionsComponent } from "./transactions/transactions.component";
+import { SchedPaysComponent } from "./sched-pays/sched-pays.component";
+import { MinCardComponent } from "./min-card/min-card.component";
+import { UserService } from "../services/user.service";
+import { MessageService } from "../services/message.service";
+import { PhoneFormatPipe } from "../pipes/phone-format.pipe";
 
 @NgModule({
   declarations: [
@@ -34,7 +41,13 @@ import { CardMenuComponent } from "./card-menu/card-menu.component";
     WarnConfirmComponent,
     ConfirmMsgComponent,
     SigninHelpComponent,
-    CardMenuComponent
+    CardMenuComponent,
+    EditCardComponent,
+    TransactionsComponent,
+    SchedPaysComponent,
+    MinCardComponent,
+    PhoneFormatPipe
+    
   ],
   imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule],
   exports: [
@@ -42,8 +55,12 @@ import { CardMenuComponent } from "./card-menu/card-menu.component";
     PmtCardComponent,
     ValidationPopoverComponent,
     NumberMaskComponent,
-    
+    TransactionsComponent,
+    SchedPaysComponent,
+    MinCardComponent,
+    PhoneFormatPipe
   ],
+  providers: [UserService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SharedModule {}

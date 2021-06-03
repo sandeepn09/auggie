@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { PopoverController } from "@ionic/angular";
+import { ModalController, PopoverController } from "@ionic/angular";
 import { MessageService } from "src/app/services/message.service";
 import { CardMenuComponent } from "../card-menu/card-menu.component";
+import { EditCardComponent } from "../edit-card/edit-card.component";
 import { SigninHelpComponent } from "../signin-help/signin-help.component";
 
 @Component({
@@ -11,11 +12,16 @@ import { SigninHelpComponent } from "../signin-help/signin-help.component";
 })
 export class PmtCardComponent implements OnInit {
   @Input() name: string;
-  @Input() cardNumber: string;
-  @Input() expiration: Date;
-  @Input() balance: string;
+  @Input("cardNumber") cardNumber: number;
+  @Input("expirationDate") expirationDate: Date;
+  @Input("balance") balance: string;
+  @Input("id") id: number;
 
-  constructor(public popoverController: PopoverController, private messageService: MessageService) {}
+  constructor(
+    public popoverController: PopoverController,
+    private messageService: MessageService,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {}
 
@@ -24,20 +30,22 @@ export class PmtCardComponent implements OnInit {
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
       component: CardMenuComponent,
-      cssClass: 'my-custom-class',
+      cssClass: "popover-menu",
       event: ev,
-      translucent: true
+      translucent: true,
     });
     await popover.present();
 
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    console.log("onDidDismiss resolved with role", role);
 
-    if(role == "delete") {
+    if (role == "delete") {
       this.confirm();
     }
 
-    
+    if (role == "edit") {
+      this.presentCardModal();
+    }
   }
 
   async confirm() {
@@ -49,5 +57,24 @@ export class PmtCardComponent implements OnInit {
       true
     );
     console.log("Remove Card confirmed", confirm);
+  }
+
+  async presentCardModal() {
+    // console.log("BANK INFO", this.user);
+    const modal = await this.modalController.create({
+      component: EditCardComponent,
+      // cssClass: "full-modal",
+      // componentProps: this.user,
+    });
+
+    await modal.present();
+
+    const { data: info, role } = await modal.onWillDismiss();
+    console.log("Selected Provider", info);
+
+    if (info.provider) {
+      // this.dataService.setProvider(info.provider);
+      // this.router.navigate(["/schedule-payment"]);
+    }
   }
 }

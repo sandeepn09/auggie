@@ -1,0 +1,43 @@
+<ion-header class="ion-padding ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="this.modalController.dismiss()" slot="icon-only">
+        <ion-icon size="large" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Edit Card</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="ion-margin">
+    <app-min-card [cardNumber]="cardInfo.cardNumber" [expirationDate]="cardInfo.expirationDate"></app-min-card>
+  </div>
+
+  <div class="ion-padding">
+    <h4>Funding Accounts</h4>
+    <ion-list lines="none">
+      <ion-radio-group value="{{cardInfo.id}}">
+        <ion-item *ngFor="let bank of banks">
+          <ion-avatar slot="start">
+            <ion-icon
+              size="large"
+              color="tertiary"
+              name="cash-outline"
+            ></ion-icon>
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ bank.bankName }}</h2>
+
+            <p>xxxx - {{ bank.accountNumber }}</p>
+          </ion-label>
+          <ion-radio slot="end" value="{{ bank.id }}"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-padding">
+  <ion-button (click)="save()" expand="block" class="main-btn">Save</ion-button>
+</ion-footer>

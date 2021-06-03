@@ -8,6 +8,7 @@ import { ProfileViewPageRoutingModule } from './profile-view-routing.module';
 
 import { ProfileViewPage } from './profile-view.page';
 import { SharedModule } from '../shared/shared.module';
+import { PhoneFormatPipe } from '../pipes/phone-format.pipe';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
     IonicModule,
     ProfileViewPageRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    
   ],
   declarations: [ProfileViewPage]
 })

@@ -1,0 +1,31 @@
+<div *ngIf="providers" class="tx-container ion-padding">
+  <ion-list scrollY="true" scrollX="true" lines="none" class="ion-padding">
+    <div class="list-actions">
+      <ion-list-header class="ion-margin-bottom"> Scheduled </ion-list-header>
+
+      <ion-fab color="light" horizontal="end" slot="fixed">
+        <ion-fab-button color="light">
+          <ion-icon color="primary" name="filter-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+
+    <ion-item
+      detailIcon="ellipsis-vertical"
+      detail="true"
+      class="ion-margin-top"
+      *ngFor="let pmt of paymentSchedules"
+    >
+      <ion-avatar slot="start">
+        <img src="https://assets.brandfetch.io/41d05924a6fd481.png" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ getProviderName(pmt.providerId) }}</h2>
+        <p>{{pmt.paymentDate | date:'longDate'}}</p>
+      </ion-label>
+      <ion-label class="ion-text-right">
+        <h2 class="curr-fld">{{ pmt.amount | currency }}</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</div>

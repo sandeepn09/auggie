@@ -6,6 +6,7 @@ import { HttpHeaders } from "@angular/common/http";
 import { DatePipe } from "@angular/common";
 import { AppConstants } from "../config/app-constants";
 import { Router } from "@angular/router";
+import { CardInfo } from "../models/user/payment-models";
 
 const headers = new HttpHeaders()
   .set("content-type", "application/json")
@@ -73,10 +74,28 @@ export class UserService {
 
   async isProfileComplete() {
     let userData: any = await this.storageService.getUser();
-    // this.storageService.getUser().su
-
     console.log("userData", userData.profileComplete);
     if (userData && userData.profileComplete === true) {
+      return true;
+    }
+
+    return false;
+  }
+
+  async hasBanks() {
+    let userData: any = await this.storageService.getUser();
+    console.log("User hasBanks", userData.hasBanks);
+    if (userData && userData.hasBanks && userData.hasBanks === true) {
+      return true;
+    }
+
+    return false;
+  }
+
+  async hasCards() {
+    let userData: any = await this.storageService.getUser();
+    console.log("User hasCards", userData.hasCards);
+    if (userData && userData.hasCards && userData.hasCards === true) {
       return true;
     }
 
@@ -94,12 +113,48 @@ export class UserService {
     return "";
   }
 
+  async getUserId() {
+    let userData: any = await this.storageService.getUser();
+
+    console.log("User Id", userData.userId);
+    if (userData && userData.userId) {
+      return userData.userId;
+    }
+
+    return "";
+  }
+
   async getUserDetails() {
     let email = await this.getUserEmail();
     return this.httpService.get(
       "user/user-details",
-      { email: "sandeepn09@gmail.com" },
+      { email: email },
       AppConstants.HEADERS
     );
   }
+
+  async getCards() {
+    const userId = await this.getUserId();
+    console.log("Getting Card Details for User Id", userId);
+
+    const response:any = await this.httpService
+      .get("cards", { userId: userId }, AppConstants.HEADERS)
+     .toPromise()
+
+    console.log("Cards for user", response)
+
+    if(response && response.details && response.details.cards) {
+      return response.details.cards;
+    }
+    return null;
+  }
+
+  async getCardDetails() {
+    const cards = await this.getCards();
+    if(cards) {
+      return cards[0];
+    }
+    return null;
+  }
+
 }

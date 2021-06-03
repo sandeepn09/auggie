@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
+import { CardInfo } from "../models/user/payment-models";
 import { DataService } from "../services/data.service";
 import { LogoService } from "../services/logo.service";
+import { UserService } from "../services/user.service";
 import { ProviderModalComponent } from "../shared/provider-modal/provider-modal.component";
 import { RafPopoverComponent } from "../shared/raf-popover/raf-popover.component";
 import { SendTextModalComponent } from "../shared/send-text-modal/send-text-modal.component";
@@ -14,23 +16,26 @@ import { SendTextModalComponent } from "../shared/send-text-modal/send-text-moda
 })
 export class AddPaymentPage implements OnInit {
   logoUrl = "";
+  cards: CardInfo[];
+
   constructor(
     public modalController: ModalController,
     private logoService: LogoService,
     private router: Router,
-    private dataService: DataService
+    private dataService: DataService,
+    private userService: UserService
   ) {}
 
-  public cards = [
-    {
-      name: "Sandeep Nadagouda",
-      cardNumber: 1234,
-      expiration: new Date(),
-      balance: 5000,
-    },
-  ];
+ 
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCards();
+  }
+
+  async getCards() {
+    this.cards = await this.userService.getCards() as CardInfo[];
+    console.log("Cards in Add Payment", this.cards);
+  }
 
   async presentModal() {
     const modal = await this.modalController.create({
@@ -45,7 +50,7 @@ export class AddPaymentPage implements OnInit {
     // console.log("BANK INFO", this.user);
     const modal = await this.modalController.create({
       component: ProviderModalComponent,
-      cssClass: "full-modal",
+      // cssClass: "full-modal",
       // componentProps: this.user,
     });
 
@@ -59,4 +64,5 @@ export class AddPaymentPage implements OnInit {
       this.router.navigate(["/schedule-payment"]);
     }
   }
+  
 }

@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border in-padding">
+  <ion-toolbar class="ion-margin-bottom">
+    <ion-buttons slot="start">
+      <ion-back-button
+        text=""
+        color="dark"
+        defaultHref="/profile-view"
+      ></ion-back-button>
+    </ion-buttons>
+   <ion-title>Payments</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div *ngIf="cardInfo" class="ion-padding">
+    <app-min-card [cardNumber]="cardInfo.cardNumber" [expirationDate]="cardInfo.expirationDate"></app-min-card>
+  </div>
+
+  <div class="ion-padding seg-ctr">
+    <ion-segment mode="ios" value="s" [(ngModel)]="payseg">
+      <ion-segment-button value="p">
+        <ion-label>Payments</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="s">
+        <ion-label>Upcoming</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-content>
+
+<ion-footer scrollY="true">
+  <div [ngSwitch]="payseg">
+    <app-transactions *ngSwitchCase="'p'"></app-transactions>
+    <app-sched-pays *ngSwitchCase="'s'"></app-sched-pays>
+  </div>
+</ion-footer>
