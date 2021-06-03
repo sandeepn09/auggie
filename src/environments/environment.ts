@@ -8,7 +8,7 @@ export const environment = {
   logoApiKey: "",
   logoApiBaseurl: "",
   apiKey: "",
-  apiBaseUrl: "http://ec2-13-59-125-34.us-east-2.compute.amazonaws.com:8085",
+  apiBaseUrl: "https://staging-service.augie.app",
   version: "",
 };
 
