@@ -10,7 +10,7 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class MenuHeaderComponent implements OnInit {
 
-  name: string;
+  @Input("name") name: string;
 
   constructor(private storageService: StorageService) { }
 

@@ -8,7 +8,16 @@ import { StorageService } from "../services/storage.service";
   styleUrls: ["./description.page.scss"],
 })
 export class DescriptionPage implements OnInit {
+  firstName:string;
   constructor(private storageService: StorageService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.init();
+   }
+ 
+   async init() {
+     let value:any = await this.storageService.get(AuthConstants.AUTH);
+     console.log("name", value.firstName);
+     this.firstName = value.firstName;
+   }
 }
