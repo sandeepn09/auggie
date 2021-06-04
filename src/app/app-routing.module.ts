@@ -97,7 +97,7 @@ const routes: Routes = [
   {
     path: 'add-payment',
     loadChildren: () => import('./add-payment/add-payment.module').then( m => m.AddPaymentPageModule),
-    // canLoad: [AuthGuard, PaymentGuard]
+    canLoad: [AuthGuard, PaymentGuard]
   },
   {
     path: 'schedule-payment',

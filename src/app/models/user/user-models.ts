@@ -45,6 +45,8 @@ export class AuthResponse {
   userId: number;
   email: string;
   firstName: string;
+  hasBanks: boolean;
+  hasCards: boolean;
   lastName: string;
   profileComplete: boolean;
 }

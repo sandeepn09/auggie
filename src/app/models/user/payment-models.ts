@@ -37,6 +37,7 @@ export class CardInfo {
   cardNumber: number;
   cardDescription: string;
   fundingAccount: number;
+  cardBalance: number;
   expirationDate: Date;
   issueDate: Date;
   securityCode: number;

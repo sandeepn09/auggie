@@ -14,7 +14,7 @@ export class PmtCardComponent implements OnInit {
   @Input() name: string;
   @Input("cardNumber") cardNumber: number;
   @Input("expirationDate") expirationDate: Date;
-  @Input("balance") balance: string;
+  @Input("cardBalance") cardBalance: string;
   @Input("id") id: number;
 
   constructor(
