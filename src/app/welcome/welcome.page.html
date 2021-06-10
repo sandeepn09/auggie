@@ -1,4 +1,4 @@
-<ion-content scrollY="false">
+<ion-content scrollY="true">
   <div class="content ion-text-center">
     <h2 class="logo-font ion-margin-bottom">
       <span class="logo-light">Get</span><span> Augie</span>
@@ -15,15 +15,21 @@
       <img class="balloon" alt="" src="../../assets/balloon/balloon.png" />
     </div>
 
-    <ion-button expand="block" class="primary-btn ion-margin-bottom" routerLink="/register"
-      >SIGN UP</ion-button
-    >
-    <ion-button
-      expand="block"
-      fill="clear"
-      class="clear-btn"
-      routerLink="/signin"
-      >LOG IN</ion-button
-    >
+    <div class="btn-div ion-padding">
+      <ion-button
+        expand="block"
+        class="main-btn ion-margin-bottom"
+        routerLink="/register"
+        >SIGN UP</ion-button
+      >
+
+      <ion-button
+        expand="block"
+        fill="clear"
+        class="clear-btn"
+        routerLink="/signin"
+        >LOG IN</ion-button
+      >
+    </div>
   </div>
 </ion-content>

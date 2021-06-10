@@ -21,7 +21,7 @@ ion-header {
 
 ion-content {
   .form-group {
-    margin-bottom: 2.7rem;
+    margin-bottom: 2.5rem;
   }
 
   .invalid {
@@ -31,7 +31,7 @@ ion-content {
 
   ion-input,
   ion-select {
-    font-size: 0.9em;
+    font-size: 0.8em;
     border-bottom: 0.5px solid #00bfa6;
     --padding-start: 10px;
     font-weight: 500;
@@ -47,7 +47,7 @@ ion-content {
 
   ion-datetime {
     --padding-start: 0px;
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-weight: 500;
     --placeholder-color: #2a2b2c;
     --placeholder-font-weight: 600;
@@ -75,18 +75,13 @@ ion-content {
     }
   }
 
-  ion-button {
-    color: #fff;
-    text-transform: uppercase;
-    font-weight: 700;
-    height: 3em;
-  }
+  
 }
 
 * {
   font-family: "Mulish", sans-serif;
 }
 
-ion-footer {
-  height: 15%;
+.btn-div{
+  margin-top: 4em;
 }

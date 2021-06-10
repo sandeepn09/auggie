@@ -4,7 +4,7 @@ ion-content {
 
   .content {
     width: 100%;
-    padding-top: 4vh;
+    padding-top: 8vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,6 +58,9 @@ ion-content {
     // letter-spacing: 1px;
   }
 
+  .btn-div {
+    width: 100%;
+  }
   .img-div {
     min-height: 10vh;
     width: 100%;

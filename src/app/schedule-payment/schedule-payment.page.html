@@ -1,5 +1,5 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar class="ion-text-center">
+  <ion-toolbar class="ion-text-center ion-padding">
     <ion-buttons slot="start"
       ><ion-back-button text="" defaultHref="/add-payment"></ion-back-button
     ></ion-buttons>
@@ -9,7 +9,7 @@
 
 <ion-content
   [fullscreen]="true"
-  scrollY="false"
+  scrollY="true"
   class="ion-padding ion-text-center"
 >
   <form [formGroup]="psForm" class="top-margin">
@@ -103,9 +103,10 @@
       >
     </div>
   </form>
+
+  <div class="btn-div">
+    <ion-button class="main-btn" expand="block" (click)="save()"
+      >Schedule</ion-button
+    >
+  </div>
 </ion-content>
-<ion-footer class="ion-padding ion-text-uppercase">
-  <ion-button class="main-btn" expand="block" (click)="save()"
-    >Schedule</ion-button
-  >
-</ion-footer>

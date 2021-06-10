@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true" class="ion-padding ion-text-center">
-  <h2 class="logo-font ion-margin-bottom ion-margin-top">
+  <h2 class="logo-font title-container ion-margin-bottom ion-margin-top">
     <span class="logo-light">Get</span><span> Augie</span>
   </h2>
 
@@ -9,7 +9,6 @@
   </div>
 
   <form [formGroup]="authForm" class="top-margin">
-  
     <div class="form-group ion-text-left">
       <ion-input
         class="form-control"
@@ -38,30 +37,32 @@
         *ngIf="authForm.get('password').touched && authForm.get('password').invalid"
         >Password is required</span
       >
-     
     </div>
   </form>
 
-  <ion-button class="main-btn" expand="block" style="margin-top: 4em" (click)="save()"
+  <ion-button
+    class="main-btn"
+    expand="block"
+    style="margin-top: 4em"
+    (click)="save()"
     >SIGN IN</ion-button
   >
   <ion-button
-      expand="block"
-      fill="clear"
-      class="link-btn"
-      color="medium"
-      (click)="signinHelp()"
-      >Forgot password?</ion-button
-    >
-
-  <div class="footer-content">
-    <p>Dont Have an account?</p>
-    <ion-button
-      expand="block"
-      fill="clear"
-      class="clear-btn"
-      routerLink="/register"
-      >SIGN UP</ion-button
-    >
-  </div>
+    expand="block"
+    fill="clear"
+    class="link-btn"
+    color="medium"
+    (click)="signinHelp()"
+    >Forgot password?</ion-button
+  >
 </ion-content>
+<ion-footer class="ion-text-center">
+  <p><b>Don't Have an account?</b></p>
+  <ion-button
+    expand="block"
+    fill="clear"
+    class="clear-btn"
+    routerLink="/register"
+    >SIGN UP</ion-button
+  >
+</ion-footer>

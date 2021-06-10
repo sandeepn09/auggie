@@ -1,22 +1,33 @@
-<ion-header class="ion-no-border in-padding">
-  <ion-toolbar class="ion-margin-bottom">
-    <ion-buttons slot="start">
+<ion-header class="ion-no-border">
+  <ion-list lines="none">
+    <ion-item color="primary">
       <ion-back-button
         text=""
-        color="dark"
+        icon="arrow-back-outline"
+        size="small"
+        color="light"
         defaultHref="/profile-view"
       ></ion-back-button>
-    </ion-buttons>
-   <ion-title>Payments</ion-title>
-  </ion-toolbar>
+    </ion-item>
+
+    <ion-item color="primary">
+      <h2>Payments</h2>
+    </ion-item>
+  </ion-list>
+  <div class="popover">
+    <ion-searchbar class="custom-search"></ion-searchbar>
+  </div>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div *ngIf="cardInfo" class="ion-padding">
-    <app-min-card [cardNumber]="cardInfo.cardNumber" [expirationDate]="cardInfo.expirationDate"></app-min-card>
-  </div>
+<ion-content [fullscreen]="true" class="ion-margin-top">
+  <!-- <div *ngIf="cardInfo" class="ion-padding">
+    <app-min-card
+      [cardNumber]="cardInfo.cardNumber"
+      [expirationDate]="cardInfo.expirationDate"
+    ></app-min-card>
+  </div>-->
 
-  <div class="ion-padding seg-ctr">
+  <!--<div class="ion-padding seg-ctr">
     <ion-segment mode="ios" value="s" [(ngModel)]="payseg">
       <ion-segment-button value="p">
         <ion-label>Payments</ion-label>
@@ -25,12 +36,16 @@
         <ion-label>Upcoming</ion-label>
       </ion-segment-button>
     </ion-segment>
-  </div>
-</ion-content>
+  </div>-->
 
-<ion-footer scrollY="true">
   <div [ngSwitch]="payseg">
     <app-transactions *ngSwitchCase="'p'"></app-transactions>
     <app-sched-pays *ngSwitchCase="'s'"></app-sched-pays>
   </div>
-</ion-footer>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/add-payment">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

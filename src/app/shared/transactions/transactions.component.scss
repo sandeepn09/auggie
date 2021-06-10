@@ -3,6 +3,12 @@
   --background: #fafafa;
   background: #fafafa;
 
+  ion-searchbar {
+    --background: #FFFFFF;
+    background: #FFFFFF;
+    // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin-top: -30px;
+  }
   ion-list[scrollx="true"],
   ion-list[scrolly="true"] {
     position: relative;
@@ -56,14 +62,17 @@
     }
 
     ion-item {
-      width: 100%;
+      // width: 100%;
       color: #2a2b2c;
       --background: transparent;
       // border: 1px solid blue;
+      border-bottom: 1px solid #EFF0F4;
 
-      ion-avatar {
-        width: 50px;
+      img {
+        width: 65px;
         height: auto;
+        border-radius: 15px;
+        margin-right: 15px;
       }
 
       ion-label {
@@ -74,19 +83,29 @@
         h3 {
           font-size: 1.1em;
           font-weight: 500;
+
+          span {
+            font-size: 0.8em;
+          }
         }
         p {
           font-weight: 600;
+          opacity: 0.6;
+
+          b {
+            
+            font-weight: 800;
+            font-size: 1.1em;
+          }
         }
 
-        p {
-          opacity: 0.5;
+        .pay-date {
+          color: var(--ion-color-primary);
+          padding-top: 10px;
         }
       }
     }
   }
-
-  
 }
 
 .curr-fld {

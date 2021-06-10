@@ -1,71 +1,50 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Red+Hat+Display:wght@400;500;700;900&display=swap");
 
 ion-header {
-  padding: 15px 10px 10px 10px;
-  ion-icon,
-  ion-button,
-  ion-back-button {
-    background: transparent;
-    --background: transparent;
-    padding: 0;
-  }
-
-  ion-icon {
-    --color: #fff;
-  }
-
-  ion-title {
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    font-weight: bolder;
-  }
-  
-  ion-label {
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    font-size: 1.5em;
-  }
-}
-
-ion-header,
-ion-content,
-ion-toolbar,
-ion-buttons,
-.seg-ctr {
-  // --background: #c1e3de;
-  // background: #c1e3de;
-  --background: #fafafa;
-  background: #fafafa;
-}
-ion-segment {
-  border-radius: 20px;
-  --background: #fafafa;
-  border: 1px solid #eff0f4;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  --margin-top: 5px;
-  --margin-bottom: 5px;
-
-  ion-segment-button {
-    text-transform: capitalize;
-    font-size: 0.9rem;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-    --border-radius: 20px;
-    --background-checked: #00bfa6;
-    --indicator-color: #00bfa6;
-    --color: #00bfa6;
-    --color-checked: #fff;
-  }
-}
-
-ionic-content {
-  ion-slide {
-    margin: 0px 10px;
-  }
-}
-ion-footer {
   background: #ffffff;
-  --background: #ffffff;
-  height: 50vh;
-  max-height: 400px;
+  margin-bottom: 20px;
+
+  ion-list {
+    background: var(--ion-color-primary);
+    // border-radius: 0 0 20px 20px;
+    padding-bottom: 10vh;
+    padding-top: 3vh;
+    padding-left: 20px;
+
+    ion-item {
+      h2 {
+        font-size: 1.6em;
+        letter-spacing: 0.5px;
+        // font-weight: bold;
+        opacity: 0.8;
+      }
+
+      ion-back-button {
+        opacity: 0.8;
+
+        --opacity: 0.8;
+        --icon-font-size: 1.3em;
+      }
+    }
+  }
+
+  .popover {
+    // margin: 0px 8px;
+    padding-right: 20px;
+    padding-left: 20px;
+    // border: 1px solid blue;
+    width: 100%;
+
+    .custom-search {
+      margin-top: -30px;
+      --background: #ffffff;
+      background: #ffffff;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      // margin-left: 20px;
+    }
+  }
+}
+
+ion-content {
+  padding-top: 20px;
 }

@@ -16,6 +16,9 @@ ion-content {
     }
   }
 
+  .title-container {
+    margin-top: 8vh;
+  }
   .logo-font {
     font-size: 1.8em;
     color: #00bfa6;
@@ -31,7 +34,7 @@ ion-content {
   }
 
   ion-input {
-    font-size: 0.9erm;
+    font-size: 0.8em;
     border-bottom: 1px solid #00bfa6;
     
     font-weight: 500;
@@ -41,37 +44,9 @@ ion-content {
 
   .form-group {
     // border-bottom: 1px solid #00bfa6;
-    margin-bottom: 2.8em;
+    margin-bottom: 2.5em;
   }
-
-  ion-button {
-    color: #fff;
-    font-weight: 800;
-    height: 3.2em;
-    --box-shadow: none;
-  }
-
-  .footer-content {
-    width: 100%;
-    bottom: 1em;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, -0%);
-    margin: 0 auto;
-
-    p {
-      font-size: 0.9em;
-      font-weight: 700;
-      line-height: 0em;
-      margin-top: 3rem;
-    }
-
-    .clear-btn {
-      color: #00bfa6;
-      --padding-top: 0px;
-      line-height: 1em;
-    }
-  }
+  
 }
 
 * {
@@ -86,4 +61,14 @@ ion-content {
 .link-btn {
   font-weight: 300;
   font-size: 0.9rem;
+}
+
+ion-footer {
+  height: 15vh;
+
+  p {
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0;
+  }
 }

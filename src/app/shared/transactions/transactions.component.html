@@ -1,125 +1,32 @@
 <div class="tx-container">
   <ion-list scrollY="true" scrollX="true" lines="none" class="ion-padding">
-    <div class="list-actions">
-      <ion-list-header class="ion-margin-bottom">
-        Transactions
-      </ion-list-header>
+    <!-- <div class="list-actions">
     
-    <ion-fab color="light" horizontal="end" slot="fixed">
+   <ion-fab color="light" horizontal="end" slot="fixed">
       <ion-fab-button color="light">
         <ion-icon color="primary" name="filter-outline"></ion-icon>
       </ion-fab-button>
     </ion-fab>
-    </div>
+    </div>-->
 
-    <ion-item class="ion-margin-top ion-margin-bottom">
-      <ion-avatar slot="start">
-        <img src="https://assets.brandfetch.io/41d05924a6fd481.png" />
-      </ion-avatar>
-      <ion-label >
-        <h2>Netflix</h2>
+    <ion-item
+      *ngFor="let pmt of paymentSchedules"
+      class="ion-margin-top ion-margin-bottom"
+      detail="true"
+      detailIcon="ellipsis-vertical"
+      button="true"
+      (click)="presentActionSheet()"
+    >
+      <img src="{{ getIconUrl(pmt.providerId) }}" />
 
-        <p>Today</p>
-      </ion-label>
-      <ion-label class="ion-text-right">
-        <h3 class="curr-fld">{{ "19.99" | currency }}</h3>
-      </ion-label>
-    </ion-item>
-
-    <ion-item class="ion-margin-bottom">
-      <ion-avatar slot="start">
-        <img src="https://assets.brandfetch.io/e7a1ac57ae64452.png" />
-      </ion-avatar>
       <ion-label>
-        <h2>Hulu</h2>
-
-        <p>Today</p>
-      </ion-label>
-      <ion-label class="ion-text-right">
-        <h3 class="curr-fld">{{ "19.99" | currency }}</h3>
-      </ion-label>
-    </ion-item>
-
-    <ion-item class="ion-margin-top ion-margin-bottom">
-      <ion-avatar slot="start">
-        <img src="https://assets.brandfetch.io/41d05924a6fd481.png" />
-      </ion-avatar>
-      <ion-label>
-        <h2>Netflix</h2>
-
-        <p>Today</p>
-      </ion-label>
-      <ion-label class="ion-text-right">
-        <h3 class="curr-fld">{{ "19.99" | currency }}</h3>
-      </ion-label>
-    </ion-item>
-
-    <ion-item class="ion-margin-bottom">
-      <ion-avatar slot="start">
-        <img src="https://assets.brandfetch.io/e7a1ac57ae64452.png" />
-      </ion-avatar>
-      <ion-label>
-        <h2>Hulu</h2>
-
-        <p>Today</p>
-      </ion-label>
-      <ion-label class="ion-text-right">
-        <h3 class="curr-fld">{{ "19.99" | currency }}</h3>
-      </ion-label>
-    </ion-item>
-    <ion-item class="ion-margin-top ion-margin-bottom">
-      <ion-avatar slot="start">
-        <img src="https://assets.brandfetch.io/41d05924a6fd481.png" />
-      </ion-avatar>
-      <ion-label>
-        <h2>Netflix</h2>
-
-        <p>Today</p>
-      </ion-label>
-      <ion-label class="ion-text-right">
-        <h3 class="curr-fld">{{ "19.99" | currency }}</h3>
-      </ion-label>
-    </ion-item>
-
-    <ion-item class="ion-margin-bottom">
-      <ion-avatar slot="start">
-        <img src="https://assets.brandfetch.io/e7a1ac57ae64452.png" />
-      </ion-avatar>
-      <ion-label>
-        <h2>Hulu</h2>
-
-        <p>Today</p>
-      </ion-label>
-      <ion-label class="ion-text-right">
-        <h3 class="curr-fld">{{ "19.99" | currency }}</h3>
-      </ion-label>
-    </ion-item>
-
-    <ion-item class="ion-margin-top ion-margin-bottom">
-      <ion-avatar slot="start">
-        <img src="https://assets.brandfetch.io/41d05924a6fd481.png" />
-      </ion-avatar>
-      <ion-label>
-        <h2>Netflix</h2>
-
-        <p>Today</p>
-      </ion-label>
-      <ion-label class="ion-text-right">
-        <h3 class="curr-fld">{{ "19.99" | currency }}</h3>
-      </ion-label>
-    </ion-item>
-
-    <ion-item class="ion-margin-bottom">
-      <ion-avatar slot="start">
-        <img src="https://assets.brandfetch.io/e7a1ac57ae64452.png" />
-      </ion-avatar>
-      <ion-label>
-        <h2>Hulu</h2>
-
-        <p>Today</p>
-      </ion-label>
-      <ion-label class="ion-text-right">
-        <h3 class="curr-fld">{{ "19.99" | currency }}</h3>
+        <p>{{ getProviderName(pmt.providerId) }}</p>
+        <h3 class="curr-fld">
+          {{ pmt.amount | currency }} <span>/month</span>
+        </h3>
+        <p class="pay-date">
+          next payment <b>{{ pmt.paymentDate | date: "longDate" }}</b>
+        </p>
       </ion-label>
     </ion-item>
   </ion-list>

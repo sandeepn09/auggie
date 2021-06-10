@@ -24,6 +24,7 @@ import { MinCardComponent } from "./min-card/min-card.component";
 import { UserService } from "../services/user.service";
 import { MessageService } from "../services/message.service";
 import { PhoneFormatPipe } from "../pipes/phone-format.pipe";
+import { SearchbarComponent } from "./searchbar/searchbar.component";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PhoneFormatPipe } from "../pipes/phone-format.pipe";
     TransactionsComponent,
     SchedPaysComponent,
     MinCardComponent,
-    PhoneFormatPipe
+    PhoneFormatPipe,
+    SearchbarComponent
     
   ],
   imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule],
@@ -58,7 +60,8 @@ import { PhoneFormatPipe } from "../pipes/phone-format.pipe";
     TransactionsComponent,
     SchedPaysComponent,
     MinCardComponent,
-    PhoneFormatPipe
+    PhoneFormatPipe,
+    SearchbarComponent
   ],
   providers: [UserService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
