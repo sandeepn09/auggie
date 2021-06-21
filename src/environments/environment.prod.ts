@@ -5,5 +5,5 @@ export const environment = {
   logoApiBaseurl: "",
   apiKey: "",
   apiBaseUrl: "https://staging-service.augie.app",
-  version: "",
+  version: "3.0",
 };
