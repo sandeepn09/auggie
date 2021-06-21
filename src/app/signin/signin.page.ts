@@ -6,10 +6,17 @@ import {
   Validators,
 } from "@angular/forms";
 
-import { AlertController, ModalController } from "@ionic/angular";
+import {
+  AlertController,
+  ModalController,
+  ToastController,
+} from "@ionic/angular";
 import { AuthRequest } from "../models/user/user-models";
 import { AuthService } from "../services/auth.service";
+import { PasswordResetComponent } from "../shared/password-reset/password-reset.component";
 import { SigninHelpComponent } from "../shared/signin-help/signin-help.component";
+import { VcodeComponent } from "../shared/vcode/vcode.component";
+import { VerMessageComponent } from "../shared/ver-message/ver-message.component";
 
 @Component({
   selector: "app-signin",
@@ -22,10 +29,13 @@ export class SigninPage implements OnInit {
     password: new FormControl("", Validators.required),
   });
 
+  helpEmail: any;
+
   constructor(
     public alertController: AlertController,
     private authService: AuthService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {}
@@ -60,7 +70,6 @@ export class SigninPage implements OnInit {
   async signinHelp() {
     const modal = await this.modalController.create({
       component: SigninHelpComponent,
-     
     });
 
     await modal.present();
@@ -68,7 +77,67 @@ export class SigninPage implements OnInit {
     const { data: info, role } = await modal.onWillDismiss();
     console.log("Role", role);
     if (role === "confirm") {
-     
+      this.helpEmail = info.email;
+
+      console.log("helpEmail", this.helpEmail.email);
+      const success = await this.authService.sendVerificationCode(
+        this.helpEmail.email
+      );
+      console.log("Vercode success", success);
+      if (success == true) {
+        this.showVerCodeModal();
+      } else {
+        this.presentToast("Error sending verification code");
+      }
     }
+  }
+
+  async showVerCodeModal() {
+    const modal = await this.modalController.create({
+      component: VcodeComponent,
+    });
+
+    await modal.present();
+
+    const { data: info, role } = await modal.onWillDismiss();
+    console.log("Vercode info", info);
+    if (role === "confirm") {
+      const success = await this.authService.verfifyCode(
+        this.helpEmail,
+        info.code
+      );
+      if (success == true) {
+        this.passwordResetModal();
+      } else {
+        this.presentToast("Verification failed");
+      }
+    }
+  }
+
+  async passwordResetModal() {
+    const modal = await this.modalController.create({
+      component: PasswordResetComponent,
+    });
+
+    await modal.present();
+
+    const { data: info, role } = await modal.onWillDismiss();
+    console.log("Password Info", info);
+    if (role === "confirm") {
+      this.authService.resetPassword(this.helpEmail.email, info.password);
+    }
+  }
+
+  resetPassword() {
+    this.authService.resetPassword("sandeep@getaugie.com", "tttttt");
+  }
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: "danger",
+    });
+    toast.present();
   }
 }

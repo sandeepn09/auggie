@@ -1,5 +1,5 @@
 ion-content {
-  --background: url("../../assets/login-bg.png") no-repeat center center / 120%
+  --background: var(--ion-login-bg) no-repeat center center / 120%
     110%;
 
   .header-content {
@@ -8,7 +8,7 @@ ion-content {
     h3 {
       font-size: 1.8em;
       font-weight: 800;
-      color: #2a2b2c;
+      color: var(--ion-color-dark);
     }
 
     p {
@@ -39,7 +39,7 @@ ion-content {
     border-bottom: 1px solid #00bfa6;
     --padding-start: 5px;
     font-weight: 500;
-    --placeholder-color: #696a6b;
+    --placeholder-color: var(--ion-color-medium);
   }
 
   .form-group {
@@ -48,12 +48,7 @@ ion-content {
   }
 
   .footer-content {
-    // width: 100%;
-    // bottom: 1em;
-    // position: absolute;
-    // left: 50%;
-    // transform: translate(-50%, -0%);
-    // margin: 0 auto;
+    margin-top: 12vh;
 
     p {
       font-size: 0.9rem;

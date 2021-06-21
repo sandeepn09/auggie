@@ -22,4 +22,8 @@ export class PaymentsPage implements OnInit {
     this.cardInfo = await this.userService.getCardDetails() as CardInfo;
     console.log("CardInfo in scheduled payments", this.cardInfo);
   }
+
+  search() {
+    
+  }
 }

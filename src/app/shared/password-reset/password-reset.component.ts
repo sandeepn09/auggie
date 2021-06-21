@@ -10,16 +10,14 @@ import { AuthRequest } from "src/app/models/user/user-models";
 import { AuthService } from "src/app/services/auth.service";
 
 @Component({
-  selector: "app-signin-help",
-  templateUrl: "./signin-help.component.html",
-  styleUrls: ["./signin-help.component.scss"],
+  selector: "app-password-reset",
+  templateUrl: "./password-reset.component.html",
+  styleUrls: ["./password-reset.component.scss"],
 })
-export class SigninHelpComponent implements OnInit {
+export class PasswordResetComponent implements OnInit {
   authForm = new FormGroup({
-    email: new FormControl("", [
-      Validators.required,
-      Validators.pattern("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"),
-    ]),
+    password: new FormControl("", Validators.required),
+    password2: new FormControl("", Validators.required),
   });
 
   constructor(
@@ -37,7 +35,19 @@ export class SigninHelpComponent implements OnInit {
     if (this.authForm.invalid) {
       this.presentAlert("Please enter valid values to proceeed.");
     } else {
-      this.confirm();
+      if (
+        this.authForm.get("password").value !=
+        this.authForm.get("password2").value
+      ) {
+        this.presentAlert("Retyped password does not match the original");
+      } else {
+        // delete this.authForm.value.password2;
+        // const authReq: AuthRequest = this.authForm.value;
+        this.modalController.dismiss(
+          { password: this.authForm.get("password").value },
+          "confirm"
+        );
+      }
     }
   }
 
@@ -54,9 +64,5 @@ export class SigninHelpComponent implements OnInit {
 
     const { role } = await alert.onDidDismiss();
     console.log("onDidDismiss resolved with role", role);
-  }
-
-  confirm() {
-    this.modalController.dismiss({ email: this.authForm.value }, "confirm");
   }
 }

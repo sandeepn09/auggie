@@ -1,0 +1,41 @@
+ion-content {
+  --background: var(--ion-login-bg) no-repeat center center / 120% 110%;
+  color: var(--ion-color-dark);
+
+  ion-list {
+    background: transparent;
+    ion-list-header {
+      font-size: 1.8em;
+      letter-spacing: 0.5px;
+    }
+
+    ion-item {
+      background: transparent;
+      --background: transparent;
+      ion-label {
+        font-size: 0.9em;
+        overflow: visible;
+
+        ion-row {
+            ion-col {
+                ion-input {
+                    display: inline-block;
+                    --padding-top: 0.5em;
+                    --padding-start: 2px;
+                    font-size: 1.7em;
+                    --background: var(--ion-color-tblight);
+                    // border: 1px solid red;
+                    width: 8vh;
+                    height: 8vh;
+                    border-radius: 10px;
+                }
+
+                .marginLeft {
+                    margin-left: 3vh;
+                }
+            }
+        }
+      }
+    }
+  }
+}

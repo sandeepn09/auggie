@@ -8,16 +8,22 @@ import { StorageService } from "../services/storage.service";
   styleUrls: ["./description.page.scss"],
 })
 export class DescriptionPage implements OnInit {
-  firstName:string;
+  firstName: string;
+  darkMode: boolean = false;
+
   constructor(private storageService: StorageService) {}
 
   ngOnInit() {
     this.init();
-   }
- 
-   async init() {
-     let value:any = await this.storageService.get(AuthConstants.AUTH);
-     console.log("name", value.firstName);
-     this.firstName = value.firstName;
-   }
+  }
+
+  async init() {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    this.darkMode = prefersDark.matches;
+    console.log("prefersDark", this.darkMode);
+
+    let value: any = await this.storageService.get(AuthConstants.AUTH);
+    console.log("name", value.firstName);
+    this.firstName = value.firstName;
+  }
 }

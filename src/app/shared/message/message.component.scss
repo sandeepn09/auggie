@@ -9,13 +9,18 @@ ion-content {
       font-weight: 800;
       width: 100%;
       font-size: 2em;
+      color: var(--ion-color-dark);
+    }
+
+    h6 {
+      color: var(--ion-color-dark);
     }
 
     .main-icn {
       ion-icon {
         background-color: #00bfa6;
         padding: 35px;
-        color: #FFF;
+        color: #fff;
         border-radius: 50%;
         font-size: 30px;
         --ionicon-stroke-width: 30px;

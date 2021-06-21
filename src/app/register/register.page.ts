@@ -31,8 +31,6 @@ const headers = new HttpHeaders()
 })
 export class RegisterPage implements OnInit {
   regForm = new FormGroup({
-    firstName: new FormControl("", Validators.required),
-    lastName: new FormControl("", Validators.required),
     username: new FormControl("", [
       Validators.required,
       Validators.pattern("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"),
@@ -93,13 +91,23 @@ export class RegisterPage implements OnInit {
           if (appResponse.code && appResponse.code == 2503) {
             console.log("AppResponse: ", appResponse);
 
-            // this.presentModal();
             this.messageService.message(
               "Welcome!",
               "Signin and start building your credit!",
               "/signin",
               "SIGN IN",
               false
+            );
+          }
+          else if (appResponse.code && appResponse.code == 2502) {
+            console.log("AppResponse Duplicatee user: ", appResponse);
+
+            // this.presentModal();
+            this.messageService.error(
+              "Duplicate",
+              appResponse.message,
+              null,
+              "OK"
             );
           }
         });

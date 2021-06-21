@@ -8,8 +8,9 @@
   
   
   <div class="srch">
-    <ion-input placeholder="Search"></ion-input>
-    <ion-icon name="search-outline"></ion-icon>
+    <!--<ion-input placeholder="Search"></ion-input>
+    <ion-icon name="search-outline"></ion-icon>-->
+    <ion-searchbar debounce="1000" enterkeyhint="go" (ionChange)="search($event)" class="custom-search"></ion-searchbar>
   </div>
 
   <p color="primary" class="ion-margin-top">
@@ -20,7 +21,7 @@
 <ion-content class="ion-padding">
   <h5>Providers and Categories</h5>
   <ion-list lines="none">
-    <ion-radio-group value=501 allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChange($event)">
+    <ion-radio-group value=-1 allow-empty-selection="true" name="radio-group" (ionChange)="radioGroupChange($event)">
     <ion-item *ngFor="let sp of serviceProviders" lines="none">
       <ion-icon
         *ngIf="sp.id > 500"

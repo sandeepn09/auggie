@@ -80,7 +80,7 @@
 }
 
 ion-button.dark-clr {
-  --color: #1c1638;
+  --color: var(--ion-color-dark);
   font-weight: 700;
   font-size: 1em;
 }
@@ -142,16 +142,16 @@ color-drk {
   }
 
   .info-val {
-    color: #1c1638;
+    color: var(--ion-color-dark);
   }
 }
 
 .info-content {
-  background-color: #f6f7f9;
-  color: #1C1638;
+  background-color: var(--ion-color-light);
+  color: var(--ion-color-dark);
 
   .bac-grid {
-    background-color: #ffffff;
+    background-color: var(--ion-color-app-light);
     border-radius: 15px;
     margin-bottom: 3vh;
 

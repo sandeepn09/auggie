@@ -9,36 +9,7 @@
   </div>
 
   <form [formGroup]="regForm" class="top-margin">
-    <div class="form-group ion-text-left">
-      <ion-input
-        class="form-control"
-        formControlName="firstName"
-        type="text"
-        placeholder="First Name"
-      >
-      </ion-input>
-      <span
-        class="invalid"
-        *ngIf="regForm.get('firstName').touched && regForm.get('firstName').invalid"
-        >First name is required</span
-      >
-    </div>
-
-    <div class="form-group ion-text-left">
-      <ion-input
-        class="form-control"
-        formControlName="lastName"
-        type="text"
-        placeholder="Last Name"
-      >
-      </ion-input>
-      <span
-        class="invalid"
-        *ngIf="regForm.get('lastName').touched && regForm.get('lastName').invalid"
-        >Last name is required</span
-      >
-    </div>
-
+   
     <div class="form-group ion-text-left">
       <ion-input
         class="form-control"

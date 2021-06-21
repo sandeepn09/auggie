@@ -1,6 +1,7 @@
 import { HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
+
 import { Observable } from "rxjs";
 import { AppConstants } from "../config/app-constants";
 import { AuthConstants } from "../config/auth-constants";
@@ -12,6 +13,7 @@ import {
 import { HttpService } from "./http.service";
 import { MessageService } from "./message.service";
 import { StorageService } from "./storage.service";
+import { UserService } from "./user.service";
 
 const headers = new HttpHeaders()
   .set("content-type", "application/json")
@@ -25,7 +27,8 @@ export class AuthService {
     private httpService: HttpService,
     private storageService: StorageService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private userService: UserService
   ) {}
 
   login(authRequest: AuthRequest): boolean {
@@ -69,8 +72,29 @@ export class AuthService {
     });
   }
 
-  resetPassword(authRequest: AuthRequest) {
-    console.log("Requesting password reset", authRequest);
+  async resetPassword(email: string, password: string) {
+    console.log("Resetting password for email", email + " " + password);
+    const passwordResetRequest = { email: email, password: password };
+    console.log("Requesting password reset", passwordResetRequest);
+
+    const result: any = await this.httpService
+      .post("user/password-reset", passwordResetRequest, headers)
+      .toPromise()
+      .then((data) => {
+        console.log("Promise Data", data);
+
+        return data;
+      })
+      .catch((err) => {
+        console.log("Password reset failed", err);
+      });
+
+    console.log("RESULT", result);
+
+    if (result.code === 2600) {
+      return true;
+    }
+    return false;
   }
 
   refreshUser(authRequest: AuthRequest, url: string) {
@@ -97,6 +121,48 @@ export class AuthService {
       }
     );
 
+    return false;
+  }
+
+  async verfifyCode(email: string, code: number) {
+    const result: any = await this.httpService
+      .get("verification", { email: email, code: code }, headers)
+      .toPromise()
+      .then((data) => {
+        console.log("Promise Data", data);
+
+        return data;
+      })
+      .catch((err) => {
+        console.log("Verification failed", err);
+      });
+
+    console.log("RESULT", result);
+
+    if (result.code === 2600) {
+      return true;
+    }
+    return false;
+  }
+
+  async sendVerificationCode(email: string) {
+    const result: any = await this.httpService
+      .get("verification-code", { userId: email }, headers)
+      .toPromise()
+      .then((data) => {
+        console.log("Promise Data", data);
+
+        return data;
+      })
+      .catch((err) => {
+        console.log("Error sending verification code");
+      });
+
+    console.log("RESULT", result);
+
+    if (result.code === 2600) {
+      return true;
+    }
     return false;
   }
 }

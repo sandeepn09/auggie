@@ -18,16 +18,20 @@
       (click)="presentActionSheet()"
     >
       <img src="{{ getIconUrl(pmt.providerId) }}" />
-
+      
       <ion-label>
-        <p>{{ getProviderName(pmt.providerId) }}</p>
+        <p>{{ getProviderName(pmt.providerId) }} </p>
         <h3 class="curr-fld">
           {{ pmt.amount | currency }} <span>/month</span>
         </h3>
+     
         <p class="pay-date">
           next payment <b>{{ pmt.paymentDate | date: "longDate" }}</b>
         </p>
       </ion-label>
+      <p class="ion-text-right">
+        <ion-badge color="success">Approved</ion-badge>
+      </p>
     </ion-item>
   </ion-list>
 </div>

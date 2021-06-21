@@ -1,5 +1,5 @@
 .pop-container {
-  color: #1c1638;
+  color: var(--ion-color-dark);
 
   ion-button {
     font-weight: 800;
@@ -14,13 +14,13 @@
 
     p {
       font-size: 1.1em;
-      color: #1c1638;
+      color: var(--ion-color-dark);
       font-weight: 600;
     }
   }
 
   ion-icon {
-    color: #9aacbc;
+    color: var(--ion-color-medium);
   }
   h2 {
     font-weight: 800;
@@ -46,8 +46,7 @@
       margin: 0;
 
       p {
-        
-        color: #1c1638;
+        color: var(--ion-color-dark);
         font-size: 1em;
         font-weight: 800;
         margin-bottom: 0.6em;

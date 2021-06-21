@@ -1,12 +1,16 @@
 <ion-header class="ion-no-border menu-header">
   <ion-toolbar>
-   
     <ion-buttons slot="start">
-      <ion-menu-button menu="main-menu"><img alt="" src="../../../assets/menu.png"></ion-menu-button>
+      <ion-menu-button *ngIf="!darkMode" menu="main-menu"
+        ><img alt="" src="../../../assets/menu.png"
+      /></ion-menu-button>
+      <ion-menu-button *ngIf="darkMode" menu="main-menu"
+        ><img alt="" src="../../../assets/menu-dark.png"
+      /></ion-menu-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <span class="right-padding small-font">Hi,</span>
-      <span class="right-padding small-font highlt">{{name}}</span>
+      <span class="right-padding small-font highlt">{{ name }}</span>
       <ion-icon class="avatar-ph" name="person"></ion-icon>
     </ion-buttons>
   </ion-toolbar>

@@ -52,7 +52,7 @@
 
   ion-back-button {
     margin-top: 0;
-    color: #9aacbc;
+    color: var(--ion-color-medium);
   }
 }
 
@@ -67,7 +67,7 @@
 }
 
 ion-button.dark-clr {
-  --color: #1c1638;
+  --color: var(--ion-color-dark);
   font-weight: 700;
   font-size: 1em;
 }
@@ -85,8 +85,8 @@ ion-button.dark-clr {
     margin-bottom: 2em;
 
     ion-input {
-      --placeholder-color: #696a6b;
-      
+      --placeholder-color: var(--ion-color-medium);
+
       // border-bottom: 1px solid #00bfa6;
     }
 
@@ -94,22 +94,22 @@ ion-button.dark-clr {
     ion-select,
     ion-datetime {
       border-bottom: 1px solid rgba(0, 191, 166, 0.8);
-      --placeholder-color: #9aacbc;
+      --placeholder-color: var(--ion-color-medium);
       --placeholder-opacity: 0.7;
       font-size: 0.9rem;
       font-weight: 600;
-      --color: #1c1638;
+      --color: var(--ion-color-dark);
       --padding-start: 10px;
     }
 
     ion-datetime {
-      --placeholder-color: #9aacbc;
+      --placeholder-color: var(--ion-color-medium);
     }
   }
 }
 
 color-drk {
-  color: #1c1638;
+  color: var(--ion-color-dark);
 }
 
 .invalid {

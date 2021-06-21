@@ -19,28 +19,13 @@ import { MessageService } from "../services/message.service";
   styleUrls: ["./profile-view.page.scss"],
 })
 export class ProfileViewPage implements OnInit {
-  user: User = {
-    userId: 0,
-    firstName: "William",
-    lastName: "Blake",
-    address: "100 Central Street",
-    city: "New York",
-    state: "NY",
-    postalCode: "11282",
-    email: "william.blake@gmail.com",
-    phone: "+1 (415) 910 4587",
-    occupation: "Student",
-    gender: "",
-    dob: "July 19, 1998",
-    annualIncome: "$14,753",
-    createDateTime: null,
-    updateDateTime: null,
-  };
+  user: User;
 
   formattedIncome: string;
   profileComplete: boolean;
 
   banks: BankInfo[];
+  darkMode: boolean = false;
 
   constructor(
     private httpService: HttpService,
@@ -54,6 +39,10 @@ export class ProfileViewPage implements OnInit {
   }
 
   async initData() {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+    this.darkMode = prefersDark.matches;
+    console.log("prefersDark", this.darkMode);
+
     const email = await this.userService.getUserEmail();
     this.httpService
     .get(

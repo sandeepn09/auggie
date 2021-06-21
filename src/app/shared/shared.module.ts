@@ -25,6 +25,9 @@ import { UserService } from "../services/user.service";
 import { MessageService } from "../services/message.service";
 import { PhoneFormatPipe } from "../pipes/phone-format.pipe";
 import { SearchbarComponent } from "./searchbar/searchbar.component";
+import { VcodeComponent } from "./vcode/vcode.component";
+import { VerMessageComponent } from "./ver-message/ver-message.component";
+import { PasswordResetComponent } from "./password-reset/password-reset.component";
 
 @NgModule({
   declarations: [
@@ -48,8 +51,10 @@ import { SearchbarComponent } from "./searchbar/searchbar.component";
     SchedPaysComponent,
     MinCardComponent,
     PhoneFormatPipe,
-    SearchbarComponent
-    
+    SearchbarComponent,
+    VcodeComponent,
+    VerMessageComponent,
+    PasswordResetComponent
   ],
   imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule],
   exports: [

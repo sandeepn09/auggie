@@ -77,6 +77,8 @@ ion-button.clear-btn {
 }
 
 .modal-ctr {
+  background: var(--ion-color-light);
+  --background: var(--ion-color-light);
   --width: 90%;
   --height: 90%;
   text-align: center;
@@ -84,6 +86,8 @@ ion-button.clear-btn {
 }
 
 .confirm-modal {
+  background: var(--ion-color-light);
+  --background: var(--ion-color-light);
   --width: 90%;
   --height: 90%;
   text-align: center;
@@ -91,12 +95,10 @@ ion-button.clear-btn {
 }
 
 .full-modal {
-  // background-color: #FFFFFF;
-  // --background: #FAFAFA;
   // --background: #00BFA6;
   // --background: linear-gradient(90deg, #00bfa6, #1fdec4);
   ion-header {
-    color: #1c1638;
+    color: var(--ion-color-dark);
     padding-right: 2em;
     padding-left: 2em;
     margin-top: 0.5em;
@@ -142,10 +144,12 @@ ion-button.link-btn {
 
 .ion-searchbar {
   .searchbar-input-container {
+   
     input {
       --padding-top: 18px;
       --padding-bottom: 16px;
       font-size: 5px;
+      
 
       .searchbar-search-icon {
         top: 15px !important;
@@ -167,7 +171,10 @@ ion-button.link-btn {
 
     input {
       --placeholder-font-weight: 600;
-      --placeholder-opacity: 0.2;
+      // --placeholder-opacity: 0.2;
+      --placeholder-color: var(--ion-color-medium);
+      background: var(--ion-color-tblight);
+      --background: var(--ion-color-tblight);
       
     }
   }
@@ -175,4 +182,9 @@ ion-button.link-btn {
 
 .custom-action-sheet {
   text-align: left;
+}
+
+.invalid {
+  color: #fe6b5d;
+  font-size: 0.8em;
 }
