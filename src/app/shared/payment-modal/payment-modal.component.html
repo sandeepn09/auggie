@@ -4,21 +4,36 @@
   </div>
 
   <div class="ion-padding header-div">
-    <img class="ion-margin-top" alt="" src="{{iconUrl}}" />
+    <img class="ion-margin-top" alt="" src="{{ iconUrl }}" />
     <h4 class="ion-margin-bottom">Schedule Payment</h4>
     <p>{{ providerName }}</p>
   </div>
 
   <div class="pmt-dtls ion-padding ion-margin-top">
     <p class="fld-name">Amount</p>
-    <p class="btm-border">{{ amount | currency}}<span *ngIf="recuring == 'Y'">, Reccurring</span></p>
+    <p class="btm-border">
+      {{ amount | currency
+      }}<span *ngIf="recurring == 'true'">, Reccurring</span>
+    </p>
     <p class="fld-name">Date</p>
     <p class="btm-border">{{ paymentDate | date: "mediumDate" }}</p>
-    <p class="fld-name">Pay method</p>
-    <p class="btm-border">xxxx-{{ cardNumber%10000 }}</p>
+    
   </div>
 
-  <div class="footer-div ion-padding">
-    <ion-button (click)="confirm()" expand="block">CONFIRM</ion-button>
+  <div class="footer-div ion-padding ion-text-center">
+    <ion-button
+      (click)="confirm()"
+      class="main-btn ion-margin-bottom"
+      expand="block"
+      >CONFIRM</ion-button
+    >
+    <ion-button
+      (click)="confirmAddBank()"
+      *ngIf="!hasBanks"
+      expand="block"
+      fill="outline"
+      class="clear-btn ion-margin-top"
+      >CONFIRM & Add Bank</ion-button
+    >
   </div>
 </div>

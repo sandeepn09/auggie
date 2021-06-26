@@ -1,9 +1,13 @@
+<ion-header class="ion-no-border ion-padding">
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button text="" defaultHref="/welcome"></ion-back-button>
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
 <ion-content>
-  <div class="head-container">
-    <div>
-      <ion-back-button text="" defaultHref="/welcome"></ion-back-button>
-    </div>
-
+  <div class="head-container ion-text-center">
+    
     <div class="profile-img">
       <img alt="" src="{{picUrl}}" />
       <div>
@@ -11,21 +15,12 @@
           expand="block"
           fill="clear"
           class="dark-clr"
-          (click)="takePicture1()"
+          (click)="takePicture()"
           >Upload</ion-button
         >
       </div>
     </div>
-    <div>
-      <ion-button
-        expand="block"
-        fill="clear"
-        class="small-btn-font"
-        size="small"
-        (click)="save()"
-        >Save</ion-button
-      >
-    </div>
+    
   </div>
 
   <form [formGroup]="profileForm">
@@ -74,8 +69,9 @@
           formControlName="gender"
           [ngModel]="user.gender"
         >
-          <ion-select-option value="Y">He/Him/His</ion-select-option>
-          <ion-select-option value="N">She/Her</ion-select-option>
+          <ion-select-option value="M">He/Him/His</ion-select-option>
+          <ion-select-option value="F">She/Her</ion-select-option>
+          <ion-select-option value="T">They/Them</ion-select-option>
         </ion-select>
         <span
           class="invalid"
@@ -97,29 +93,6 @@
           class="invalid"
           *ngIf="profileForm.get('dob').touched && profileForm.get('dob').invalid"
           >DOB is required</span
-        >
-      </div>
-    </div>
-
-    <!-- Contact Info-->
-    <div class="main-content ion-padding form-sec-top-margin">
-      <ion-col>
-        <h6 class="ion-text-uppercase">Contact Info</h6>
-      </ion-col>
-
-      <div class="form-group">
-        <ion-input
-          class="form-control input-elem"
-          formControlName="email"
-          placeholder="Email"
-          type="email"
-          [ngClass]="{'is-invalid': profileForm.get('email').touched && profileForm.get('email').invalid}"
-          [ngModel]="user.email"
-        ></ion-input>
-        <span
-          class="invalid"
-          *ngIf="profileForm.get('email').touched && profileForm.get('email').invalid"
-          >Email is required</span
         >
       </div>
 
@@ -235,7 +208,6 @@
           class="form-control input-elem"
           formControlName="postalCode"
           placeholder="Postal code"
-          type="number"
           [ngModel]="user.postalCode"
         ></ion-input>
         <span
@@ -246,10 +218,11 @@
       </div>
     </div>
   </form>
-</ion-content>
 
-<ion-footer class="ion-no-border">
-  <ion-toolbar>
-    <p class="ion-text-center small-font"></p>
-  </ion-toolbar>
-</ion-footer>
+  <div class="ion-padding">
+    <ion-button (click)="save('/add-payment')" *ngIf="!hasBanks" expand="block" class="main-btn ion-margin-bottom">Next - Add Bills</ion-button>
+    <ion-button (click)="save('/profile-view')" *ngIf="!hasBanks" expand="block" class="clear-btn ion-margin-top" fill="outline">Save & Exit</ion-button>
+    <ion-button (click)="save('/profile-view')" *ngIf="hasBanks" expand="block" class="main-btn ion-margin-bottom">Save</ion-button>
+  </div>
+  
+</ion-content>

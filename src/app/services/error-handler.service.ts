@@ -11,7 +11,8 @@ export class ErrorHandlerService {
   async showMessage(error: any) {
     const toast = await this.toastController.create({
       message: 'An error occured while processing your request. Details: ' + error.message,
-      duration: 2000
+      duration: 3000,
+      color: 'danger'
     });
     toast.present();
   }

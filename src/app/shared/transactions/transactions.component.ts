@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { ActionSheetController } from "@ionic/angular";
 import {
   PaymentSchedule,
@@ -14,7 +15,7 @@ import { UserService } from "src/app/services/user.service";
   styleUrls: ["./transactions.component.scss"],
 })
 export class TransactionsComponent implements OnInit {
-  transactions = [
+  transactions1 = [
     {
       providerName: "Netflix",
       amount: 25.0,
@@ -53,6 +54,8 @@ export class TransactionsComponent implements OnInit {
     },
   ];
 
+  transactions = [];
+
   paymentSchedules: PaymentSchedule[];
   providers: ServiceProvider[];
 
@@ -60,7 +63,8 @@ export class TransactionsComponent implements OnInit {
     private userService: UserService,
     private paymentService: PaymentService,
     private providerService: ProviderService,
-    public actionSheetController: ActionSheetController
+    public actionSheetController: ActionSheetController,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -123,5 +127,9 @@ export class TransactionsComponent implements OnInit {
 
     const { role } = await actionSheet.onDidDismiss();
     console.log("onDidDismiss resolved with role", role);
+  }
+
+  addPayments() {
+    this.router.navigateByUrl("/add-payment");
   }
 }

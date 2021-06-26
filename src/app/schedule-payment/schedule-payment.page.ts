@@ -26,13 +26,12 @@ export class SchedulePaymentPage implements OnInit {
     description: "",
     amount: 0,
     paymentDate: null,
-    cardId: 0,
     recurring: false,
   };
 
   providerName: string;
-  iconUrl:string;
-  cardInfo: CardInfo;
+  iconUrl: string;
+  // cardInfo: CardInfo;
 
   psForm = new FormGroup({
     providerId: new FormControl("", Validators.required),
@@ -40,7 +39,6 @@ export class SchedulePaymentPage implements OnInit {
     description: new FormControl("", Validators.required),
     amount: new FormControl("", Validators.required),
     paymentDate: new FormControl("", Validators.required),
-    cardId: new FormControl("", Validators.required),
     recurring: new FormControl("", Validators.required),
   });
 
@@ -51,13 +49,10 @@ export class SchedulePaymentPage implements OnInit {
     private messageService: MessageService,
     private userService: UserService,
     private paymentService: PaymentService
-  ) {
-    
-  }
+  ) {}
 
   async ngOnInit() {
-    
-    console.log("CARD INFO ON INIT XXXXX", this.cardInfo);
+    // console.log("CARD INFO ON INIT XXXXX", this.cardInfo);
     const sp = this.activateRoute.snapshot.data["serviceProvider"];
     console.log("serviceProvider!!!!!,", sp);
 
@@ -66,18 +61,19 @@ export class SchedulePaymentPage implements OnInit {
     this.iconUrl = sp.iconUrl;
 
     console.log("LOGO", this.iconUrl);
-    this.getCardInfo();
-    
+    // this.getCardInfo();
   }
 
   save() {
+    // this.psForm.get('cardId').setValue(this.cardInfo.id);
+
     if (this.psForm.invalid) {
       console.log(this.psForm.value);
       this.presentAlert();
     } else {
       this.paySchedule = this.psForm.value;
-      console.log("Valid Pay schedule",this.paySchedule);
-      
+      console.log("Valid Pay schedule", this.paySchedule);
+
       this.presentModal();
     }
   }
@@ -100,11 +96,14 @@ export class SchedulePaymentPage implements OnInit {
   async presentModal() {
     // console.log("BANK INFO", this.bankInfo);
     const acctType = AppConstants.YES_NO.get(this.paySchedule.recurring);
-    console.log("Payschedule before conformation", this.paySchedule)
+    console.log("Payschedule before conformation", this.paySchedule);
 
-    const card = await this.userService.getCardDetails() as CardInfo;
+    const card = (await this.userService.getCardDetails()) as CardInfo;
 
-    let props = {...this.paySchedule, ...{iconUrl:this.iconUrl, cardNumber: card.cardNumber} };
+    let props = {
+      ...this.paySchedule,
+      ...{ iconUrl: this.iconUrl },
+    };
     const modal = await this.modalController.create({
       component: PaymentModalComponent,
       cssClass: "confirm-modal",
@@ -118,14 +117,18 @@ export class SchedulePaymentPage implements OnInit {
 
     if (role === "confirm") {
       console.log("SCHED PAY", role);
-      console.log("Payschedule after conformation", this.paySchedule)
+      console.log("Payschedule after conformation", this.paySchedule);
       // this.paymentService.addFundingAccount(this.bdForm.value);
-      this.paymentService.schedulePayment(this.paySchedule);
+      this.paymentService.schedulePayment(this.paySchedule, "/add-payment");
+    } else if (role === "add-bank") {
+      console.log("SCHED PAY", role);
+      console.log("Payschedule after conformation", this.paySchedule);
+      // this.paymentService.addFundingAccount(this.bdForm.value);
+      this.paymentService.schedulePayment(this.paySchedule, "/funding-account");
     }
   }
 
   async getCardInfo() {
-   this.cardInfo = await this.userService.getCardDetails() as CardInfo;
+    // this.cardInfo = await this.userService.getCardDetails() as CardInfo;
   }
-  
 }

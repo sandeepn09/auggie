@@ -28,6 +28,8 @@
   </div>
 
   <div class="footer-div ion-padding">
-    <ion-button (click)="confirm()" expand="block">CONFIRM</ion-button>
+    <ion-button (click)="confirmAddCard()" *ngIf="!hasCards" class="main-btn ion-margin-bottom" expand="block">Create your Augie Card</ion-button>
+    <ion-button (click)="confirm()" *ngIf="!hasCards" class="clear-btn ion-margin-top" expand="block" fill="outline">CONFIRM & Exit</ion-button>
+    <ion-button (click)="confirm()" *ngIf="hasCards" class="main-btn ion-margin-bottom" expand="block">Confirm</ion-button>
   </div>
 </div>

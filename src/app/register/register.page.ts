@@ -19,6 +19,7 @@ import { AppResponse } from "../models/user/user-models";
 import { Router } from "@angular/router";
 import { SignupConfirmComponent } from "../shared/signup-confirm/signup-confirm.component";
 import { MessageService } from "../services/message.service";
+import { LoadingService } from "../services/loading.service";
 
 const headers = new HttpHeaders()
   .set("content-type", "application/json")
@@ -35,7 +36,13 @@ export class RegisterPage implements OnInit {
       Validators.required,
       Validators.pattern("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"),
     ]),
-    password: new FormControl("", [Validators.required]),
+    password: new FormControl("", [
+      // Validators.required,
+      
+      Validators.pattern("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,12}$"),
+      
+      // Validators.minLength(8),
+    ]),
   });
 
   constructor(
@@ -45,7 +52,8 @@ export class RegisterPage implements OnInit {
     private httpService: HttpService,
     private router: Router,
     private modalController: ModalController,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private loadingService: LoadingService
   ) {}
 
   currentPopover = null;
@@ -80,6 +88,7 @@ export class RegisterPage implements OnInit {
       console.log(this.regForm.value);
       this.presentAlert();
     } else {
+      this.loadingService.presentLoading("Creating Account...");
       console.log(this.regForm.value);
       console.log("BD Form is VALID!!!!");
       this.httpService
@@ -90,7 +99,7 @@ export class RegisterPage implements OnInit {
           let appResponse: AppResponse = res as AppResponse;
           if (appResponse.code && appResponse.code == 2503) {
             console.log("AppResponse: ", appResponse);
-
+            this.loadingService.dismissLoading();
             this.messageService.message(
               "Welcome!",
               "Signin and start building your credit!",
@@ -98,11 +107,11 @@ export class RegisterPage implements OnInit {
               "SIGN IN",
               false
             );
-          }
-          else if (appResponse.code && appResponse.code == 2502) {
+          } else if (appResponse.code && appResponse.code == 2502) {
             console.log("AppResponse Duplicatee user: ", appResponse);
 
             // this.presentModal();
+            this.loadingService.dismissLoading();
             this.messageService.error(
               "Duplicate",
               appResponse.message,

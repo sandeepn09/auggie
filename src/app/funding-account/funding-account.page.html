@@ -4,9 +4,6 @@
     <ion-buttons slot="start">
       <ion-back-button text="" defaultHref="/description"></ion-back-button>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="save()" color="primary">Save</ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -79,7 +76,6 @@
       >
         <ion-select-option value="C">Checking</ion-select-option>
         <ion-select-option value="S">Saving</ion-select-option>
-        
       </ion-select>
     </div>
 
@@ -89,4 +85,6 @@
       >Select an Account Type</span
     >
   </form>
+
+  <ion-button expand="block" (click)="save()" class="main-btn">SAVE</ion-button>
 </ion-content>

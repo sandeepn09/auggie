@@ -1,11 +1,6 @@
 .pop-container {
   color: var(--ion-color-dark);
 
-  ion-button {
-    font-weight: 800;
-    font-size: 0.9em;
-    text-transform: capitalize;
-  }
   .header-div {
     margin-bottom: 0;
     h6 {
@@ -29,14 +24,6 @@
   }
 
   .form-info {
-    // padding-left: 4vw;
-    // padding-right: 5vw;
-    // background-color: #FAFAFA;
-    // padding-top: 2em;
-    // padding-bottom: 2em;
-    // border: 1px solid lightgray;
-    // width: 100%;
-
     .fld-info {
       // margin-bottom: 1.5em;
       display: flex;
@@ -72,15 +59,5 @@
     transform: translate(-50%, -10%);
     margin: 0 auto;
     width: 100%;
-
-    ion-button {
-      height: 3.5em;
-      font-size: 0.9em;
-      letter-spacing: 1px;
-      color: #fff;
-      font-weight: 700;
-      --box-shadow: none;
-      --border-radius: 0.7em;
-    }
   }
 }

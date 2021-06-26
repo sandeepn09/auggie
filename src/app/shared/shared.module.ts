@@ -28,6 +28,7 @@ import { SearchbarComponent } from "./searchbar/searchbar.component";
 import { VcodeComponent } from "./vcode/vcode.component";
 import { VerMessageComponent } from "./ver-message/ver-message.component";
 import { PasswordResetComponent } from "./password-reset/password-reset.component";
+import { AppRoutingModule } from "../app-routing.module";
 
 @NgModule({
   declarations: [
@@ -54,9 +55,14 @@ import { PasswordResetComponent } from "./password-reset/password-reset.componen
     SearchbarComponent,
     VcodeComponent,
     VerMessageComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
   ],
-  imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    ReactiveFormsModule,
+  ],
   exports: [
     MenuHeaderComponent,
     PmtCardComponent,
@@ -66,7 +72,7 @@ import { PasswordResetComponent } from "./password-reset/password-reset.componen
     SchedPaysComponent,
     MinCardComponent,
     PhoneFormatPipe,
-    SearchbarComponent
+    SearchbarComponent,
   ],
   providers: [UserService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

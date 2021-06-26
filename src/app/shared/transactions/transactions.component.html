@@ -1,5 +1,11 @@
 <div class="tx-container">
-  <ion-list scrollY="true" scrollX="true" lines="none" class="ion-padding">
+  <ion-list
+    *ngIf="paymentSchedules && paymentSchedules.length > 0"
+    scrollY="true"
+    scrollX="true"
+    lines="none"
+    class="ion-padding"
+  >
     <!-- <div class="list-actions">
     
    <ion-fab color="light" horizontal="end" slot="fixed">
@@ -18,13 +24,13 @@
       (click)="presentActionSheet()"
     >
       <img src="{{ getIconUrl(pmt.providerId) }}" />
-      
+
       <ion-label>
-        <p>{{ getProviderName(pmt.providerId) }} </p>
+        <p>{{ getProviderName(pmt.providerId) }}</p>
         <h3 class="curr-fld">
           {{ pmt.amount | currency }} <span>/month</span>
         </h3>
-     
+
         <p class="pay-date">
           next payment <b>{{ pmt.paymentDate | date: "longDate" }}</b>
         </p>
@@ -34,4 +40,15 @@
       </p>
     </ion-item>
   </ion-list>
+
+  <div
+    *ngIf="!paymentSchedules || paymentSchedules.length < 1"
+    class="ion-text-center ion-padding no-data"
+  >
+    <h2>No Bill Payments found</h2>
+    <img alt="" src="../../../assets/no-data.svg" />
+    <ion-button expand="block" class="main-btn" (click)="addPayments()"
+      >Setup now</ion-button
+    >
+  </div>
 </div>

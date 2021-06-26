@@ -13,7 +13,6 @@ export class PaymentSchedule {
   providerId: number;
   description: string;
   amount: number;
-  cardId: number;
   recurring: boolean;
   paymentDate: Date;
 }

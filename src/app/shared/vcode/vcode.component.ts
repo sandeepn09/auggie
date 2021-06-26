@@ -42,4 +42,8 @@ export class VcodeComponent implements OnInit {
       console.log("Enter");
     });
   }
+
+  confirm() {
+    
+  }
 }

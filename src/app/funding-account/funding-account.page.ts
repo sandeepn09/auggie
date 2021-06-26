@@ -11,6 +11,7 @@ import { AlertController, ModalController } from "@ionic/angular";
 import { BankModalComponent } from "../shared/bank-modal/bank-modal.component";
 import { PaymentService } from "../services/payment.service";
 import { AppConstants } from "../config/app-constants";
+import { LoadingService } from "../services/loading.service";
 
 @Component({
   selector: "app-funding-account",
@@ -40,7 +41,8 @@ export class FundingAccountPage implements OnInit {
   constructor(
     public alertController: AlertController,
     public modalController: ModalController,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private loadingService: LoadingService
   ) {}
 
   save() {
@@ -88,7 +90,18 @@ export class FundingAccountPage implements OnInit {
     console.log(role);
 
     if (role === "confirm") {
-      this.paymentService.addFundingAccount(this.bdForm.value);
+      await this.loadingService.presentLoading("Adding Bank account...");
+
+      await this.paymentService.addFundingAccount(this.bdForm.value, "/profile-view");
+  
+      await this.loadingService.dismissLoading();
+    }
+    else if (role === "add-card") {
+      await this.loadingService.presentLoading("Adding Bank account...");
+
+      await this.paymentService.addFundingAccount(this.bdForm.value, "/create-card");
+  
+      await this.loadingService.dismissLoading();
     }
   }
 }

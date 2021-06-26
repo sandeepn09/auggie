@@ -41,7 +41,7 @@ export class AddPaymentPage implements OnInit {
     const modal = await this.modalController.create({
       component: RafPopoverComponent,
       // component: SendTextModalComponent,
-      cssClass: "modal-ctr",
+      // cssClass: "modal-ctr",
     });
     return await modal.present();
   }

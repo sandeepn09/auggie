@@ -13,6 +13,9 @@ import { Router } from "@angular/router";
   styleUrls: ["app.component.scss"],
 })
 export class AppComponent {
+  hasBanks: boolean = false;
+  hasCards: boolean = false;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -22,6 +25,7 @@ export class AppComponent {
     private router: Router
   ) {
     this.initializeApp();
+    this.initData();
   }
 
   initializeApp() {
@@ -29,6 +33,11 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  async initData() {
+    this.hasBanks = await this.userService.hasBanks();
+    this.hasCards = await this.userService.hasCards();
   }
 
   logout() {

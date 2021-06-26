@@ -66,9 +66,10 @@ export class EditProfilePage implements OnInit {
     postalCode: new FormControl(""),
   });
 
+  hasBanks: boolean = false;
+
   constructor(
     public alertController: AlertController,
-    private sanitizer: DomSanitizer,
     private uploadService: UploadService,
     public modalController: ModalController,
     private userService: UserService
@@ -89,17 +90,24 @@ export class EditProfilePage implements OnInit {
       this.user = res.details.userDetails;
       console.log("User - Email", this.user);
     });
+
+    this.hasBanks = await this.userService.hasBanks();
+    console.log("Has Banks", this.hasBanks)
     
   }
 
-  save() {
+  async save(nextPage: string) {
+    const userEmail = await this.userService.getUserEmail();
+    console.log("Setting user email !!", userEmail)
+    this.profileForm.get("email").setValue(userEmail);
+
     if (this.profileForm.invalid) {
       console.log(this.profileForm.value);
       this.presentAlert();
     } else {
       console.log(this.profileForm);
       console.log("BD Form is VALID!!!!");
-      this.userService.updateProfile(this.profileForm.value);
+      this.userService.updateProfile(this.profileForm.value, nextPage);
     }
   }
 
@@ -119,26 +127,7 @@ export class EditProfilePage implements OnInit {
   }
 
   async takePicture() {
-    Plugins.Camera.getPhoto({
-      quality: 100,
-      allowEditing: false,
-      resultType: CameraResultType.DataUrl,
-      source: CameraSource.Prompt,
-    }).then((result) => {
-      console.log("Result", result.path);
-    });
-
-    /**const image = await Plugins.Camera.getPhoto({
-      quality: 100,
-      allowEditing: false,
-      resultType: CameraResultType.Uri,
-      source: CameraSource.Prompt,
-    });**/
-    //this.picUrl = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl));
-    // this.picUrl = image.path;
-
-    // console.log("PICURL", this.picUrl);
-    // console.log("Image Path", image.format);
+    this.uploadService.addFiles();
   }
 
   async takePicture1() {

@@ -44,7 +44,7 @@ export class UserService {
     return this.user;
   }
 
-  async updateProfile(profile: any) {
+  async updateProfile(profile: any, nextPage: string) {
     let userData: any = await this.storageService.getUser();
     console.log("userData", userData);
     let userIdObj: any = { userId: userData.userId };
@@ -63,7 +63,7 @@ export class UserService {
       (res: any) => {
         console.log("Prof res", res);
         if (res.code == 2506 || res.code == 2505) {
-          this.router.navigateByUrl("profile-view");
+          this.router.navigateByUrl(nextPage);
         }
       },
       (error) => {

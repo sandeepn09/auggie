@@ -58,24 +58,6 @@
       >
     </div>
 
-    <div *ngIf="cardInfo" class="form-group ion-text-left">
-      <ion-select
-        placeholder="Payment Method"
-        interface="action-sheet"
-        class="form-control"
-        formControlName="cardId"
-      >
-        <ion-select-option value="{{cardInfo.id}}"
-          >xxxx {{cardInfo.cardNumber%10000}}</ion-select-option
-        >
-      </ion-select>
-      <span
-        class="invalid"
-        *ngIf="psForm.get('cardId').touched && psForm.get('cardId').invalid"
-        >Select an Payment Card</span
-      >
-    </div>
-
     <div class="form-group ion-text-left">
       <ion-select
         placeholder="Reccuring"
@@ -94,7 +76,7 @@
         placeholder="Payment Date"
         class="form-control"
         formControlName="paymentDate"
-        displayFormat="MM/DD/YY"
+        displayFormat="MMM DD"
       ></ion-datetime>
       <span
         class="invalid"

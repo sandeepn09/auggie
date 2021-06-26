@@ -6,20 +6,21 @@
   <div class="ion-padding">
     <h2>Share with Friends!</h2>
     <p>
-      For each Friend you refer, we will add $ to your account when they make their first payment
+      For each Friend you refer, we will add $ to your account when they make
+      their first payment
     </p>
   </div>
-  
 
-  <div class="img-container ion-text-center">
-    
+  <div class="img-container ion-text-center"></div>
+
+  <div class="phone-div ion-padding">
+    <div>
+      <p>+1</p>
+      <ion-input autofocus="true" [(ngModel)]="phoneNumber" placeholder="Enter phone" maxlength="10" type="tel" inputmode="numeric"></ion-input>
+    </div>
   </div>
-
-  
 
   <div class="footer-div ion-padding">
-    <ion-button expand="block">SEND REFERAL TEXT</ion-button>
+    <ion-button (click)="sendText()" class="main-btn" expand="block">SEND REFERAL TEXT</ion-button>
   </div>
-    
-  
 </div>

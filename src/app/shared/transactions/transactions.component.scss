@@ -5,7 +5,7 @@
 
   ion-searchbar {
     background: var(--ion-color-dark);
-  --background: var(--ion-color-dark);
+    --background: var(--ion-color-dark);
     // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin-top: -30px;
   }
@@ -99,7 +99,6 @@
           opacity: 0.6;
 
           b {
-            
             font-weight: 800;
             font-size: 1.1em;
           }
@@ -112,6 +111,16 @@
       }
     }
   }
+
+  .no-data {
+    h2 {
+      font-weight: 800;
+      margin-bottom: 8vh;
+    }
+    img {
+      width: 30vw;
+      height: auto;
+      margin-bottom: 8vh;
+    }
+  }
 }
-
-

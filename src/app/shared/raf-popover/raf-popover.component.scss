@@ -1,48 +1,58 @@
 .pop-container {
-    
-    color: var(--ion-color-dark);
-    
-    ion-icon {
-        color: var(--ion-color-medium);
+  color: var(--ion-color-dark);
+
+  ion-icon {
+    color: var(--ion-color-medium);
+  }
+  h2 {
+    font-weight: 800;
+    width: 100%;
+    font-size: 2em;
+  }
+
+  p {
+    color: #696a6b;
+  }
+
+  .img-container {
+    width: 80%;
+
+    // margin-top: 2vh;
+    // height: 40vh;
+    height: 30vh;
+    background: url("../../../assets/raf.png") no-repeat center center / 100%
+      100%;
+  }
+
+  .phone-div {
+    margin-top: 6vh;
+
+    div {
+      border: 1px solid #9AACBC;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #2A2B2C;
+      padding-left: 10px;
+      padding-right: 10px;
+      border-radius: 10px;
     }
-    h2 {
-        font-weight: 800;
-        width: 100%;
-        font-size: 2em;
-    }
-    
+
     p {
-        color: #696A6B;
+      letter-spacing: 5px;
+      color: #2A2B2C;
+      font-weight: 600;
+      padding-right: 10px;
+      // background: #EFF0F4;
+    }
+    p,
+    ion-input {
+      font-size: 1.5em;
+      --placeholder-opacity: 0.4;
     }
 
-    .img-container {
-        width: 100%;
-        
-        // margin-top: 2vh;
-        height: 40vh;
-        background: url("../../../assets/raf.png") no-repeat center center /
-        150% 100%;
-
-       
-  
+    ion-input {
+      border-left: 1px solid #9AACBC;
     }
-
-    .footer-div {
-        position: fixed;
-        left: 50%;
-        bottom: 0;
-        transform: translate(-50%, -10%);
-        margin: 0 auto;
-        width: 100%;
-        
-        ion-button {
-            height: 3em;
-            font-size: 1em;
-            color: #FFF;
-            font-weight: 700;
-            --box-shadow: none;
-            --border-radius: 10px;
-        }
-    }
-   
+  }
 }

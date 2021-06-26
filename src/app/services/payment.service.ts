@@ -89,7 +89,7 @@ export class PaymentService {
     return this.records[id];
   }
 
-  async addFundingAccount(bankInfo: any) {
+  async addFundingAccount(bankInfo: any, nextPage: string) {
     let userData: any = await this.storageService.getUser();
     console.log("bankInfo", bankInfo);
 
@@ -110,7 +110,7 @@ export class PaymentService {
           this.messageService.message(
             "Success!",
             "Your funding account was added and can be used to fund cards now!",
-            "/profile-view",
+            nextPage,
             "OK",
             false
           );
@@ -122,7 +122,7 @@ export class PaymentService {
       );
   }
 
-  async schedulePayment(paymentSchedule: PaymentSchedule) {
+  async schedulePayment(paymentSchedule: PaymentSchedule, nextPage: string) {
     delete paymentSchedule["providerName"];
 
     const userId = await this.userService.getUserId();
@@ -136,7 +136,7 @@ export class PaymentService {
           this.messageService.message(
             "Success!",
             "Payment was scheduled",
-            "/add-payment",
+            nextPage,
             "OK",
             false
           );
@@ -159,5 +159,30 @@ export class PaymentService {
 
     console.log("Payments With Promise", response);
     return response.details.payments;
+  }
+
+  async createCard() {
+    const userId = await this.userService.getUserId();
+    const response: any = await this.httpService
+      .get("card-request", { userId: userId }, AppConstants.HEADERS)
+      .toPromise()
+      .catch((error) => {
+        this.errorHandlerService.showMessage(error);
+      });
+
+    console.log("Card Creation Response", response);
+    if (
+      response &&
+      (response.code == 2508 || response.code == 2509 || response.code == 2510)
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  async createCard1() {
+    setTimeout(() => {
+      console.log("Creating card!!!");
+    }, 4000);
   }
 }

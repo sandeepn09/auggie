@@ -1,9 +1,12 @@
 <ion-content *ngIf="user">
   <div class="head-container">
-    <ion-menu-button *ngIf="profileComplete && !darkMode" menu="main-menu"><img alt="" src="../../../assets/menu.png"></ion-menu-button>
-    <ion-menu-button *ngIf="profileComplete && darkMode" menu="main-menu"><img alt="" src="../../../assets/menu-dark.png"></ion-menu-button>
+    <ion-menu-button *ngIf="profileComplete && !darkMode" menu="main-menu"
+      ><img alt="" src="../../../assets/menu.png"
+    /></ion-menu-button>
+    <ion-menu-button *ngIf="profileComplete && darkMode" menu="main-menu"
+      ><img alt="" src="../../../assets/menu-dark.png"
+    /></ion-menu-button>
     <div *ngIf="!profileComplete">
-     
       <ion-back-button
         text=""
         icon="chevron-back-outline"
@@ -15,7 +18,9 @@
     <div class="profile-img">
       <img alt="" src="../../../assets/avatar.svg" />
       <div class="ion-text-center">
-        <p style="text-transform: capitalize;" class="ft-700">{{user.firstName}} {{user.lastName}}</p>
+        <p style="text-transform: capitalize" class="ft-700">
+          {{user.firstName}} {{user.lastName}}
+        </p>
         <p class="small-font light-clr">he/him/his</p>
       </div>
     </div>
@@ -68,8 +73,8 @@
 
   <div class="info-content ion-padding form-sec-top-margin">
     <div class="banks-title ion-margin-bottom">
-      <h6 class="ion-text-uppercase">Bank Accounts</h6>
-      <ion-button routerLink="/funding-account" fill="clear"
+      <h6 class="ion-text-uppercase">Bank Account</h6>
+      <ion-button [disabled]="banks && banks.length > 0" routerLink="/funding-account" fill="clear"
         ><ion-icon name="add-circle"></ion-icon>ADD</ion-button
       >
     </div>
@@ -87,9 +92,13 @@
       ></ion-icon>
       <div class="bank-info">
         <div class="bank-title">
-          <span>{{bank.bankName}}</span
-          >
-          <ion-icon color="danger" (click)="deleteBank(bank.id)" class="ion-text-end" name="trash-outline"></ion-icon>
+          <span>{{bank.bankName}}</span>
+          <ion-icon
+            color="danger"
+            (click)="deleteBank(bank.id)"
+            class="ion-text-end"
+            name="trash-outline"
+          ></ion-icon>
         </div>
         <p class="light-clr">{{getAcctType(bank.accountType)}}</p>
         <app-number-mask
@@ -99,25 +108,25 @@
       </div>
     </div>
   </div>
+
+  <div class="btn-div ion-text-center">
+    <ion-button expand="block" fill="clear" class="dark-clr" (click)="logout()"
+      >Log out</ion-button
+    >
+
+    <ion-button
+      expand="block"
+      fill="clear"
+      class="danger-clr"
+      (click)="deleteAccount()"
+      >Delete this account</ion-button
+    >
+    <ion-button
+      expand="block"
+      fill="clear"
+      class="dark-clr"
+      (click)="testModal()"
+      >Terms of service</ion-button
+    >
+  </div>
 </ion-content>
-
-<ion-footer style="margin-top: 4em" class="ion-no-border ion-text-center">
-  <ion-button expand="block" fill="clear" class="dark-clr" (click)="logout()"
-    >Log out</ion-button
-  >
-
-  <ion-button
-    expand="block"
-    fill="clear"
-    class="danger-clr"
-    (click)="deleteAccount()"
-    >Delete this account</ion-button
-  >
-  <ion-button
-    expand="block"
-    fill="clear"
-    class="dark-clr"
-    (click)="testModal()"
-    >Terms of service</ion-button
-  >
-</ion-footer>

@@ -1,0 +1,25 @@
+ion-content {
+  color: #2a2b2c;
+
+  h2 {
+    font-size: 1.8em;
+    margin-top: 8vh;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 0.9em;
+    opacity: 0.5;
+    margin-top: 4vh;
+  }
+
+  ion-button {
+    margin-top: 12vh;
+  }
+
+  img {
+    width: 50vw;
+    height: auto;
+    margin-top: 6vh;
+  }
+}

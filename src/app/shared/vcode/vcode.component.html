@@ -7,71 +7,60 @@
     <ion-icon name="arrow-back-outline" slot="icon-only"></ion-icon>
   </ion-button>
 
-  <ion-list lines="none">
-    <ion-list-header class="ion-margin">
-      <ion-label> Code Verification </ion-label>
-    </ion-list-header>
+  <div class="title-div">
+    <h2>Code Verification</h2>
+    <p>Enter Verification Code</p>
+  </div>
 
-    <ion-item class="ion-margin">
-      <ion-label>
-        Enter Verification Code
-        <ion-row class="ion-padding-top ion-text-center">
-          <ion-col>
-            <ion-input
-              class="marginLeft"
-              autofocus="true"
-              required
-              maxlength="1"
-              #vc1
-              type="tel"
-              inputmode="numeric"
-              [(ngModel)]="verCode[0]"
-              (keyup)="vcode($event, '', vc2, 0)"
-            >
-            </ion-input>
-            <ion-input
-              class="marginLeft"
-              autofocus="true"
-              required
-              maxlength="1"
-              #vc2
-              type="tel"
-              inputmode="numeric"
-              [(ngModel)]="verCode[1]"
-              (keyup)="vcode($event, vc1, vc3, 1)"
-            >
-            </ion-input>
-            <ion-input
-              class="marginLeft"
-              autofocus="true"
-              required
-              maxlength="1"
-              #vc3
-              type="tel"
-              inputmode="numeric"
-              [(ngModel)]="verCode[2]"
-              (keyup)="vcode($event, vc2, vc4, 2)"
-            >
-            </ion-input>
-            <ion-input
-              class="marginLeft"
-              autofocus="true"
-              required
-              maxlength="1"
-              #vc4
-              type="tel"
-              inputmode="numeric"
-              [(ngModel)]="verCode[3]"
-              (keyup)="vcode($event, vc3, '', 3)"
-            >
-            </ion-input>
-          </ion-col>
-        </ion-row>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <div class="vcode-div">
+    <ion-input
+      autofocus="true"
+      required
+      maxlength="1"
+      #vc1
+      type="tel"
+      inputmode="numeric"
+      [(ngModel)]="verCode[0]"
+      (keyup)="vcode($event, '', vc2, 0)"
+    >
+    </ion-input>
+    <ion-input
+      autofocus="true"
+      required
+      maxlength="1"
+      #vc2
+      type="tel"
+      inputmode="numeric"
+      [(ngModel)]="verCode[1]"
+      (keyup)="vcode($event, vc1, vc3, 1)"
+    >
+    </ion-input>
+    <ion-input
+      autofocus="true"
+      required
+      maxlength="1"
+      #vc3
+      type="tel"
+      inputmode="numeric"
+      [(ngModel)]="verCode[2]"
+      (keyup)="vcode($event, vc2, vc4, 2)"
+    >
+    </ion-input>
+    <ion-input
+      autofocus="true"
+      required
+      maxlength="1"
+      #vc4
+      type="tel"
+      inputmode="numeric"
+      [(ngModel)]="verCode[3]"
+      (keyup)="vcode($event, vc3, '', 3)"
+    >
+    </ion-input>
+  </div>
 
-  <div class="ion-text-center ion-margin">
+  <div class="ion-text-center ion-margin btn-div">
+    <p>Didn't receive the code?</p>
     <ion-button expand="block" class="main-btn" (click)="confirm()"
       >Resend Verification code</ion-button
     >

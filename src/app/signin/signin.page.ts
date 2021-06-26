@@ -13,6 +13,7 @@ import {
 } from "@ionic/angular";
 import { AuthRequest } from "../models/user/user-models";
 import { AuthService } from "../services/auth.service";
+import { LoadingService } from "../services/loading.service";
 import { PasswordResetComponent } from "../shared/password-reset/password-reset.component";
 import { SigninHelpComponent } from "../shared/signin-help/signin-help.component";
 import { VcodeComponent } from "../shared/vcode/vcode.component";
@@ -35,7 +36,8 @@ export class SigninPage implements OnInit {
     public alertController: AlertController,
     private authService: AuthService,
     public modalController: ModalController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {}
@@ -45,10 +47,12 @@ export class SigninPage implements OnInit {
       console.log(this.authForm.value);
       this.presentAlert();
     } else {
+      this.loadingService.presentLoading("Signin in...")
       console.log(this.authForm.value);
       console.log("BD Form is VALID!!!!");
       const authReq: AuthRequest = this.authForm.value;
       this.authService.login(authReq);
+      this.loadingService.dismissLoading();
     }
   }
 
