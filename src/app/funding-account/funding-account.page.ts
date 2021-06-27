@@ -12,6 +12,7 @@ import { BankModalComponent } from "../shared/bank-modal/bank-modal.component";
 import { PaymentService } from "../services/payment.service";
 import { AppConstants } from "../config/app-constants";
 import { LoadingService } from "../services/loading.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: "app-funding-account",
@@ -42,7 +43,8 @@ export class FundingAccountPage implements OnInit {
     public alertController: AlertController,
     public modalController: ModalController,
     private paymentService: PaymentService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private authService: AuthService
   ) {}
 
   save() {
@@ -54,6 +56,7 @@ export class FundingAccountPage implements OnInit {
       console.log("BD Form is VALID!!!!");
       this.bankInfo = this.bdForm.value;
       this.presentModal();
+      this.authService.refreshUser();
     }
   }
 
@@ -92,7 +95,7 @@ export class FundingAccountPage implements OnInit {
     if (role === "confirm") {
       await this.loadingService.presentLoading("Adding Bank account...");
 
-      await this.paymentService.addFundingAccount(this.bdForm.value, "/profile-view");
+      await this.paymentService.addFundingAccount(this.bdForm.value, "/payments");
   
       await this.loadingService.dismissLoading();
     }

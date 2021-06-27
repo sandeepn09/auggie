@@ -14,6 +14,7 @@ import {
 import { AuthRequest } from "../models/user/user-models";
 import { AuthService } from "../services/auth.service";
 import { LoadingService } from "../services/loading.service";
+import { MessageService } from "../services/message.service";
 import { PasswordResetComponent } from "../shared/password-reset/password-reset.component";
 import { SigninHelpComponent } from "../shared/signin-help/signin-help.component";
 import { VcodeComponent } from "../shared/vcode/vcode.component";
@@ -37,7 +38,8 @@ export class SigninPage implements OnInit {
     private authService: AuthService,
     public modalController: ModalController,
     private toastController: ToastController,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messageService: MessageService
   ) {}
 
   ngOnInit() {}
@@ -47,12 +49,12 @@ export class SigninPage implements OnInit {
       console.log(this.authForm.value);
       this.presentAlert();
     } else {
-      this.loadingService.presentLoading("Signin in...")
+      // this.loadingService.presentLoading("Signin in...")
       console.log(this.authForm.value);
       console.log("BD Form is VALID!!!!");
       const authReq: AuthRequest = this.authForm.value;
       this.authService.login(authReq);
-      this.loadingService.dismissLoading();
+      // this.loadingService.dismissLoading();
     }
   }
 
@@ -127,8 +129,21 @@ export class SigninPage implements OnInit {
 
     const { data: info, role } = await modal.onWillDismiss();
     console.log("Password Info", info);
+
     if (role === "confirm") {
-      this.authService.resetPassword(this.helpEmail.email, info.password);
+      const result = await this.authService.resetPassword(
+        this.helpEmail.email,
+        info.password
+      );
+
+      if (result && result == true)
+        this.messageService.message(
+          "Success!",
+          "Your password has been reset!",
+          null,
+          "OK",
+          false
+        );
     }
   }
 

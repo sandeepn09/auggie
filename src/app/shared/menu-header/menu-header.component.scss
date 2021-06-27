@@ -1,29 +1,32 @@
 .menu-header {
-    padding-top: 3em;
-    padding-right: 0.5em;
-    padding-left: 0.5em;
-  }
-  
-  .avatar-ph {
-    padding: 0.4em;
-    // border: 1px solid blue;
-    background-color: #698adc;
-    border-radius: 10px;
-    font-size: 1.5em;
-    color: #ffffff;
-  }
-  
-  .right-padding {
-    padding-right: 8px;
-  }
-  
-  .small-font {
-    font-size: 0.9em;
-    font-weight: 600;
-  }
-  
-  .highlt {
-    color: #00bfa6;
-    text-transform: capitalize;
-  }
-  
+  padding-top: 3em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
+
+ion-toolbar {
+  --background: none;
+}
+
+.avatar-ph {
+  padding: 0.4em;
+  // border: 1px solid blue;
+  background-color: #698adc;
+  border-radius: 10px;
+  font-size: 1.5em;
+  color: #ffffff;
+}
+
+.right-padding {
+  padding-right: 8px;
+}
+
+.small-font {
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.highlt {
+  color: #00bfa6;
+  text-transform: capitalize;
+}

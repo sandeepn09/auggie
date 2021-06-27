@@ -119,7 +119,7 @@ export class SchedulePaymentPage implements OnInit {
       console.log("SCHED PAY", role);
       console.log("Payschedule after conformation", this.paySchedule);
       // this.paymentService.addFundingAccount(this.bdForm.value);
-      this.paymentService.schedulePayment(this.paySchedule, "/add-payment");
+      this.paymentService.schedulePayment(this.paySchedule, "/payments");
     } else if (role === "add-bank") {
       console.log("SCHED PAY", role);
       console.log("Payschedule after conformation", this.paySchedule);

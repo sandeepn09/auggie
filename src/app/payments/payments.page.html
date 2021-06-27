@@ -1,23 +1,4 @@
-<ion-header class="ion-no-border">
-  <ion-list lines="none">
-    <ion-item color="primary">
-      <ion-back-button
-        text=""
-        icon="arrow-back-outline"
-        size="small"
-        color="light"
-        defaultHref="/profile-view"
-      ></ion-back-button>
-    </ion-item>
-
-    <ion-item color="primary">
-      <h2>Bills you pay</h2>
-    </ion-item>
-  </ion-list>
-  <div class="popover">
-    <ion-searchbar debounce="500" enterkeyhint="go" (ionChange)="search()" class="custom-search"></ion-searchbar>
-  </div>
-</ion-header>
+<app-menu-header></app-menu-header>
 
 <ion-content [fullscreen]="true" class="ion-margin-top">
   <!-- <div *ngIf="cardInfo" class="ion-padding">

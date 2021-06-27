@@ -15,11 +15,12 @@ export class LoadingService {
     });
     await loading.present();
 
-    const { role, data } = await loading.onDidDismiss();
-    console.log("Loading dismissed!");
+    // const { role, data } = await loading.onDidDismiss();
+    // console.log("Loading dismissed!");
   }
 
-  dismissLoading() {
-    this.loadingController.dismiss();
+  async dismissLoading() {
+    
+    await this.loadingController.dismiss();
   }
 }

@@ -51,9 +51,7 @@ export class EditProfilePage implements OnInit {
     ]),
     phone: new FormControl("", [
       Validators.required,
-      Validators.pattern("^[0-9]*$"),
-      Validators.minLength(10),
-      Validators.maxLength(11),
+      Validators.pattern("^[0-9]*$")
     ]),
     occupation: new FormControl("", Validators.required),
     annualIncome: new FormControl("", Validators.required),
@@ -63,7 +61,10 @@ export class EditProfilePage implements OnInit {
     address: new FormControl("", Validators.required),
     city: new FormControl("", Validators.required),
     state: new FormControl("", Validators.required),
-    postalCode: new FormControl(""),
+    postalCode: new FormControl("", [
+      Validators.required,
+      Validators.pattern("^[0-9]*$")
+    ]),
   });
 
   hasBanks: boolean = false;

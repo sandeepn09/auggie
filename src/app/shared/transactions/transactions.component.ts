@@ -82,23 +82,31 @@ export class TransactionsComponent implements OnInit {
   }
 
   getProviderName(id: number) {
-    const temp = this.providers.filter((object) => {
-      return object["id"] == id;
-    });
+    if (this.providers) {
+      const temp = this.providers.filter((object) => {
+        return object["id"] == id;
+      });
 
-    console.log("ProviderName", temp[0].providerName);
+      console.log("ProviderName", temp[0].providerName);
 
-    return temp[0].providerName;
+      return temp[0].providerName;
+    }
+
+    return "NA";
   }
 
   getIconUrl(id: number) {
-    const temp = this.providers.filter((object) => {
-      return object["id"] == id;
-    });
+    if (this.providers) {
+      const temp = this.providers.filter((object) => {
+        return object["id"] == id;
+      });
 
-    console.log("iconUrl", temp[0].iconUrl);
+      console.log("iconUrl", temp[0].iconUrl);
 
-    return temp[0].iconUrl;
+      return temp[0].iconUrl;
+    }
+
+    return "";
   }
 
   async presentActionSheet() {

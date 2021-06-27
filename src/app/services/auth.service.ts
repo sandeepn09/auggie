@@ -11,6 +11,7 @@ import {
   SignupRequest,
 } from "../models/user/user-models";
 import { HttpService } from "./http.service";
+import { LoadingService } from "./loading.service";
 import { MessageService } from "./message.service";
 import { StorageService } from "./storage.service";
 import { UserService } from "./user.service";
@@ -28,16 +29,19 @@ export class AuthService {
     private storageService: StorageService,
     private router: Router,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private loadingService: LoadingService
   ) {}
 
   login(authRequest: AuthRequest): boolean {
+    this.loadingService.presentLoading("Signin in...");
     this.httpService.post("user/auth-token", authRequest, headers).subscribe(
       (res: any) => {
         if (res && res.code == 2504 && res.details) {
           if (res.details.user) {
             this.storageService.store(AuthConstants.AUTH, res.details.user);
           }
+          this.loadingService.dismissLoading();
           if (res.details.user && res.details.user.profileComplete === true) {
             this.router.navigateByUrl("/profile-view");
           } else {
@@ -49,6 +53,7 @@ export class AuthService {
         return true;
       },
       (error: any) => {
+        this.loadingService.dismissLoading();
         console.log("Error signing in", error.error.message);
         this.messageService.error("Failed", error.error.message, null, "OK");
         return false;
@@ -74,48 +79,46 @@ export class AuthService {
 
   async resetPassword(email: string, password: string) {
     console.log("Resetting password for email", email + " " + password);
-    const passwordResetRequest = { email: email, password: password };
+    const passwordResetRequest = { username: email, password: password };
     console.log("Requesting password reset", passwordResetRequest);
 
     const result: any = await this.httpService
       .post("user/password-reset", passwordResetRequest, headers)
       .toPromise()
-      .then((data) => {
+      .then((data: any) => {
         console.log("Promise Data", data);
 
         return data;
       })
       .catch((err) => {
         console.log("Password reset failed", err);
+        return false;
       });
 
     console.log("RESULT", result);
 
-    if (result.code === 2600) {
+    if (result && result.code && result.code === 2600) {
       return true;
     }
     return false;
   }
 
-  refreshUser(authRequest: AuthRequest, url: string) {
-    this.httpService.post("user/auth-token", authRequest, headers).subscribe(
+  async refreshUser() {
+    const email = await this.userService.getUserEmail();
+    this.httpService.get("user/user-data", { email: email }, headers).subscribe(
       (res: any) => {
         if (res && res.code == 2504 && res.details) {
           if (res.details.user) {
+            this.storageService.remove(AuthConstants.AUTH);
+            console.log("User Cleared");
             this.storageService.store(AuthConstants.AUTH, res.details.user);
+            console.log("User refreshed", res.details.user);
           }
-          if (res.details.user && res.details.user.profileComplete === true) {
-            this.router.navigateByUrl(url);
-          } else {
-            this.router.navigateByUrl("/description");
-          }
-
-          console.log("login success!");
         }
         return true;
       },
       (error: any) => {
-        console.log("Error signing in", error.error.message);
+        console.log("Error refreshing user", error.error.message);
         this.messageService.error("Failed", error.error.message, null, "OK");
         return false;
       }
