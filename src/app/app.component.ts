@@ -1,11 +1,12 @@
 import { Component } from "@angular/core";
 
-import { Platform } from "@ionic/angular";
+import { MenuController, Platform } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AuthService } from "./services/auth.service";
 import { UserService } from "./services/user.service";
 import { Router } from "@angular/router";
+import { EventService } from "./services/event.service";
 
 @Component({
   selector: "app-root",
@@ -15,6 +16,7 @@ import { Router } from "@angular/router";
 export class AppComponent {
   hasBanks: boolean = false;
   hasCards: boolean = false;
+  isProfileComplete: boolean = false;
 
   constructor(
     private platform: Platform,
@@ -22,7 +24,9 @@ export class AppComponent {
     private statusBar: StatusBar,
     private authService: AuthService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    public menuController: MenuController,
+    private events: EventService
   ) {
     this.initializeApp();
     this.initData();
@@ -33,11 +37,17 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+
+    this.events.subscribe("user:refreshed", (data: any) => {
+      console.log("App Component user refresh event", data, "at", data.time);
+      this.initData();
+    });
   }
 
   async initData() {
     this.hasBanks = await this.userService.hasBanks();
     this.hasCards = await this.userService.hasCards();
+    this.isProfileComplete = await this.userService.isProfileComplete();
   }
 
   logout() {
@@ -61,6 +71,13 @@ export class AppComponent {
     } else {
       console.log("User has no banks", hasBanks);
       this.router.navigateByUrl("/description");
+    }
+  }
+
+  closeMenu() {
+    let open = this.menuController.isOpen();
+    if (open) {
+      this.menuController.close();
     }
   }
 }

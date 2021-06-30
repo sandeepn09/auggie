@@ -10,6 +10,7 @@ import {
   AuthResponse,
   SignupRequest,
 } from "../models/user/user-models";
+import { EventService } from "./event.service";
 import { HttpService } from "./http.service";
 import { LoadingService } from "./loading.service";
 import { MessageService } from "./message.service";
@@ -30,7 +31,8 @@ export class AuthService {
     private router: Router,
     private messageService: MessageService,
     private userService: UserService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private events: EventService
   ) {}
 
   login(authRequest: AuthRequest): boolean {
@@ -40,6 +42,7 @@ export class AuthService {
         if (res && res.code == 2504 && res.details) {
           if (res.details.user) {
             this.storageService.store(AuthConstants.AUTH, res.details.user);
+            this.publishUserRefreshEvent();
           }
           this.loadingService.dismissLoading();
           if (res.details.user && res.details.user.profileComplete === true) {
@@ -115,6 +118,7 @@ export class AuthService {
             console.log("User refreshed", res.details.user);
           }
         }
+        this.publishUserRefreshEvent();
         return true;
       },
       (error: any) => {
@@ -167,5 +171,12 @@ export class AuthService {
       return true;
     }
     return false;
+  }
+
+  publishUserRefreshEvent() {
+    this.events.publish("user:refreshed", {
+      data: null,
+      time: new Date(),
+    });
   }
 }

@@ -5,6 +5,8 @@ import {
   PaymentSchedule,
   ServiceProvider,
 } from "src/app/models/user/payment-models";
+import { EventService } from "src/app/services/event.service";
+import { MessageService } from "src/app/services/message.service";
 import { PaymentService } from "src/app/services/payment.service";
 import { ProviderService } from "src/app/services/provider.service";
 import { UserService } from "src/app/services/user.service";
@@ -64,11 +66,18 @@ export class TransactionsComponent implements OnInit {
     private paymentService: PaymentService,
     private providerService: ProviderService,
     public actionSheetController: ActionSheetController,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService,
+    private events: EventService
   ) {}
 
   ngOnInit() {
     this.initData();
+
+    this.events.subscribe("bill:added", (data: any) => {
+      console.log("TransactionsComponent Bill added event", data, "at", data.time);
+      this.initData();
+    });
   }
 
   async initData() {
@@ -119,6 +128,7 @@ export class TransactionsComponent implements OnInit {
           icon: "open-outline",
           handler: () => {
             console.log("Details clicked");
+            this.warnUnknownPayment();
           },
         },
         {
@@ -139,5 +149,15 @@ export class TransactionsComponent implements OnInit {
 
   addPayments() {
     this.router.navigateByUrl("/add-payment");
+  }
+
+  warnUnknownPayment() {
+    this.messageService.warn(
+      "Unknown Payment",
+      "We don't recognize this payment. If you used the Augie card for payments, make sure you set up the Bill pay in the App",
+      null,
+      "OK",
+      false
+    );
   }
 }

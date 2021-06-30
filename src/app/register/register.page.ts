@@ -37,11 +37,10 @@ export class RegisterPage implements OnInit {
       Validators.pattern("[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}"),
     ]),
     password: new FormControl("", [
-      // Validators.required,
-      
-      Validators.pattern("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,12}$"),
-      
-      // Validators.minLength(8),
+      Validators.required,
+      // Validators.pattern("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,12}$"),
+      // Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,16})'),
+      Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$")
     ]),
   });
 
@@ -85,6 +84,7 @@ export class RegisterPage implements OnInit {
 
   save() {
     if (this.regForm.invalid) {
+      this.regForm.markAllAsTouched();
       console.log(this.regForm.value);
       this.presentAlert();
     } else {

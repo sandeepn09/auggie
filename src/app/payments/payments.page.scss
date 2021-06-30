@@ -42,7 +42,6 @@ ion-header {
       // box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
       // margin-left: 20px;
       .searchbar-input-container {
-        
         input {
           background: var(--ion-color-light);
           --background: var(--ion-color-light);
@@ -55,4 +54,11 @@ ion-header {
 ion-content {
   padding-top: 20px;
   --background: var(--ion-color-light);
+
+  .show-card {
+    p {
+      color: var(--ion-color-dark);
+      opacity: 0.5;
+    }
+  }
 }

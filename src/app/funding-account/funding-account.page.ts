@@ -47,7 +47,7 @@ export class FundingAccountPage implements OnInit {
     private authService: AuthService
   ) {}
 
-  save() {
+  async save() {
     if (this.bdForm.invalid) {
       console.log(this.bdForm.value);
       this.presentAlert();
@@ -55,7 +55,7 @@ export class FundingAccountPage implements OnInit {
       console.log(this.bdForm);
       console.log("BD Form is VALID!!!!");
       this.bankInfo = this.bdForm.value;
-      this.presentModal();
+      await this.presentModal();
       this.authService.refreshUser();
     }
   }

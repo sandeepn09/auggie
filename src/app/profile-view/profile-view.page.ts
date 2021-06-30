@@ -55,7 +55,7 @@ export class ProfileViewPage implements OnInit {
       console.log("User Details", res.details.banks);
       this.banks = res.details.banks;
       this.user = res.details.userDetails;
-      this.formattedIncome = this.user.annualIncome.toString();
+      this.formattedIncome = AppConstants.INCOME_RANGES.get(this.user.annualIncome);
     });
 
   this.checkProfile();

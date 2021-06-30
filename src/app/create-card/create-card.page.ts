@@ -28,12 +28,12 @@ export class CreateCardPage implements OnInit {
 
     this.messageService.message(
       "Success!",
-      "Your Augie card was approved and created!",
+      "Your Augie card was approved and created! Make sure you enter the Augie card number on the Service provider's site for all the payments that you have or will set up",
       "/payments",
       "OK",
       false
     );
 
-    this.authService.refreshUser();
+    await this.authService.refreshUser();
   }
 }

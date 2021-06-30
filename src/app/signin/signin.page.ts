@@ -46,6 +46,7 @@ export class SigninPage implements OnInit {
 
   save() {
     if (this.authForm.invalid) {
+      this.authForm.markAllAsTouched();
       console.log(this.authForm.value);
       this.presentAlert();
     } else {

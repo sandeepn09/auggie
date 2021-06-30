@@ -11,6 +11,7 @@ export class User {
   postalCode: string;
   occupation: string;
   phone: string;
+  countryCode: string;
   gender: string;
   dob: string;
   annualIncome: string;

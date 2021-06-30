@@ -1,11 +1,21 @@
-<div class="mini-card ion-padding">
+<div class="mini-card ion-padding ion-text-left">
   <div class="logo-num">
-    <ion-text color="light">AUGIE</ion-text>
-    <div class="crd-num">
-      <span
-        ><ion-icon size="large" name="ellipsis-horizontal"></ion-icon></span
-      ><span> {{cardNumber%10000}}</span>
+    <div class="logo">
+      <ion-text color="light">AUGIE</ion-text>
+      <p class="ion-text-uppercase ion-text-right">DEBIT</p>
     </div>
+    <p class="cnum">
+      <span>
+        <b>{{ cardNumber }}</b></span
+      >
+    </p>
   </div>
-  <p>{{expirationDate | date:'MM/yy'}}</p>
+
+  <div class="exp">
+    <p class="ion-text-uppercase">CVV <b>345</b></p>
+    <p class="ion-text-uppercase">
+      Exp <b>{{ expirationDate | date: "MM/yy" }}</b>
+    </p>
+  </div>
+  
 </div>

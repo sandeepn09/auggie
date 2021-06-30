@@ -14,6 +14,7 @@ import { PaymentModalComponent } from "../shared/payment-modal/payment-modal.com
 import { MessageService } from "../services/message.service";
 import { UserService } from "../services/user.service";
 import { PaymentService } from "../services/payment.service";
+import { EventService } from "../services/event.service";
 
 @Component({
   selector: "app-schedule-payment",
@@ -23,23 +24,18 @@ import { PaymentService } from "../services/payment.service";
 export class SchedulePaymentPage implements OnInit {
   paySchedule: PaymentSchedule = {
     providerId: 0,
-    description: "",
     amount: 0,
     paymentDate: null,
-    recurring: false,
   };
 
   providerName: string;
   iconUrl: string;
-  // cardInfo: CardInfo;
 
   psForm = new FormGroup({
     providerId: new FormControl("", Validators.required),
     providerName: new FormControl("", Validators.required),
-    description: new FormControl("", Validators.required),
     amount: new FormControl("", Validators.required),
     paymentDate: new FormControl("", Validators.required),
-    recurring: new FormControl("", Validators.required),
   });
 
   constructor(
@@ -48,11 +44,15 @@ export class SchedulePaymentPage implements OnInit {
     private modalController: ModalController,
     private messageService: MessageService,
     private userService: UserService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private events: EventService
   ) {}
 
-  async ngOnInit() {
-    // console.log("CARD INFO ON INIT XXXXX", this.cardInfo);
+  ngOnInit() {
+    this.initData();
+  }
+
+  async initData() {
     const sp = this.activateRoute.snapshot.data["serviceProvider"];
     console.log("serviceProvider!!!!!,", sp);
 
@@ -61,20 +61,21 @@ export class SchedulePaymentPage implements OnInit {
     this.iconUrl = sp.iconUrl;
 
     console.log("LOGO", this.iconUrl);
-    // this.getCardInfo();
   }
 
-  save() {
+  async save() {
     // this.psForm.get('cardId').setValue(this.cardInfo.id);
 
     if (this.psForm.invalid) {
       console.log(this.psForm.value);
+      this.psForm.markAllAsTouched();
       this.presentAlert();
     } else {
       this.paySchedule = this.psForm.value;
       console.log("Valid Pay schedule", this.paySchedule);
 
-      this.presentModal();
+      await this.presentModal();
+      this.publishBillAddedEvent();
     }
   }
 
@@ -95,8 +96,7 @@ export class SchedulePaymentPage implements OnInit {
 
   async presentModal() {
     // console.log("BANK INFO", this.bankInfo);
-    const acctType = AppConstants.YES_NO.get(this.paySchedule.recurring);
-    console.log("Payschedule before conformation", this.paySchedule);
+    console.log("Payschedule before confirmation", this.paySchedule);
 
     const card = (await this.userService.getCardDetails()) as CardInfo;
 
@@ -130,5 +130,12 @@ export class SchedulePaymentPage implements OnInit {
 
   async getCardInfo() {
     // this.cardInfo = await this.userService.getCardDetails() as CardInfo;
+  }
+
+  publishBillAddedEvent() {
+    this.events.publish("bill:added", {
+      data: null,
+      time: new Date(),
+    });
   }
 }

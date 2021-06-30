@@ -3,7 +3,6 @@
     <ion-buttons slot="start"
       ><ion-back-button text="" defaultHref="/add-payment"></ion-back-button
     ></ion-buttons>
-    <ion-title>Schedule Payment</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,6 +11,8 @@
   scrollY="true"
   class="ion-padding ion-text-center"
 >
+  <h2>Tell us more about your</h2>
+  <h2>{{psForm.get("providerName").value}} bill</h2>
   <form [formGroup]="psForm" class="top-margin">
     <div class="form-group ion-text-left">
       <ion-input
@@ -31,24 +32,10 @@
     <div class="form-group ion-text-left">
       <ion-input
         class="form-control"
-        formControlName="description"
-        type="text"
-        placeholder="Description"
-      >
-      </ion-input>
-      <span
-        class="invalid"
-        *ngIf="psForm.get('description').touched && psForm.get('description').invalid"
-        >Description is required</span
-      >
-    </div>
-
-    <div class="form-group ion-text-left">
-      <ion-input
-        class="form-control"
         formControlName="amount"
         type="number"
-        placeholder="Amount"
+        placeholder="Amount $0.00"
+        inputmode="decimal"
       >
       </ion-input>
       <span
@@ -58,28 +45,22 @@
       >
     </div>
 
-    <div class="form-group ion-text-left">
-      <ion-select
-        placeholder="Reccuring"
-        interface="action-sheet"
-        class="form-control"
-        formControlName="recurring"
-      >
-        <ion-select-option value="true">Yes</ion-select-option>
-        <ion-select-option value="false">No</ion-select-option>
-      </ion-select>
-    </div>
+    <div class="dt-container ion-text-left">
+      <p class="ion-text-left lbl-p">
+        What day of the month will you use the Augie card to pay this bill?
+      </p>
 
-    <div class="form-group ion-text-left dt-pckr">
-      <ion-icon name="calendar-outline"></ion-icon>
-      <ion-datetime
-        placeholder="Payment Date"
-        class="form-control"
-        formControlName="paymentDate"
-        displayFormat="MMM DD"
-      ></ion-datetime>
+      <div class="form-group ion-text-left dt-pckr">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-datetime
+          placeholder="Payment Date"
+          class="form-control"
+          formControlName="paymentDate"
+          displayFormat="MMM DD"
+        ></ion-datetime>
+      </div>
       <span
-        class="invalid"
+        class="invalid ion-text-left"
         *ngIf="psForm.get('paymentDate').touched && psForm.get('paymentDate').invalid"
         >Payment Date is required</span
       >

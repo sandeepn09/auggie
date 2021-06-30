@@ -29,12 +29,13 @@
 
       <div class="form-group">
         <ion-input
-          class="form-control input-elem"
+          class="form-control input-elem cap-text"
           formControlName="firstName"
           placeholder="First Name"
           type="text"
           [ngClass]="{'is-invalid': profileForm.get('firstName').touched && profileForm.get('firstName').invalid}"
-          [ngModel]="user.firstName"
+          value="{{user.firstName}}"
+          autocapitalize="on"
         ></ion-input>
         <span
           class="invalid"
@@ -45,12 +46,13 @@
 
       <div class="form-group">
         <ion-input
-          class="form-control input-elem"
+          class="form-control input-elem cap-text"
           formControlName="lastName"
           placeholder="Last Name"
           type="text"
+          autocapitalize="on"
           [ngClass]="{'is-invalid': profileForm.get('lastName').touched && profileForm.get('lastName').invalid}"
-          [ngModel]="user.lastName"
+          value="{{user.lastName}}"
         ></ion-input>
         <span
           class="invalid"
@@ -65,7 +67,7 @@
           interface="action-sheet"
           class="form-control"
           formControlName="gender"
-          [ngModel]="user.gender"
+          value="{{user.gender}}"
         >
           <ion-select-option value="M">He/Him/His</ion-select-option>
           <ion-select-option value="F">She/Her</ion-select-option>
@@ -84,7 +86,7 @@
           placeholder="Date of Birth"
           class="form-control"
           formControlName="dob"
-          [ngModel]="user.dob"
+          value="{{user.dob}}"
         ></ion-datetime>
 
         <span
@@ -94,7 +96,7 @@
         >
       </div>
 
-      <div class="form-group">
+      <!--<div class="form-group">
         <ion-input
           class="form-control input-elem"
           formControlName="phone"
@@ -110,6 +112,32 @@
           *ngIf="profileForm.get('phone').touched && profileForm.get('phone').invalid"
           >Phone is required and must be 10 digits</span
         >
+      </div>-->
+
+      <div class="phone-num form-group">
+        <div class="cc">
+          <!--<p>+</p>-->
+          <ion-input
+            class="form-control"
+            formControlName="countryCode"
+            placeholder="+1"
+            value="{{user.countryCode}}"
+          ></ion-input>
+        </div>
+
+        <div>
+          <ion-input
+            class="ph form-control"
+            formControlName="phone"
+            placeholder="Enter Phone number"
+            value="{{user.phone}}"
+          ></ion-input>
+        </div>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('phone').touched && profileForm.get('phone').invalid"
+          >Enter a valid phone number - Digits only</span
+        >
       </div>
     </div>
 
@@ -121,11 +149,12 @@
 
       <div class="form-group">
         <ion-input
-          class="form-control input-elem"
+          class="form-control input-elem cap-text"
           formControlName="occupation"
           placeholder="Occupation"
           type="text"
-          [ngModel]="user.occupation"
+          autocapitalize="on"
+          value="{{user?.occupation}}"
         ></ion-input>
         <span
           class="invalid"
@@ -134,7 +163,7 @@
         >
       </div>
 
-      <div class="form-group">
+      <!--<div class="form-group">
         <ion-input
           class="form-control input-elem"
           formControlName="annualIncome"
@@ -146,6 +175,30 @@
           class="invalid"
           *ngIf="profileForm.get('annualIncome').touched && profileForm.get('annualIncome').invalid"
           >Income is required</span
+        >
+      </div>-->
+
+      <div class="form-group">
+        <ion-select
+          placeholder="Income"
+          interface="action-sheet"
+          class="form-control"
+          formControlName="annualIncome"
+          value="{{user?.annualIncome}}"
+        >
+          <ion-select-option value="0to35">$0 - $35,000</ion-select-option>
+          <ion-select-option value="35to75"
+            >$35,000 - $75,000</ion-select-option
+          >
+          <ion-select-option value="75to125"
+            >$75,000 - $125,000</ion-select-option
+          >
+          <ion-select-option value="125">More than $125,000</ion-select-option>
+        </ion-select>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('gender').touched && profileForm.get('gender').invalid"
+          >Please select a Pronoun</span
         >
       </div>
     </div>
@@ -173,11 +226,12 @@
 
       <div class="form-group">
         <ion-input
-          class="form-control input-elem"
+          class="form-control input-elem cap-text"
           formControlName="city"
           placeholder="City"
           type="text"
-          [ngModel]="user.city"
+          value="{{user?.city}}"
+          autocapitalize="on"
         ></ion-input>
         <span
           class="invalid"
@@ -186,7 +240,7 @@
         >
       </div>
 
-      <div class="form-group">
+      <!--<div class="form-group">
         <ion-input
           class="form-control input-elem"
           formControlName="state"
@@ -198,6 +252,72 @@
           class="invalid"
           *ngIf="profileForm.get('state').touched && profileForm.get('state').invalid"
           >State is required</span
+        >
+      </div>-->
+
+      <div class="form-group">
+        <ion-select
+          placeholder="State"
+          interface="action-sheet"
+          class="form-control"
+          formControlName="state"
+          value="{{user?.state}}"
+        >
+          <ion-select-option value="AL">Alabama</ion-select-option>
+          <ion-select-option value="AK">Alaska</ion-select-option>
+          <ion-select-option value="AZ">Arizona</ion-select-option>
+          <ion-select-option value="AR">Arkansas</ion-select-option>
+          <ion-select-option value="CA">California</ion-select-option>
+          <ion-select-option value="CO">Colorado</ion-select-option>
+          <ion-select-option value="CT">Connecticut</ion-select-option>
+          <ion-select-option value="DE">Delaware</ion-select-option>
+          <ion-select-option value="FL">Florida</ion-select-option>
+          <ion-select-option value="GA">Georgia</ion-select-option>
+          <ion-select-option value="HI">Hawaii</ion-select-option>
+          <ion-select-option value="ID">Idaho</ion-select-option>
+          <ion-select-option value="IL">Illinois</ion-select-option>
+          <ion-select-option value="IN">Indiana</ion-select-option>
+          <ion-select-option value="IA">Iowa</ion-select-option>
+          <ion-select-option value="KS">Kansas</ion-select-option>
+          <ion-select-option value="KY">Kentucky</ion-select-option>
+          <ion-select-option value="LA">Louisiana</ion-select-option>
+          <ion-select-option value="ME">Maine</ion-select-option>
+          <ion-select-option value="MD">Maryland</ion-select-option>
+          <ion-select-option value="MA">Massachusetts</ion-select-option>
+          <ion-select-option value="MI">Michigan</ion-select-option>
+          <ion-select-option value="MN">Minnesota</ion-select-option>
+          <ion-select-option value="MS">Mississippi</ion-select-option>
+          <ion-select-option value="MO">Missouri</ion-select-option>
+          <ion-select-option value="MT">Montana</ion-select-option>
+          <ion-select-option value="NE">Nebraska</ion-select-option>
+          <ion-select-option value="NV">Nevada</ion-select-option>
+          <ion-select-option value="NH">New Hampshire</ion-select-option>
+          <ion-select-option value="NJ">New Jersey</ion-select-option>
+          <ion-select-option value="NM">New Mexico</ion-select-option>
+          <ion-select-option value="NY">New York</ion-select-option>
+          <ion-select-option value="NC">North Carolina</ion-select-option>
+          <ion-select-option value="ND">North Dakota</ion-select-option>
+          <ion-select-option value="OH">Ohio</ion-select-option>
+          <ion-select-option value="OK">Oklahoma</ion-select-option>
+          <ion-select-option value="OR">Oregon</ion-select-option>
+          <ion-select-option value="PA">Pennsylvania</ion-select-option>
+          <ion-select-option value="RI">Rhode Island</ion-select-option>
+          <ion-select-option value="SC">South Carolina</ion-select-option>
+          <ion-select-option value="SD">South Dakota</ion-select-option>
+          <ion-select-option value="TN">Tennessee</ion-select-option>
+          <ion-select-option value="TX">Texas</ion-select-option>
+          <ion-select-option value="UT">Utah</ion-select-option>
+          <ion-select-option value="VT">Vermont</ion-select-option>
+          <ion-select-option value="VA">Virginia</ion-select-option>
+          <ion-select-option value="WA">Washington</ion-select-option>
+          <ion-select-option value="WV">West Virginia</ion-select-option>
+          <ion-select-option value="WI">Wisconsin</ion-select-option>
+          <ion-select-option value="WY">Wyoming</ion-select-option>
+        </ion-select>
+        <span
+          class="invalid"
+          *ngIf="profileForm.get('state').touched && profileForm.get('state').invalid"
+          >Please select a state</span
         >
       </div>
 

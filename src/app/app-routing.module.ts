@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./guards/auth.guard";
 import { HomeGuard } from "./guards/home.guard";
 import { PaymentGuard } from "./guards/payment.guard";
+import { ProfileGuard } from "./guards/profile.guard";
 import { DataResolverService } from "./services/data-resolver.service";
 
 const routes: Routes = [
@@ -99,11 +100,6 @@ const routes: Routes = [
     canLoad: [AuthGuard],
   },
   {
-    path: "main",
-    loadChildren: () =>
-      import("./main/main.module").then((m) => m.MainPageModule),
-  },
-  {
     path: "funding-account",
     loadChildren: () =>
       import("./funding-account/funding-account.module").then(
@@ -163,6 +159,7 @@ const routes: Routes = [
     path: "payments",
     loadChildren: () =>
       import("./payments/payments.module").then((m) => m.PaymentsPageModule),
+      canLoad: [ProfileGuard],
   },
   {
     path: "create-card",

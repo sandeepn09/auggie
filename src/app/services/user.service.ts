@@ -16,33 +16,11 @@ const headers = new HttpHeaders()
   providedIn: "root",
 })
 export class UserService {
-  user: User = {
-    userId: 0,
-    firstName: "John",
-    lastName: "Doe",
-    address: "100 Central Street",
-    city: "NewYork",
-    state: "NY",
-    postalCode: "",
-    email: "pmharkins@gmail.com",
-    phone: "212-345-0000",
-    occupation: "",
-    gender: "",
-    dob: "",
-    annualIncome: "",
-    createDateTime: null,
-    updateDateTime: null,
-  };
-
   constructor(
     private storageService: StorageService,
     private httpService: HttpService,
     private router: Router
   ) {}
-
-  public getUser(): User {
-    return this.user;
-  }
 
   async updateProfile(profile: any, nextPage: string) {
     let userData: any = await this.storageService.getUser();
@@ -137,13 +115,13 @@ export class UserService {
     const userId = await this.getUserId();
     console.log("Getting Card Details for User Id", userId);
 
-    const response:any = await this.httpService
+    const response: any = await this.httpService
       .get("cards", { userId: userId }, AppConstants.HEADERS)
-     .toPromise()
+      .toPromise();
 
-    console.log("Cards for user", response)
+    console.log("Cards for user", response);
 
-    if(response && response.details && response.details.cards) {
+    if (response && response.details && response.details.cards) {
       return response.details.cards;
     }
     return null;
@@ -151,10 +129,9 @@ export class UserService {
 
   async getCardDetails() {
     const cards = await this.getCards();
-    if(cards) {
+    if (cards) {
       return cards[0];
     }
     return null;
   }
-
 }

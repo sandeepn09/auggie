@@ -38,10 +38,13 @@
         </h3>
 
         <p class="pay-date">
-          next payment <b>{{ pmt.paymentDate | date: "longDate" }}</b>
+          <b>{{ pmt.paymentDate | date: "longDate" }}</b>
         </p>
       </ion-label>
-      <p class="ion-text-right">
+      <p *ngIf="pmt.providerId == 7" class="ion-text-right">
+        <ion-badge color="danger">Unknown</ion-badge>
+      </p>
+      <p *ngIf="!(pmt.providerId == 7)" class="ion-text-right">
         <ion-badge color="success">Approved</ion-badge>
       </p>
     </ion-item>

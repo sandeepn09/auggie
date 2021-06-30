@@ -11,9 +11,7 @@ export class BankInfo {
 
 export class PaymentSchedule {
   providerId: number;
-  description: string;
   amount: number;
-  recurring: boolean;
   paymentDate: Date;
 }
 

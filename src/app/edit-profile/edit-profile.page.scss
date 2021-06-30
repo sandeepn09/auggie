@@ -38,8 +38,6 @@
   }
 }
 
-
-
 .profile-img {
   padding-top: 1vh;
   padding-left: 3vw;
@@ -99,4 +97,41 @@ color-drk {
 .invalid {
   color: #fe6b5d;
   font-size: 0.85em;
+}
+
+.phone-num {
+  // border: 1px solid blue;
+  display: grid;
+  grid-template-columns: 25vw auto;
+  grid-column-gap: 10px;
+
+  div {
+    border-bottom: 1px solid rgba(0, 191, 166, 0.8);
+    display: flex;
+
+    ion-input {
+      --placeholder-color: var(--ion-color-dark);
+      --padding-start: 15px;
+      --placeholder-opacity: 0.5;
+    }
+  }
+
+  .ph {
+    font-size: 0.9em;
+  }
+
+  .cc {
+    ion-input {
+      font-size: 1.1em;
+      font-weight: 600;
+      border: none;
+    }
+
+    p {
+      font-size: 1.2em;
+      padding: 0;
+      margin: 0;
+      padding: 3px 0px 0px 5px;
+    }
+  }
 }

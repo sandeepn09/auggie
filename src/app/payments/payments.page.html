@@ -1,6 +1,13 @@
 <app-menu-header></app-menu-header>
 
 <ion-content [fullscreen]="true" class="ion-margin-top">
+  <div *ngIf="hasCards" class="ion-padding ion-margin show-card">
+    <p>
+      Make sure you use the Augie card to set up payments for your subscriptions
+    </p>
+    <ion-button (click)="presentModal()" size="small">View card</ion-button>
+  </div>
+ 
   <!-- <div *ngIf="cardInfo" class="ion-padding">
     <app-min-card
       [cardNumber]="cardInfo.cardNumber"

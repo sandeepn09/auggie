@@ -9,7 +9,6 @@
   </div>
 
   <form [formGroup]="regForm" class="top-margin">
-   
     <div class="form-group ion-text-left">
       <ion-input
         class="form-control"
@@ -36,13 +35,17 @@
       <span
         class="invalid"
         *ngIf="regForm.get('password').touched && regForm.get('password').invalid"
-        >Password mus be atleast 8 characters, with an Uppercase letter, a Lowercase letter, a
-        number and a special character</span
+        >Password mus be atleast 8 characters, with an Uppercase letter, a
+        Lowercase letter, a number and a special character</span
       >
     </div>
   </form>
 
-  <ion-button expand="block" class="main-btn" style="margin-top: 4em" (click)="save()"
+  <ion-button
+    expand="block"
+    class="main-btn"
+    style="margin-top: 4em"
+    (click)="save()"
     >SIGN UP</ion-button
   >
 

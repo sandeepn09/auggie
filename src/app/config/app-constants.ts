@@ -11,6 +11,12 @@ export class AppConstants {
     .set("C", "Checking")
     .set("S", "Saving");
 
+  public static readonly INCOME_RANGES = new Map()
+    .set("0to35", "$0 - $35,000")
+    .set("35to75", "$35,000 - $75,000")
+    .set("75to125", "$75,000 - $125,000")
+    .set("125", "More than $125,000");
+
   public static readonly YES_NO = new Map().set("Y", "Yes").set("N", "No");
 
   public static readonly PROVIDERS = new Map()

@@ -29,6 +29,8 @@ import { VcodeComponent } from "./vcode/vcode.component";
 import { VerMessageComponent } from "./ver-message/ver-message.component";
 import { PasswordResetComponent } from "./password-reset/password-reset.component";
 import { AppRoutingModule } from "../app-routing.module";
+import { PhoneInputComponent } from "./phone-input/phone-input.component";
+import { CardModalComponent } from "./card-modal/card-modal.component";
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { AppRoutingModule } from "../app-routing.module";
     VcodeComponent,
     VerMessageComponent,
     PasswordResetComponent,
+    PhoneInputComponent,
+    CardModalComponent
   ],
   imports: [
     CommonModule,
@@ -73,6 +77,7 @@ import { AppRoutingModule } from "../app-routing.module";
     MinCardComponent,
     PhoneFormatPipe,
     SearchbarComponent,
+    PhoneInputComponent
   ],
   providers: [UserService, MessageService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

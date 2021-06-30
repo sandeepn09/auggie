@@ -2,8 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
 
 ion-header {
-  padding-top: 6vh;
-  padding-bottom: 3vh;
+  padding-top: 3vh;
+
   ion-toolbar {
     ion-title {
       text-transform: uppercase;
@@ -20,8 +20,19 @@ ion-header {
 }
 
 ion-content {
+  h2 {
+    font-weight: 700;
+    margin: 0 0 4vh 0;
+  }
   .form-group {
     margin-bottom: 2.5rem;
+  }
+
+  .lbl-p {
+    color: var(--ion-color-dark);
+    font-size: 0.9em;
+    margin-top: 8vh;
+    margin-bottom: 4vh;
   }
 
   .invalid {
@@ -35,7 +46,7 @@ ion-content {
     border-bottom: 0.5px solid #00bfa6;
     --padding-start: 10px;
     font-weight: 500;
-    --placeholder-color: #2a2b2c;
+    --placeholder-color: var(--ion-color-dark);
     --placeholder-font-weight: 600;
     --placeholder-opacity: 0.5;
   }
@@ -49,7 +60,7 @@ ion-content {
     --padding-start: 0px;
     font-size: 0.8em;
     font-weight: 500;
-    --placeholder-color: #2a2b2c;
+    --placeholder-color: var(--ion-color-dark);
     --placeholder-font-weight: 600;
     --placeholder-opacity: 0.5;
   }
@@ -59,6 +70,11 @@ ion-content {
     justify-content: left;
     align-items: center;
     border-bottom: 1px solid #00bfa6;
+    margin-bottom: 0;
+
+    span {
+      float: left;
+    }
 
     ion-icon {
       color: #00bfa6;
@@ -69,19 +85,17 @@ ion-content {
 
     ion-datetime {
       font-size: 0.8em;
-      --placeholder-color: #2a2b2c;
+      --placeholder-color: var(--ion-color-dark);
       --placeholder-font-weight: 600;
-      --placeholder-opacity: 0.7;
+      --placeholder-opacity: 0.5;
     }
   }
-
-  
 }
 
 * {
   font-family: "Mulish", sans-serif;
 }
 
-.btn-div{
+.btn-div {
   margin-top: 4em;
 }
