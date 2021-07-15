@@ -192,3 +192,15 @@ ion-button.link-btn {
 .cap-text {
   text-transform: capitalize;
 }
+
+.no-data {
+  h2 {
+    font-weight: 800;
+    margin-bottom: 8vh;
+  }
+  img {
+    width: 30vw;
+    height: auto;
+    margin-bottom: 8vh;
+  }
+}

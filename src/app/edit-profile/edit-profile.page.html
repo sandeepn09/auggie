@@ -263,6 +263,26 @@
           formControlName="state"
           value="{{user?.state}}"
         >
+         
+          <ion-select-option value="CO">Colorado</ion-select-option>
+          <ion-select-option value="FL">Florida</ion-select-option>
+          <ion-select-option value="MA">Massachusetts</ion-select-option>
+          <ion-select-option value="NJ">New Jersey</ion-select-option>
+          <ion-select-option value="NY">New York</ion-select-option>
+          <ion-select-option value="OK">Oklahoma</ion-select-option>
+          <ion-select-option value="OR">Oregon</ion-select-option>
+          <ion-select-option value="SC">South Carolina</ion-select-option>
+          <ion-select-option value="TX">Texas</ion-select-option>
+          <ion-select-option value="WI">Wisconsin</ion-select-option>
+        </ion-select>
+        <!--
+          <ion-select
+          placeholder="State"
+          interface="action-sheet"
+          class="form-control"
+          formControlName="state"
+          value="{{user?.state}}"
+        >
           <ion-select-option value="AL">Alabama</ion-select-option>
           <ion-select-option value="AK">Alaska</ion-select-option>
           <ion-select-option value="AZ">Arizona</ion-select-option>
@@ -314,6 +334,7 @@
           <ion-select-option value="WI">Wisconsin</ion-select-option>
           <ion-select-option value="WY">Wyoming</ion-select-option>
         </ion-select>
+        -->
         <span
           class="invalid"
           *ngIf="profileForm.get('state').touched && profileForm.get('state').invalid"
@@ -341,7 +362,7 @@
   </form>
 
   <div class="ion-padding">
-    <ion-button
+    <!--<ion-button
       (click)="save('/add-payment')"
       *ngIf="!hasBanks"
       expand="block"
@@ -355,10 +376,9 @@
       class="clear-btn ion-margin-top"
       fill="outline"
       >Save & Exit</ion-button
-    >
+    >-->
     <ion-button
-      (click)="save('/payments')"
-      *ngIf="hasBanks"
+      (click)="save()"
       expand="block"
       class="main-btn ion-margin-bottom"
       >Save</ion-button

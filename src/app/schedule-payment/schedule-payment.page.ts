@@ -26,6 +26,8 @@ export class SchedulePaymentPage implements OnInit {
     providerId: 0,
     amount: 0,
     paymentDate: null,
+    providerName: "",
+    bankPaymentId: 0
   };
 
   providerName: string;

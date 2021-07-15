@@ -82,7 +82,7 @@ export class TransactionsComponent implements OnInit {
 
   async initData() {
     this.paymentSchedules =
-      (await this.paymentService.getScheduledPayments()) as PaymentSchedule[];
+      (await this.paymentService.getScheduledPayments("B")) as PaymentSchedule[];
     console.log("SchedPaysComponent paymentSchedules", this.paymentSchedules);
 
     this.providers =

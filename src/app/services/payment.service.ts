@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { AppConstants } from "../config/app-constants";
 import { PaymentSchedule } from "../models/user/payment-models";
+import { AuthService } from "./auth.service";
 import { ErrorHandlerService } from "./error-handler.service";
 import { HttpService } from "./http.service";
 import { MessageService } from "./message.service";
@@ -78,7 +79,8 @@ export class PaymentService {
     private router: Router,
     private messageService: MessageService,
     private userService: UserService,
-    private errorHandlerService: ErrorHandlerService
+    private errorHandlerService: ErrorHandlerService,
+    private authService: AuthService
   ) {}
 
   public getRecords(): Record[] {
@@ -114,6 +116,7 @@ export class PaymentService {
             "OK",
             false
           );
+
           // this.router.navigateByUrl('/profile-view');
         },
         (error) => {
@@ -148,16 +151,57 @@ export class PaymentService {
     );
   }
 
-  async getScheduledPayments() {
+  async postPayment(payments: any, nextPage: string) {
+    const userId = await this.userService.getUserId();
+    let data = { bankPaymentRequests: payments };
+    console.log("Updated PaymentSchedule in service", data);
+
+    this.httpService.post("/v2/payment", data, AppConstants.HEADERS).subscribe(
+      (res: any) => {
+        console.log("Post Payment response", res);
+        if (res && res.code == 2600) {
+          this.authService.refreshUser();
+          
+          this.messageService.message(
+            "Success!",
+            "Bill add success!",
+            nextPage,
+            "OK",
+            false
+          );
+
+          
+        }
+      },
+      (error) => {
+        this.errorHandlerService.showMessage(error);
+      }
+    );
+  }
+
+  async getScheduledPayments(sortBy) {
     const userId = await this.userService.getUserId();
     const response: any = await this.httpService
-      .get("scheduled-payments", { userId: userId }, AppConstants.HEADERS)
+      .get("scheduled-payments", { userId: userId, sortBy: sortBy }, AppConstants.HEADERS)
       .toPromise()
       .catch((error) => {
         this.errorHandlerService.showMessage(error);
       });
 
     console.log("Payments With Promise", response);
+    return response.details.payments;
+  }
+
+  async getBankPayments() {
+    const userId = await this.userService.getUserId();
+    const response: any = await this.httpService
+      .get("bank-payments", { userId: userId }, AppConstants.HEADERS)
+      .toPromise()
+      .catch((error) => {
+        this.errorHandlerService.showMessage(error);
+      });
+
+    console.log("Bank payments", response);
     return response.details.payments;
   }
 

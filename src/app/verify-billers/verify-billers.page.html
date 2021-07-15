@@ -1,0 +1,28 @@
+<app-menu-header></app-menu-header>
+<ion-content class="ion-padding ion-text-center">
+  <h2>Congratulations!</h2>
+  <h5>Your Augie has been created!</h5>
+  <div class="card-container ion-text-center">
+    <ion-slides>
+      <ion-slide *ngFor="let crd of cards">
+        <app-pmt-card
+          [name]="crd.name"
+          [cardNumber]="crd.cardNumber"
+          [cardBalance]="crd.cardBalance"
+          [expirationDate]="crd.expirationDate"
+        ></app-pmt-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+
+  
+    <ion-button (click)="presentModal()" class="ion-margin main-btn">View card Details</ion-button>
+  
+
+  <p class="ion-text-left">
+    Now it's time to enter your new card number into the billers
+    website. Click Confirm Billers and confirm each biller
+  </p>
+
+  <ion-button routerLink="/billers" class="main-btn" expand="block"> Confirm Billers</ion-button>
+</ion-content>

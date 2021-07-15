@@ -1,0 +1,31 @@
+<app-menu-header></app-menu-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <h2> {{name}} {{bankName}}<br/>Account (...{{accountNum}})</h2>
+  <p>
+    Please select which monthly recurring payments you would like the Augie card
+    to pay. Unless they are checked off here, the card will not work.
+  </p>
+
+  <ion-list>
+    <ion-item *ngFor="let tx of payments">
+      <ion-label>
+        <h2>{{tx.providerName}}</h2>
+        <h4>{{tx.paymentDate | date:'mediumDate'}}</h4>
+        <h3>{{tx.paymentAmount | currency}}</h3>
+      </ion-label>
+      <ion-checkbox (ionChange)="trasnactionUpdate($event)" slot="end" [(ngModel)]="tx.active"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-button *ngIf="payments && payments.length > 0" expand="block" (click)="save()" class="main-btn">Save</ion-button>
+
+  <div
+    *ngIf="!payments || payments.length < 1"
+    class="ion-text-center ion-padding no-data"
+  >
+    <h2>No Bill Payments found</h2>
+    <img alt="" src="../../../assets/no-data.svg" />
+    <ion-button expand="block" class="main-btn" (click)="initData()"
+      >Refresh</ion-button
+    >
+  </div>
+</ion-content>

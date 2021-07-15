@@ -13,6 +13,8 @@ export class PaymentSchedule {
   providerId: number;
   amount: number;
   paymentDate: Date;
+  providerName:string;
+  bankPaymentId: number;
 }
 
 export class LogoResponse {
@@ -38,5 +40,16 @@ export class CardInfo {
   expirationDate: Date;
   issueDate: Date;
   securityCode: number;
+  active: boolean;
+}
+
+export class Payment {
+  id: number;
+  userId: number;
+  bankId: number;
+  providerName: string;
+  providerId: number;
+  paymentAmount: number;
+  paymentDate: Date;
   active: boolean;
 }

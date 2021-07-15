@@ -1,0 +1,36 @@
+<app-menu-header></app-menu-header>
+
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <h3 class="cc">Your current credit score <b>740</b></h3>
+  <h2 class="ion-text-left">Bill History</h2>
+
+  <div class="btn-div ion-padding">
+    <ion-button (click)="sort('B')"> sort by Biller </ion-button>
+    <ion-button (click)="sort('D')"> sort by date </ion-button>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let biller of bills; let i = index">
+      <div class="biller ion-text-center">
+        <h1 [ngStyle]="{'color': colors[i]}">{{biller.providerName.substring(0,1)}}</h1>
+      </div>
+
+      <ion-label>
+        <h2>{{biller.providerName}}</h2>
+        <p>{{biller.paymentDate | date: 'mediumDate'}}</p>
+        <h3>{{biller.amount | currency}}</h3>
+      </ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="biller.active"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-item lines="none">
+    <ion-label slot="start">
+      <h3 class="total-amt">Total paid to date</h3>
+    </ion-label>
+    <ion-label>
+      <h2 class="ion-text-right">{{totalPaid | currency}}</h2>
+    </ion-label>
+  </ion-item>
+  <ion-button class="main-btn" expand="block">Confirm</ion-button>
+</ion-content>

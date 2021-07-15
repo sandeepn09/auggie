@@ -7,6 +7,7 @@ import { DatePipe } from "@angular/common";
 import { AppConstants } from "../config/app-constants";
 import { Router } from "@angular/router";
 import { CardInfo } from "../models/user/payment-models";
+import { AuthService } from "./auth.service";
 
 const headers = new HttpHeaders()
   .set("content-type", "application/json")
@@ -19,7 +20,7 @@ export class UserService {
   constructor(
     private storageService: StorageService,
     private httpService: HttpService,
-    private router: Router
+    private router: Router,
   ) {}
 
   async updateProfile(profile: any, nextPage: string) {
@@ -41,6 +42,7 @@ export class UserService {
       (res: any) => {
         console.log("Prof res", res);
         if (res.code == 2506 || res.code == 2505) {
+          
           this.router.navigateByUrl(nextPage);
         }
       },
@@ -80,6 +82,16 @@ export class UserService {
     return false;
   }
 
+  async hasPayments() {
+    let userData: any = await this.storageService.getUser();
+    console.log("User hasCards", userData.hasPayments);
+    if (userData && userData.hasPayments && userData.hasPayments === true) {
+      return true;
+    }
+
+    return false;
+  }
+
   async getUserEmail() {
     let userData: any = await this.storageService.getUser();
 
@@ -102,6 +114,17 @@ export class UserService {
     return "";
   }
 
+  async getFirstname() {
+    let userData: any = await this.storageService.getUser();
+
+    console.log("User Firsname", userData.firstName);
+    if (userData && userData.firstName) {
+      return userData.firstName;
+    }
+
+    return "";
+  }
+
   async getUserDetails() {
     let email = await this.getUserEmail();
     return this.httpService.get(
@@ -109,6 +132,17 @@ export class UserService {
       { email: email },
       AppConstants.HEADERS
     );
+  }
+
+  async getBank() {
+    const response: any = await (await this.getUserDetails()).toPromise();
+
+    console.log("Banks for user", response.details);
+
+    if (response && response.details && response.details.banks) {
+      return response.details.banks[0];
+    }
+    return null;
   }
 
   async getCards() {
@@ -133,5 +167,19 @@ export class UserService {
       return cards[0];
     }
     return null;
+  }
+
+  async isSetupComplete() {
+    const hasBanks = await this.hasBanks();
+    const hasCards = await this.hasCards();
+    const isProfileComplete = await this.isProfileComplete();
+
+    if (hasBanks == true && hasCards == true && isProfileComplete == true) {
+      console.log("Setup Complete : true");
+      return true;
+    } else {
+      console.log("Setup Complete : false");
+      return false;
+    }
   }
 }

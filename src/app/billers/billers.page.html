@@ -1,0 +1,34 @@
+<ion-header class="ion-no-border ion-padding">
+  <ion-toolbar>
+    <ion-title>Verify billers</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="verify-billers">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <p class="ion-text-left">
+   Enter your new card number into the following billers
+    website. Please select the checkbox once completed
+  </p>
+
+  <ion-list *ngIf="bills">
+    <ion-item *ngFor="let biller of bills; let i = index">
+      <div class="biller ion-text-center">
+        <h1 [ngStyle]="{'color': colors[i]}">{{biller.providerName.substring(0,1)}}</h1>
+      </div>
+
+      <ion-label>
+        <h2>{{biller.providerName}}</h2>
+        <p>{{biller.paymentDate | date: 'mediumDate'}}</p>
+        <h3>{{biller.amount | currency}}</h3>
+      </ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="biller.verified"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+
+  <ion-button class="main-btn" (click)="save()" expand="block">Confirm</ion-button>
+</ion-content>

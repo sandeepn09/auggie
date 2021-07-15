@@ -23,7 +23,7 @@ export class HomeGuard implements CanLoad {
       console.log("No Auth Data");
       return true;
     } else {
-      this.router.navigateByUrl("/payments", { replaceUrl: true });
+      this.router.navigateByUrl("/bill-history", { replaceUrl: true });
       return true;
     }
   }

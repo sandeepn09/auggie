@@ -1,0 +1,29 @@
+<ion-header class="ion-no-border ion-padding">
+  <ion-toolbar>
+    <ion-title>Add/Edit Bills</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="verify-billers">
+        <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <ion-button routerLink="/bank-transactions" expand="block" class="main-btn">Add/Edit Bills</ion-button>
+  <h3 class="ion-text-left ion-padding ion-margin sub-title">Bills paid using Augie card</h3>
+  <ion-list>
+    <ion-item *ngFor="let biller of bills; let i = index">
+      <div class="biller ion-text-center">
+        <h1 [ngStyle]="{'color': colors[i]}">{{biller.providerName.substring(0,1)}}</h1>
+      </div>
+
+      <ion-label>
+        <h2>{{biller.providerName}}</h2>
+        <p>{{biller.paymentDate | date: 'mediumDate'}}</p>
+        <h3>{{biller.amount | currency}}</h3>
+      </ion-label>
+      
+    </ion-item>
+  </ion-list>
+</ion-content>

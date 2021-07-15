@@ -1,0 +1,81 @@
+<app-menu-header></app-menu-header>
+<ion-content [fullscreen]="true" class="ion-text-center ion-padding">
+  <div class="ion-text-center title-container">
+    <div class="ion-text-center aug-title">
+      <h2>Welcome!</h2>
+      <img alt="" src="../../assets/icon.png" />
+    </div>
+
+    <p>Complete each step and get your Augie card to start building credit!</p>
+  </div>
+  <ion-item lines="none">
+    <div>
+      <h3>Complete your Profile</h3>
+      <p>
+        <span>Step 1</span>Complete your profile so we can use that for issuing
+        your card
+      </p>
+      <ion-button
+        shape="round"
+        *ngIf="!isProfileComplete"
+        routerLink="/edit-profile"
+        >Complete Profile <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+    <ion-icon
+      slot="end"
+      color="primary"
+      size="large"
+      name="checkmark-circle"
+      *ngIf="isProfileComplete"
+    ></ion-icon>
+  </ion-item>
+  <ion-item lines="none">
+    <div>
+      <h3>Add a Bank Account</h3>
+      <p>
+        <span>Step 2</span>Now that your profile is complete, add a funding
+        account so we can use that for funding your card
+      </p>
+      <ion-button
+        *ngIf="!hasBanks && isProfileComplete"
+        shape="round"
+        routerLink="/funding-account"
+        >Add Bank Account <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+    <ion-icon
+      slot="end"
+      color="primary"
+      size="large"
+      name="checkmark-circle"
+      *ngIf="hasBanks && isProfileComplete"
+    ></ion-icon>
+  </ion-item>
+  <ion-item lines="none">
+    <div>
+      <h3>Set up your bill payments</h3>
+      <p>
+        <span>Step 3</span>Identify which monthly bills you will be paying using
+        the Augie card
+      </p>
+      <ion-button
+        *ngIf="!hasPayments && hasBanks && isProfileComplete"
+        shape="round"
+        routerLink="/bank-transactions"
+        >Setup <ion-icon name="chevron-forward-outline"></ion-icon>
+      </ion-button>
+    </div>
+    <ion-icon
+      slot="end"
+      color="primary"
+      size="large"
+      name="checkmark-circle"
+      *ngIf="hasPayments && hasBanks && isProfileComplete"
+    ></ion-icon>
+  </ion-item>
+
+  <ion-button *ngIf="!hasCards" [disabled]="!hasPayments" routerLink="/create-card" expand="block" class="main-btn ion-margin-top"
+    >Create my Augie card
+  </ion-button>
+</ion-content>

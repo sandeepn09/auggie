@@ -88,7 +88,12 @@ export class EditProfilePage implements OnInit {
     this.init();
 
     this.events.subscribe("user:refreshed", (data: any) => {
-      console.log("Edit Profile Component user refresh event", data, "at", data.time);
+      console.log(
+        "Edit Profile Component user refresh event",
+        data,
+        "at",
+        data.time
+      );
       this.init();
     });
   }
@@ -112,7 +117,7 @@ export class EditProfilePage implements OnInit {
     }
   }
 
-  async save(nextPage: string) {
+  async save() {
     const userEmail = await this.userService.getUserEmail();
     console.log("Setting user email !!", userEmail);
     this.profileForm.get("email").setValue(userEmail);
@@ -122,10 +127,18 @@ export class EditProfilePage implements OnInit {
       console.log(this.profileForm.value);
       this.presentAlert();
     } else {
+      let nextPage = "/steps-home";
+
+      const isSetupComplete = await this.userService.isSetupComplete();
+
+      if (isSetupComplete == true) {
+        nextPage = "/bill-history";
+      }
+
       console.log(this.profileForm);
       console.log("BD Form is VALID!!!!");
       await this.userService.updateProfile(this.profileForm.value, nextPage);
-      this.authService.refreshUser();
+      await this.authService.refreshUser();
     }
   }
 
@@ -187,4 +200,5 @@ export class EditProfilePage implements OnInit {
     const { data: info, role } = await modal.onWillDismiss();
     console.log(role);
   }
+
 }

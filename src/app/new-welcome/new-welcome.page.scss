@@ -1,0 +1,40 @@
+ion-content {
+  color: var(--ion-color-dark);
+  --background: url("../../assets/main-bg-big.png") no-repeat center center /
+    120% 120%;
+
+  h2 {
+    margin-top: 8vh;
+    font-size: 2em;
+    font-weight: 800;
+  }
+
+ 
+
+  .img-div {
+    margin-bottom: 6vh;
+    margin-top: 4vh;
+    img {
+      margin-top: 6vh;
+      width: 40vw;
+      height: auto;
+      opacity: 0.8;
+    }
+  }
+
+  .title-p {
+    margin-top: 6vh;
+    opacity: 0.7;
+
+    h2,
+    h3 {
+      margin: 1vh;
+    }
+
+    h3 {
+        // margin-top: 6vh;
+        font-size: 1.8em;
+        font-weight: 800;
+      }
+  }
+}

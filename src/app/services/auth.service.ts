@@ -45,10 +45,15 @@ export class AuthService {
             this.publishUserRefreshEvent();
           }
           this.loadingService.dismissLoading();
-          if (res.details.user && res.details.user.profileComplete === true) {
-            this.router.navigateByUrl("/profile-view");
+          if (
+            res.details.user &&
+            res.details.user.profileComplete === true &&
+            res.details.user.hasBanks === true &&
+            res.details.user.hasCards === true
+          ) {
+            this.router.navigateByUrl("/bill-history");
           } else {
-            this.router.navigateByUrl("/description");
+            this.router.navigateByUrl("/new-welcome");
           }
 
           console.log("login success!");
@@ -107,6 +112,12 @@ export class AuthService {
   }
 
   async refreshUser() {
+    setTimeout(() => {
+      this.refreshUserFull();
+    }, 2000);
+  }
+
+  async refreshUserFull() {
     const email = await this.userService.getUserEmail();
     this.httpService.get("user/user-data", { email: email }, headers).subscribe(
       (res: any) => {

@@ -1,9 +1,11 @@
 import { NgModule } from "@angular/core";
 import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./guards/auth.guard";
+import { BillGuard } from "./guards/bill.guard";
 import { HomeGuard } from "./guards/home.guard";
 import { PaymentGuard } from "./guards/payment.guard";
 import { ProfileGuard } from "./guards/profile.guard";
+import { RefreshGuard } from "./guards/refresh.guard";
 import { DataResolverService } from "./services/data-resolver.service";
 
 const routes: Routes = [
@@ -167,6 +169,37 @@ const routes: Routes = [
       import("./create-card/create-card.module").then(
         (m) => m.CreateCardPageModule
       ),
+  },
+  {
+    path: 'bank-transactions',
+    loadChildren: () => import('./bank-transactions/bank-transactions.module').then( m => m.BankTransactionsPageModule)
+  },
+  {
+    path: 'steps-home',
+    loadChildren: () => import('./steps-home/steps-home.module').then( m => m.StepsHomePageModule),
+    canLoad: [RefreshGuard]
+  },
+  {
+    path: 'new-welcome',
+    loadChildren: () => import('./new-welcome/new-welcome.module').then( m => m.NewWelcomePageModule)
+  },
+  {
+    path: 'verify-billers',
+    loadChildren: () => import('./verify-billers/verify-billers.module').then( m => m.VerifyBillersPageModule),
+    canLoad: [BillGuard]
+  },
+  {
+    path: 'billers',
+    loadChildren: () => import('./billers/billers.module').then( m => m.BillersPageModule)
+  },
+  {
+    path: 'bill-history',
+    loadChildren: () => import('./bill-history/bill-history.module').then( m => m.BillHistoryPageModule),
+    canLoad: [BillGuard]
+  },
+  {
+    path: 'add-bills',
+    loadChildren: () => import('./add-bills/add-bills.module').then( m => m.AddBillsPageModule)
   },
 ];
 

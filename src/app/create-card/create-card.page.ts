@@ -25,15 +25,15 @@ export class CreateCardPage implements OnInit {
     let result = await this.paymentService.createCard();
 
     await this.loadingService.dismissLoading();
-
+    await this.authService.refreshUser();
     this.messageService.message(
       "Success!",
       "Your Augie card was approved and created! Make sure you enter the Augie card number on the Service provider's site for all the payments that you have or will set up",
-      "/payments",
+      "/verify-billers",
       "OK",
       false
     );
 
-    await this.authService.refreshUser();
+    
   }
 }

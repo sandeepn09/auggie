@@ -11,25 +11,33 @@
   <div class="form-info ion-padding">
     <div class="ion-text-left fld-info">
       <p class="fld-name">Bank Name</p>
-      <p>{{bankName}}</p>
+      <p>{{ bankName }}</p>
     </div>
     <div class="ion-text-left fld-info">
       <p class="fld-name">Account Number</p>
-      <p>{{accountNumber}}</p>
+      <p>{{ accountNumber }}</p>
     </div>
     <div class="ion-text-left fld-info">
       <p class="fld-name">Routing Number</p>
-      <p>{{routingNumber}}</p>
+      <p>{{ routingNumber }}</p>
     </div>
     <div class="ion-text-left fld-info">
       <p class="fld-name">Account Type</p>
-      <p>{{acctType}}</p>
+      <p>{{ acctType }}</p>
     </div>
   </div>
 
   <div class="footer-div ion-padding">
-    <ion-button (click)="confirmAddCard()" *ngIf="!hasCards" class="main-btn ion-margin-bottom" expand="block">Create your Augie Card</ion-button>
+    <!--
+ <ion-button (click)="confirmAddCard()" *ngIf="!hasCards" class="main-btn ion-margin-bottom" expand="block">Create your Augie Card</ion-button>
     <ion-button (click)="confirm()" *ngIf="!hasCards" class="clear-btn ion-margin-top" expand="block" fill="outline">CONFIRM & Exit</ion-button>
-    <ion-button (click)="confirm()" *ngIf="hasCards" class="main-btn ion-margin-bottom" expand="block">Confirm</ion-button>
+   
+    -->
+    <ion-button
+      (click)="confirm()"
+      class="main-btn ion-margin-bottom"
+      expand="block"
+      >Confirm</ion-button
+    >
   </div>
 </div>

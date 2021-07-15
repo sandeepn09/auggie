@@ -13,6 +13,7 @@ import { PaymentService } from "../services/payment.service";
 import { AppConstants } from "../config/app-constants";
 import { LoadingService } from "../services/loading.service";
 import { AuthService } from "../services/auth.service";
+import { UserService } from "../services/user.service";
 
 @Component({
   selector: "app-funding-account",
@@ -44,7 +45,8 @@ export class FundingAccountPage implements OnInit {
     public modalController: ModalController,
     private paymentService: PaymentService,
     private loadingService: LoadingService,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
   async save() {
@@ -94,16 +96,25 @@ export class FundingAccountPage implements OnInit {
 
     if (role === "confirm") {
       await this.loadingService.presentLoading("Adding Bank account...");
+      let nextPage = "/steps-home";
 
-      await this.paymentService.addFundingAccount(this.bdForm.value, "/payments");
-  
+      const isSetupComplete = await this.userService.isSetupComplete();
+      if (isSetupComplete == true) {
+        nextPage = "/bill-history";
+      }
+
+      await this.paymentService.addFundingAccount(this.bdForm.value, nextPage);
+      await this.authService.refreshUser();
+      
       await this.loadingService.dismissLoading();
-    }
-    else if (role === "add-card") {
+    } else if (role === "add-card") {
       await this.loadingService.presentLoading("Adding Bank account...");
 
-      await this.paymentService.addFundingAccount(this.bdForm.value, "/create-card");
-  
+      await this.paymentService.addFundingAccount(
+        this.bdForm.value,
+        "/create-card"
+      );
+
       await this.loadingService.dismissLoading();
     }
   }
