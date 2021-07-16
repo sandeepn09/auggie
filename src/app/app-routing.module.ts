@@ -186,7 +186,7 @@ const routes: Routes = [
   {
     path: 'verify-billers',
     loadChildren: () => import('./verify-billers/verify-billers.module').then( m => m.VerifyBillersPageModule),
-    canLoad: [BillGuard]
+    // canLoad: [BillGuard]
   },
   {
     path: 'billers',

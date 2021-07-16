@@ -19,7 +19,7 @@ export class BillGuard implements CanLoad {
   constructor(private userService: UserService, private router: Router, private authService: AuthService) {}
 
   async canLoad(): Promise<boolean> {
-    await this.authService.refreshUser();
+    // await this.authService.refreshUser();
     const isSetupComplete = await this.userService.isSetupComplete();
 
     if (isSetupComplete) {

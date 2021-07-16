@@ -161,16 +161,16 @@ export class PaymentService {
         console.log("Post Payment response", res);
         if (res && res.code == 2600) {
           this.authService.refreshUser();
-          
-          this.messageService.message(
-            "Success!",
-            "Bill add success!",
-            nextPage,
-            "OK",
-            false
-          );
 
-          
+          setTimeout(() => {
+            this.messageService.message(
+              "Success!",
+              "Bill add success!",
+              nextPage,
+              "OK",
+              false
+            );
+          }, 1000);
         }
       },
       (error) => {
@@ -182,7 +182,11 @@ export class PaymentService {
   async getScheduledPayments(sortBy) {
     const userId = await this.userService.getUserId();
     const response: any = await this.httpService
-      .get("scheduled-payments", { userId: userId, sortBy: sortBy }, AppConstants.HEADERS)
+      .get(
+        "scheduled-payments",
+        { userId: userId, sortBy: sortBy },
+        AppConstants.HEADERS
+      )
       .toPromise()
       .catch((error) => {
         this.errorHandlerService.showMessage(error);
